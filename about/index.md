@@ -38,6 +38,6 @@ title: About
 >若喜欢本博客或是文章对你有帮助，请给予博主一些小小的捐赠，让我有更大的动力继续写下去
 >用支付宝或者微信扫描二维码来捐赠，我将不胜感激
 
-	![支付宝](http://cxray.github.io/public/images/alipayqr.png)
-	![微信](http://cxray.github.io/public/images/weixinpay.JPG)
+>![支付宝](http://cxray.github.io/public/images/alipayqr.png)
+>![微信](http://cxray.github.io/public/images/weixinpay.JPG)
 
