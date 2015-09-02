@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2015-9-1 13:17:00
+date: 2015-9-1
 title: Hello World
 categories: 闲谈
 ---
