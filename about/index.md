@@ -34,3 +34,5 @@ title: About
 
 >![Gmail](http://cxray.github.io/public/images/gmail.png)[chenxiaolei.ray@gmail.com](mailto:chenxiaolei.ray@gmail.com)
 ***
+
+![赞助](http://cxray.github.io/about/1.jpg)
