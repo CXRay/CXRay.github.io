@@ -17,4 +17,4 @@ title: About
 
 ![GitHub](http://cxray.github.io/public/images/github.png)[CXRay](https://github.com/CXRay)
 
-![Gmail](http://cxray.github.io/public/images/gmail.png)[chenxiaolei.ray@gmail.com](mailto:narsihuang@gmail.com)
+![Gmail](http://cxray.github.io/public/images/gmail.png)[chenxiaolei.ray@gmail.com](mailto:chenxiaolei.ray@gmail.com)
