@@ -36,5 +36,17 @@ title: Home
 {% if forloop.last %}</div></div>{% endif %}
 
 {% endfor %}
+<script>
+window.tctipConfig = {
+			staticPrefix: "http://static.tctip.com",
+			buttonImageId: 5,
+			buttonTip:	"zanzhu",
+			list:{
+				alipay: { qrimg: "public/images/alipayqr.png"},
+				weixin: { qrimg: "public/images/weixinpay.JPG"},
+			}
+		};
+	</script>
+	<script src="http://static.tctip.com/js/tctip.min.js"></script>
 
 </section>
