@@ -4,9 +4,9 @@ title: About
 ---
 #求杭州互联网公司实习机会.....>.<
 
-![图片1](about/IMG1.JPG)
+![图片1](http://cxray.github.io/about/IMG1.JPG)
 
-![图片2](about/IMG2.JPG)
+![图片2](http://cxray.github.io/about/IMG2.JPG)
 
 博主
 
