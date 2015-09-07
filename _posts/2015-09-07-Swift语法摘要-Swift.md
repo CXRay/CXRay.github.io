@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-9-7
-title: Swift语法
+title: Swift语法摘要
 categories: Swift
 ---
 来源：http://wiki.jikexueyuan.com/project/swift/

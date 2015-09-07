@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-9-4
-title: Swift一些基础语法
+title: Swift一些UI基础
 categories: Swift
 ---
 >出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
