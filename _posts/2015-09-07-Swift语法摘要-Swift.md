@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-9-7
-title: Swift语法摘要
+title: Swift语法
 categories: Swift
 ---
 来源：http://wiki.jikexueyuan.com/project/swift/
@@ -140,3 +140,48 @@ a = b ?? c 简而言之，如果b有值，那a就等于b，如果b为optional，
 	}
 	print("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 	// 打印输出 "6 mansion scenes; 2 cell scenes"
+
+###基本集合操作
+
+下面的插图描述了两个集合-a和b-以及通过阴影部分的区域显示集合各种操作的结果。
+
+![setVennDiagram](http://cxray.github.io/_posts/img/setVennDiagram_2x.png)
+
+* 使用intersect(:)方法根据两个集合中都包含的值创建的一个新的集合。
+* 使用exclusiveOr(:)方法根据值在一个集合中但不在两个集合中的值创建一个新的集合。
+* 使用union(:)方法根据两个集合的值创建一个新的集合。
+* 使用subtract(:)方法根据不在该集合中的值创建一个新的集合。
+
+		let oddDigits: Set = [1, 3, 5, 7, 9]
+		let evenDigits: Set = [0, 2, 4, 6, 8]
+		let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+		oddDigits.union(evenDigits).sort()
+		// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		oddDigits.intersect(evenDigits).sort()
+		// []
+		oddDigits.subtract(singleDigitPrimeNumbers).sort()
+		// [1, 9]
+		oddDigits.exclusiveOr(singleDigitPrimeNumbers).sort()
+		// [1, 2, 9]
+
+集合成员关系和相等
+
+下面的插图描述了三个集合-a,b和c,以及通过悬浮区域表述集合间共享的元素。Set a是Setb的父集合，因为a包含了b中所有的元素，相反的，Set b是a的子集合，因为属于b的元素也被a包含。Set b和Set c彼此不关联，因为它们之间没有共同的元素。
+
+![setEulerDiagram](http://cxray.github.io/_posts/img/setEulerDiagram_2x.png)
+
+* 使用“是否等”运算符(==)来判断两个集合是否包含全部相同的值。
+* 使用isSubsetOf(_:)方法来判断一个集合中的值是否也被包含在另外一个集合中。
+* 使用isSupersetOf(_:)方法来判断一个集合中包含的值是另一个集合中所有的值。
+* 使用isStrictSubsetOf(:)或者isStrictSupersetOf(:)方法来判断一个集合是否是另外一个集合的子集合或者父集合并且和特定集合不相等。
+* 使用isDisjointWith(_:)方法来判断两个结合是否不含有相同的值。
+
+		let houseAnimals: Set = ["🐶", "🐱"]
+		let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+		let cityAnimals: Set = ["🐦", "🐭"]
+		houseAnimals.isSubsetOf(farmAnimals)
+		// true
+		farmAnimals.isSupersetOf(houseAnimals)
+		// true
+		farmAnimals.isDisjointWith(cityAnimals)
+		// true
