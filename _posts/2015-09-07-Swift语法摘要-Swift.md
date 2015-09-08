@@ -145,7 +145,7 @@ a = b ?? c 简而言之，如果b有值，那a就等于b，如果b为optional，
 
 下面的插图描述了两个集合-a和b-以及通过阴影部分的区域显示集合各种操作的结果。
 
-![setVennDiagram](http://cxray.github.io/_posts/img/setVennDiagram_2x.png)
+![setVennDiagram](http://cxray.github.io/public/images/setVennDiagram_2x.png)
 
 * 使用intersect(:)方法根据两个集合中都包含的值创建的一个新的集合。
 * 使用exclusiveOr(:)方法根据值在一个集合中但不在两个集合中的值创建一个新的集合。
@@ -168,7 +168,7 @@ a = b ?? c 简而言之，如果b有值，那a就等于b，如果b为optional，
 
 下面的插图描述了三个集合-a,b和c,以及通过悬浮区域表述集合间共享的元素。Set a是Setb的父集合，因为a包含了b中所有的元素，相反的，Set b是a的子集合，因为属于b的元素也被a包含。Set b和Set c彼此不关联，因为它们之间没有共同的元素。
 
-![setEulerDiagram](http://cxray.github.io/_posts/img/setEulerDiagram_2x.png)
+![setEulerDiagram](http://cxray.github.io/public/images/setEulerDiagram_2x.png)
 
 * 使用“是否等”运算符(==)来判断两个集合是否包含全部相同的值。
 * 使用isSubsetOf(_:)方法来判断一个集合中的值是否也被包含在另外一个集合中。
