@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-9-7
-title: Swift语法
+title: Swift语法摘要
 categories: Swift
 ---
 来源：http://wiki.jikexueyuan.com/project/swift/
@@ -185,3 +185,135 @@ a = b ?? c 简而言之，如果b有值，那a就等于b，如果b为optional，
 		// true
 		farmAnimals.isDisjointWith(cityAnimals)
 		// true
+		
+###检测API是否可用
+
+Swift 有内置支持去检查接口的可用性的，这可以确保我们不会不小心地使用对于当前部署目标不可用的API。
+
+编译器使用SDK中的可用信息来验证在我们在可用部署目标指定项目的代码中所有的API调用。如果我们尝试使用一个不可用的API，Swift会在编译期报错。
+
+我们使用一个可用性条件在一个if或guard语句中去有条件的执行一段代码，这取决于我们想要使用的API是否在运行时是可用的。编译器使用从可用性条件语句中获取的信息，这时它会去验证在代码块中调用的API是否都可用。
+
+	if #available(iOS 9, OSX 10.10, *) {
+    	// 在 iOS 使用 iOS 9 APIs , 并且在 OS X 使用 OS X v10.10 APIs
+	} else {
+    	// 回滚至早前 iOS and OS X 的API
+	}
+	
+以上可用性条件指定在iOS，if段的代码仅仅在iOS9及更高可运行；在OS X，仅在OS X v10.10及更高可运行。最后一个参数，*，是必须的并且指定在任何其他平台上，if段的代码在最小可用部署目标指定项目中执行。
+
+在它普遍的形式中，可用性条件获取了平台名字和版本的清单。平台名字可以是iOS，OSX或watchOS。除了特定的主板本号像iOS8，我们可以指定较小的版本号像iOS8.3以及 OS X v10.10.3。
+
+	if #available(`platform name` `version`, `...`, *) {
+    	`statements to execute if the APIs are available`
+	} else {
+    	`fallback statements to execute if the APIs are unavailable`
+	}
+	
+###闭包
+闭包表达式语法有如下一般形式：
+
+	{ (parameters) -> returnType in
+    statements
+	}
+闭包表达式语法可以使用常量、变量和inout类型作为参数，不提供默认值。 也可以在参数列表的最后使用可变参数。 元组也可以作为参数和返回值。
+
+尾随闭包（Trailing Closures）
+如果您需要将一个很长的闭包表达式作为最后一个参数传递给函数，可以使用尾随闭包来增强函数的可读性。 尾随闭包是一个书写在函数括号之后的闭包表达式，函数支持将其作为最后一个参数调用。
+
+	func someFunctionThatTakesAClosure(closure: () -> Void) {
+    // 函数体部分
+	}
+
+	// 以下是不使用尾随闭包进行函数调用
+	someFunctionThatTakesAClosure({
+    // 闭包主体部分
+	})
+
+	// 以下是使用尾随闭包进行函数调用
+	someFunctionThatTakesAClosure() {
+	// 闭包主体部分
+	}
+	
+函数是闭包的一种，闭包简化但让我难以理解，闭包可以在其定义的上下文中捕获常量或变量。 即使定义这些常量和变量的原域已经不存在，闭包仍然可以在闭包函数体内引用和修改这些值。注意避免强引用。
+
+###枚举
+枚举定义了一个通用类型的一组相关值
+
+	enum CompassPoint {
+	case North
+	case South
+	case East
+	case West
+	}
+	
+用switch来匹配
+
+	directionToHead = .South
+	switch directionToHead {
+	case .North:
+    	print("Lots of planets have a north")
+	case .South:
+    	print("Watch out for penguins")
+	case .East:
+    	print("Where the sun rises")
+	case .West:
+    	print("Where the skies are blue")
+	}
+
+用switch必须穷举所有情况，否则用default
+
+可以有原始值（Raw Values），这些原始值具有相同的类型。
+
+	enum ASCIIControlCharacter: Character {
+    	case Tab = "\t"
+    	case LineFeed = "\n"
+    	case CarriageReturn = "\r"
+	}
+	
+递归枚举，这个我难以理解
+
+在对操作符进行描述的时候，使用枚举类型来对数据建模很方便，因为需要考虑的情况固定可枚举。操作符可以将两个由数字组成的算数表达式连接起来，例如，将5连接成复杂一些的表达式5+4.
+
+算数表达式的一个重要特性是，表达式可以嵌套使用。例如，表达式(5 + 4) * 2乘号右边是一个数字，左边则是另一个表达式。因为数据是嵌套的，因而用来存储数据的枚举类型也许要支持这种嵌套————这表示枚举类型需要支持递归。
+
+递归枚举（recursive enumeration）是一种枚举类型，表示它的枚举中，有一个或多个枚举成员拥有该枚举的其他成员作为相关值。使用递归枚举时，编译器会插入一个中间层。你可以在枚举成员前加上indirect来表示这成员可递归。
+
+例如，下面的例子中，枚举类型存储了简单的算数表达式：
+
+	enum ArithmeticExpression {
+    	case Number(Int)
+    	indirect case Addition(ArithmeticExpression, ArithmeticExpression)
+    	indirect case Multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+你也可以在枚举类型开头加上indirect关键字来表示它的所有成员都是可递归的：
+
+	indirect enum ArithmeticExpression {
+    	case Number(Int)
+    	case Addition(ArithmeticExpression, ArithmeticExpression)
+    	case Multiplication(ArithmeticExpression, ArithmeticExpression)
+	}
+上面定义的枚举类型可以存储三种算数表达式：纯数字、两个表达式的相加、两个表达式相乘。Addition 和 Multiplication成员的相关值也是算数表达式————这些相关值使得嵌套表达式成为可能。
+
+递归函数可以很直观地使用具有递归性质的数据结构。例如，下面是一个计算算数表达式的函数：
+
+	func evaluate(expression: ArithmeticExpression) -> Int {
+    	switch expression {
+    	case .Number(let value):
+			return value
+    	case .Addition(let left, let right):
+			return evaluate(left) + evaluate(right)
+    	case .Multiplication(let left, let right):
+			return evaluate(left) * evaluate(right)
+    	}
+	}
+
+	// 计算 (5 + 4) * 2
+	let five = ArithmeticExpression.Number(5)
+	let four = ArithmeticExpression.Number(4)
+	let sum = ArithmeticExpression.Addition(five, four)
+	let product = ArithmeticExpression.Multiplication(sum, 	ArithmeticExpression.Number(2))
+	print(evaluate(product))
+	// 输出 "18"
+该函数如果遇到纯数字，就直接返回该数字的值。如果遇到的是加法或乘法元算，则分别计算左边表达式和右边表达式的值，然后相加或相乘。
+

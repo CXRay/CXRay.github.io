@@ -112,7 +112,7 @@ CGRect是一个坐标，由CGPiont和CGSize组成的一个结构体
 	intersect(CGRect)
 	contains(CGPoint) ->Bool
 
-画图Drowing
+画图Drawing
 
 * 当用户转置了手机，不应该重新画图而是重新摆放位置
 
