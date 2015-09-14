@@ -467,3 +467,51 @@ didSet观察器在totalSteps的值改变后被调用，它把新的值和旧的�
 注意：
 
 如果在一个属性的didSet观察器里为它赋值，这个值会替换该观察器之前设置的值。
+
+###计算型变量和计算型属性
+
+如下形式声明一个一个存储型变量或存储型属性：
+
+	var variable name: type {
+		get {
+			statements
+		}
+		set(setter name) {
+			statements
+		}
+	}
+
+可以在全局，函数体内或者类，结构体，枚举，扩展声明的上下文中使用这种形式的声明。当变量以这种形式在全局或者一个函数内被声明时，它代表一个计算型变量(computed variable)。当它在类，结构体，枚举，扩展声明的上下文中中被声明时，它代表一个计算型变量(computed variable)。
+
+getter用来读取变量值，setter用来写入变量值。setter子句是可选择的，只有getter是必需的，可以将这些语句 都省略，只是简单的直接返回请求值，正如在只读计算属性(Read-Only Computed Properties)中描述的那样。但是如果提供了一个setter语句，也必需提供一个getter语句。
+
+setter的名字和圆括号内的语句是可选的。如果写了一个setter名，它就会作为setter的参数被使用。如果不写setter名，setter的初始名为'newValue'，正如在setter声明速记(Shorthand Setter Declaration)中提到的那样。
+
+不像存储型变量和存储型属性那样，计算型属性和计算型变量的值不存储在内存中。
+
+###存储型变量监视器和属性监视器
+
+可以用willset和didset监视器来声明一个存储型变量或属性。一个包含监视器的存储型变量或属性按如下的形式声明：
+
+	var variable name: type = expression {
+		willSet(setter name) {
+			statements
+		}
+		didSet(setter name) {
+			statements
+		}
+	}
+
+可以在全局，函数体内或者类，结构体，枚举，扩展声明的上下文中使用这种形式的声明。当变量以这种形式在全局或者一个函数内被声明时，监视器代表一个存储型变量监视器(stored variable observers)；当它在类，结构体，枚举，扩展声明的上下文中被声明时，监视器代表属性监视器(property observers)。
+
+可以为适合的监视器添加任何存储型属性。也可以通过重写子类属性的方式为适合的监视器添加任何继承的属性 (无论是存储型还是计算型的)，参见重写属性监视器(Overriding Property Observers)。
+
+初始化表达式(expression)在一个类中或者结构体的声明中是可选的，但是在其他地方是必需的。当类型可以从初始化表达式(expression)中推断而来，那么这个类型(type)标注是可选的。
+
+当变量或属性的值被改变时，willset和didset监视器提供了一个监视方法（适当的回应）。 监视器不会在变量或属性第一次初始化时运行，它们只有在值被外部初始化语句改变时才会被运行。
+
+willset监视器只有在变量或属性值被改变之前运行。新的值作为一个常量经过过willset监视器，因此不可以在willset语句中改变它。didset监视器在变量或属性值被改变后立即运行。和willset监视器相反，为了以防止仍然需要获得旧的数据，旧变量值或者属性会经过didset监视器。这意味着，如果在变量或属性自身的didiset监视器语句中设置了一个值，设置的新值会取代刚刚在willset监视器中经过的那个值。
+
+在willset和didset语句中，setter名(setter name)和圆括号的语句是可选的。如果写了一个setter名，它就会作为willset和didset的参数被使用。如果不写setter名， willset监视器初始名为newvalue，didset监视器初始名为oldvalue。
+
+当提供一个willset语句时，didset语句是可选的。同样的，在提供了一个didset语句时，willset语句是可选的。

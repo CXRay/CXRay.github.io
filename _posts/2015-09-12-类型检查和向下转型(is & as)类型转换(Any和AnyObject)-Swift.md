@@ -4,6 +4,7 @@ date: 2015-9-12
 title: 类型检查和向下转型(is & as)类型转换(Any和AnyObject).
 categories: Swift
 ---
+###转载自http://wiki.jikexueyuan.com/project/swift/chapter2/19_Type_Casting.html
 ###检查类型(Checking Type)
 用类型检查操作符( is )来检查一个实例是否属于特定子类型。若实例属于那个子类型,类型检查操作符返回true ,否则返回 false 。
 下面的例子定义了两个变量, movieCount 和 songCount ,用来计算数组 library 中 Movie 和 Song 类 型的实例数量。
