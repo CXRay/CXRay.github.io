@@ -30,8 +30,8 @@ fibonacci用递归写效率极低，很多次重复计算，如果计算f(50),�
 而用一个for循环来写fibonacci则效率会高不少，测任何数据都轻轻松松，但会溢出，这里可以用一个大数模版来弥补
 
 	//记忆化递归
-	memset(arr, -1, sizeof(arr));
 	long long arr[100];
+	memset(arr, -1, sizeof(arr));
 	long long fabonacci(int a)      //优化后的递归，可以和for写的效率差不多
 	{
     	if(arr[a] == -1)
