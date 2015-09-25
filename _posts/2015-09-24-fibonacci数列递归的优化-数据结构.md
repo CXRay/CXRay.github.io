@@ -2,7 +2,7 @@
 layout: post
 date: 2015-9-24
 title: fibonacci数列递归的优化
-categories: DS
+categories: 数据结构
 ---
 
 fibonacci用递归写效率极低，很多次重复计算，如果计算f(50),到后面计算f(3),f(2)的数量会极其庞大，几乎是指数增长，而且计算结果都一样，这里产生了严重的浪费，开销极大，是整个递归的弱点所在

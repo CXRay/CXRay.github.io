@@ -4,5 +4,8 @@
 - url: /about
   title: About
 
+- url: /categories
+  title: categories
+
 - url: http://stayreal.wang
   title: StayReal

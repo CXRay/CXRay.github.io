@@ -2,7 +2,7 @@
 layout: post
 date: 2015-9-1
 title: Hello World
-categories: 闲谈
+categories: 瞎扯
 ---
 
 在网上找了半天，真的是乱七八糟，对于新手真的是凶残
