@@ -4,7 +4,7 @@ title: 分类
 ---
 #Swift
 
-[类型检查和向下转型(is & as)类型转换(Any和AnyObject)]()
+[类型检查和向下转型(is & as)类型转换(Any和AnyObject)](/_posts/类型检查和向下转型is&as类型转换Any&AnyObject)
 
 [自动引用计数]()
 

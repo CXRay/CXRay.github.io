@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-9-12
-title: 类型检查和向下转型(is & as)类型转换(Any和AnyObject).
+title: 类型检查和向下转型is&as类型转换Any&AnyObject
 categories: Swift
 ---
 ###转载自http://wiki.jikexueyuan.com/project/swift/chapter2/19_Type_Casting.html
