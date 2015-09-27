@@ -5,6 +5,10 @@ title: Categories
 
 #Swift
 
+[UITextField学习](/UITextField学习-Swift)
+
+[UILabel学习](/UILabel学习-Swift)
+
 [类型检查和向下转型is&as类型转换Any&AnyObject](/类型检查和向下转型is&as类型转换Any&AnyObject-Swift)
 
 [自动引用计数](/自动引用计数-Swift)
