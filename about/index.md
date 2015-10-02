@@ -17,12 +17,12 @@ title: About
 *Technology*
 
 * C&&C++
+* Swift
 
 *Learning*
 
-* Swift
-* Objective-C
 * Cocoa Touch
+* Objective-C
 * Java
 
 
