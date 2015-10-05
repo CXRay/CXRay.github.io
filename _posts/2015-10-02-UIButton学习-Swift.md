@@ -12,7 +12,9 @@ UIButton也不是很难，就是设置一下button的标题，或者是图片，
 	//初始化
 	var button = UIButton(frame: CGRectMake(0, 300, 200, 60))
 	
-	//UIButtonType来初始化，DetailDisclosure蓝色小箭头，InfoDark暗色小箭头，InfoLight亮色小箭头，ContactAdd十字加号,System系统风格，Custom自定义风格，好像有些要在特点适合地方才能用，我测试了有几个不能用
+	//UIButtonType来初始化，DetailDisclosure蓝色小箭头，InfoDark暗色小箭头，InfoLight亮色小
+	箭头，ContactAdd十字加号,System系统风格，Custom自定义风格，好像有些要在特点适合地方才能
+	用，我测试了有几个不能用
 	var button2 = UIButton(type: UIButtonType.ContactAdd)
 	
 >按钮状态，颜色，字体，设置图片
@@ -40,7 +42,8 @@ UIButton也不是很难，就是设置一下button的标题，或者是图片，
 	
 >有时候可能按钮可能会深一点，通过这两个方法调整，还有个发光功能，微博有用到
 
-	//默认情况下，按钮高亮的情况下，图像会被画的深一些，如果下面的这个属性设置成false，可以去掉这个功能
+	//默认情况下，按钮高亮的情况下，图像会被画的深一些，如果下面的这个属性设置成false，
+	可以去掉这个功能
 	button.adjustsImageWhenHighlighted = false
 	//默认情况下，当按钮禁用时，图像会被画得深一些，false可以取消
 	button.adjustsImageWhenDisabled = false
@@ -62,7 +65,8 @@ UIButton也不是很难，就是设置一下button的标题，或者是图片，
 
 >通过这个函数来实现设置方法，当然可以用连线这种更简单的方法，一下这个比较适合用代码来创建一个按钮
 	
-	//target一般用self，指实现方法的对象,action后跟一个方法名，注意要加引号，forControlEvents是枚举事件类型
+	//target一般用self，指实现方法的对象,action后跟一个方法名，注意要加引号，
+	forControlEvents是枚举事件类型
 	button.addTarget(target: AnyObject?, action: Selector, forControlEvents: UIControlEvents)
 	
 如下面这个例子
