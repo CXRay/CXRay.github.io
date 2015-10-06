@@ -10,6 +10,8 @@ UITableView还真是有点多，一个个代理也还没有全都实现，其中
 
 UITableView显示列表数据，是通过代理实现的，要添加数据源，协议 UITableViewDataSource,UITableViewDelegate
 
+有些代码因为版面的原因看不到，选中即可看到了，或者复制下来
+
 >初始化TableView,定义数组
 
 	//初始化TableView，样式有Plain不分组表视图和Grouped分组表视图
@@ -244,4 +246,110 @@ UITableView显示列表数据，是通过代理实现的，要添加数据源，
 	    button.addTarget(self, action: "editButtonClick", forControlEvents: .TouchUpInside)
 	    self.listTableView.addSubview(button)
 	    
+	}
+	
+>自定义UITableViewCell，这里也有点小问题，下面的代码是ok的，但是整合到上面的代码，无法用上面的代码来自定义cell，可能要改的地方有点多
+
+	import UIKit
+	
+	class MyTableViewCell: UITableViewCell {
+	
+	    var iconImageView:UIImageView!  //图片
+	    var appNameLabel:UILabel!       //标题
+	    var decLabel:UILabel!           //描述
+	    
+	    //赋值方法－显示cell内容方法
+	    func showAppInfoWithModel(model: AppsModel)
+	    {
+	        //获取model中的图片
+	        iconImageView.image = UIImage(named: model.imageName)
+	        
+	        //获取model中app名称
+	        appNameLabel.text = model.appName
+	        
+	        //获取app描述
+	        decLabel.text = model.appDescription
+	    }
+	    
+	    override init(style: UITableViewCellStyle, reuseIdentifier : String?)
+	    {
+	        super.init(style: style, reuseIdentifier: reuseIdentifier)
+	        
+	        //创建iconImageView
+	        iconImageView = UIImageView(frame: CGRectMake(10, 5, 40, 40))
+	        self.addSubview(iconImageView)
+	        
+	        //创建appNameLabel
+	        appNameLabel = UILabel(frame: CGRectMake(60, 0, 40, 400))
+	        appNameLabel.font = UIFont.systemFontOfSize(16)
+	        self.addSubview(appNameLabel)
+	        
+	        //创建decLabel
+	        decLabel = UILabel(frame: CGRectMake(60, 15, 220, 35))
+	        decLabel.font = UIFont.systemFontOfSize(12)
+	        decLabel.numberOfLines = 2
+	        decLabel.textColor = UIColor.lightGrayColor()
+	        self.addSubview(decLabel)
+	        
+	    }
+	
+	    required init?(coder aDecoder: NSCoder) {
+	        fatalError("init(coder:) has not been implemented")
+	    }
+	    
+	    
+	    override func awakeFromNib() {
+	        super.awakeFromNib()
+	        // Initialization code
+	    }
+	
+	    override func setSelected(selected: Bool, animated: Bool) {
+	        super.setSelected(selected, animated: animated)
+	
+	        // Configure the view for the selected state
+	    }
+	
+	}
+
+>还需要添加一个NSObject的AppsModel
+
+	import UIKit
+	
+	class AppsModel: NSObject {
+	    //定义模型的三个属性
+	    var imageName:String!  //图片名称
+	    var appName:String!     //应用名称
+	    var appDescription:String!      //应用描述
+	    
+	    
+	    
+	    //自定义初始化方法
+	    init(imageName image_Name:String , app_Name:String , app_Description:String) {
+	        self.imageName=image_Name
+	        self.appName=app_Name
+	        self.appDescription=app_Description
+	    }
+	    
+	    
+	    
+	    // MARK: - NSCoding
+	    func encodeWithCoder(_encoder: NSCoder)
+	    {
+	        _encoder.encodeObject(self.imageName, forKey: "M_imageName")
+	        _encoder.encodeObject(self.appName, forKey: "M_appName")
+	        _encoder.encodeObject(self.appDescription, forKey: "M_appDescription")
+	    }
+	    
+	    
+	    init(coder decoder: NSCoder)
+	    {
+	        //        imageName = decoder.decodeObjectForKey("M_imageName") as String
+	        //        appName = decoder.decodeObjectForKey("M_appName") as String
+	        //        appDescription = decoder.decodeObjectForKey("M_appDescription") as String
+	        
+	        imageName = decoder.decodeObjectForKey("M_imageName") as! String
+	        appName = decoder.decodeObjectForKey("M_appName") as! String
+	        appDescription = decoder.decodeObjectForKey("M_appDescription") as! String
+	    }
+	
 	}

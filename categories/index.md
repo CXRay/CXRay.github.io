@@ -5,6 +5,8 @@ title: Categories
 
 #Swift
 
+[UITextView学习](/UITextView学习-Swift)
+
 [UITableView学习](/UITableView学习-Swift)
 
 [UIButton学习](/UIButton学习-Swift)
