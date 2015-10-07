@@ -25,6 +25,10 @@ title: Categories
 
 [Swift一些UI基础](/Swift一些UI基础-Swift)
 
+#Vim
+
+[对于Vim的学习](/对于Vim的学习-Vim)
+
 #数据结构
 
 [fibonacci数列递归的优化](/fibonacci数列递归的优化-数据结构)
