@@ -5,6 +5,8 @@ title: Categories
 
 #Swift
 
+[UISegmentedControl学习](/UISegmentedControl学习-Swift)
+
 [UITextView学习](/UITextView学习-Swift)
 
 [UITableView学习](/UITableView学习-Swift)
