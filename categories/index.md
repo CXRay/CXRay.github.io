@@ -5,6 +5,8 @@ title: Categories
 
 #Swift
 
+[UISwitch & UIStepper学习](/UISwitch & UIStepper学习-Swift)
+
 [UISlider学习](/UISlider学习-Swift)
 
 [UISegmentedControl学习](/UISegmentedControl学习-Swift)
