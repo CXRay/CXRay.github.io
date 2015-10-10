@@ -5,6 +5,8 @@ title: UIActivityIndicatorView & UIProgressView学习
 categories: Swift
 ---
 
+#活动指示器
+
 >活动指示器初始化，添加到视图
 
 	//活动指示器显示一个标准的转动轮，默认大小为20*20，显示得很清楚，如果代码创建大于此尺寸的话，显示效果就会变得模糊
@@ -33,6 +35,8 @@ categories: Swift
 	//获取应用单利
 	let app:UIApplication = UIApplication.sharedApplication()
 	app.networkActivityIndicatorVisible = true
+	
+#进度控制条
 	
 >进度控制条初始化，添加到视图
 

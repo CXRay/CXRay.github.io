@@ -5,11 +5,11 @@ title: Categories
 
 #Swift
 
-[UIActivityIndicatorView & UIProgressView学习](\UIActivityIndicatorView & UIProgressView学习-Swift)
-
 [UISwitch & UIStepper学习](/UISwitch & UIStepper学习-Swift)
 
 [UISlider学习](/UISlider学习-Swift)
+
+[UIActivityIndicatorView & UIProgressView学习](/UIActivityIndicatorView & UIProgressView学习-Swift)
 
 [UISegmentedControl学习](/UISegmentedControl学习-Swift)
 
