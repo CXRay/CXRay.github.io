@@ -5,6 +5,8 @@ title: Categories
 
 #Swift
 
+[UIAlertView & UIActionSheet学习-Swift](/UIAlertView & UIActionSheet学习-Swift)
+
 [UISwitch & UIStepper学习](/UISwitch & UIStepper学习-Swift)
 
 [UISlider学习](/UISlider学习-Swift)
