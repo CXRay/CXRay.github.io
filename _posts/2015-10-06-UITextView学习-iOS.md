@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-6
 title: UITextView学习
-categories: Swift
+categories: iOS
 ---
 
 这个控件也很容易，毕竟只是写文字上的东西

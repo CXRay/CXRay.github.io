@@ -2,7 +2,7 @@
 layout: post
 date: 2015-9-27
 title: UITextField学习
-categories: Swift
+categories: iOS
 ---
 
 这个也算简单的，只是这些控件需要记住一些方法而已

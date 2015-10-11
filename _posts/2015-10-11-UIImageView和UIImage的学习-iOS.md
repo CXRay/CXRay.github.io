@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-11
 title: UIImageView和UIImage的学习
-categories: Swift
+categories: iOS
 ---
 
 >创建

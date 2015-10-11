@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-10
 title: UISwitch & UIStepper学习
-categories: Swift
+categories: iOS
 ---
 
 开关和进步控件东西的东西不多

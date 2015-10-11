@@ -2,7 +2,7 @@
 layout: post
 date: 2015-9-26
 title: UILabel学习
-categories: Swift
+categories: iOS
 ---
 
 代码创建UILabel,可以放在viewDidLoad()中,Label算是这么多控件中最简单的一个了

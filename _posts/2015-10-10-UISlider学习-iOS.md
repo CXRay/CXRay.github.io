@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-10
 title: UISlider学习
-categories: Swift
+categories: iOS
 ---
 
 UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少

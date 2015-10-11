@@ -3,37 +3,43 @@ layout: page
 title: Categories
 ---
 
+#iOS
+
+[UIImageView和UIImage的学习](/UIImageView和UIImage的学习-iOS)
+
+[UIAlertView & UIActionSheet学习](/UIAlertView & UIActionSheet学习-iOS)
+
+[UISwitch & UIStepper学习](/UISwitch & UIStepper学习-iOS)
+
+[UISlider学习](/UISlider学习-iOS)
+
+[UIActivityIndicatorView & UIProgressView学习](/UIActivityIndicatorView & UIProgressView学习-iOS)
+
+[UISegmentedControl学习](/UISegmentedControl学习-iOS)
+
+[UITextView学习](/UITextView学习-iOS)
+
+[UITableView学习](/UITableView学习-iOS)
+
+[UIButton学习](/UIButton学习-iOS)
+
+[UITextField学习](/UITextField学习-iOS)
+
+[UILabel学习](/UILabel学习-iOS)
+
+[iOS学习资料整理](/iOS学习资料整理-iOS)
+
+[iOS一些UI基础](/iOS一些UI基础-iOS)
+
 #Swift
-
-[UIAlertView & UIActionSheet学习-Swift](/UIAlertView & UIActionSheet学习-Swift)
-
-[UISwitch & UIStepper学习](/UISwitch & UIStepper学习-Swift)
-
-[UISlider学习](/UISlider学习-Swift)
-
-[UIActivityIndicatorView & UIProgressView学习](/UIActivityIndicatorView & UIProgressView学习-Swift)
-
-[UISegmentedControl学习](/UISegmentedControl学习-Swift)
-
-[UITextView学习](/UITextView学习-Swift)
-
-[UITableView学习](/UITableView学习-Swift)
-
-[UIButton学习](/UIButton学习-Swift)
-
-[UITextField学习](/UITextField学习-Swift)
-
-[UILabel学习](/UILabel学习-Swift)
 
 [类型检查和向下转型is&as类型转换Any&AnyObject](/类型检查和向下转型is&as类型转换Any&AnyObject-Swift)
 
 [自动引用计数](/自动引用计数-Swift)
 
-[iOS学习资料整理](/iOS学习资料整理-Swift)
-
 [Swift语法](/Swift语法-Swift)
 
-[Swift一些UI基础](/Swift一些UI基础-Swift)
+
 
 #Vim
 

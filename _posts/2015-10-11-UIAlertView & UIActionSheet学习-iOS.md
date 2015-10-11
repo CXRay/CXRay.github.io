@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-11
 title: UIAlertView & UIActionSheet学习
-categories: Swift
+categories: iOS
 ---
 
 提醒视图和操作表这两个视图不能通过Xib创建，只能通过代码添加视图，UIAlertView 提醒视图主要以弹框的形式提醒或警告用户以引起用户注意，UIActionSheet 操作表从界面底部弹出并有很多操作按钮供用户选择,iOS9已经不建议使用这种方式了

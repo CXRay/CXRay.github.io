@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-10
 title: UIActivityIndicatorView & UIProgressView学习
-categories: Swift
+categories: iOS
 ---
 
 #活动指示器

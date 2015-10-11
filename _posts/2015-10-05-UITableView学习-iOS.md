@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-5
 title: UITableView学习
-categories: Swift
+categories: iOS
 ---
 
 UITableView还真是有点多，一个个代理也还没有全都实现，其中有个按表格跳转还没有实现，还有按表格输出名字不知道莫名其妙的会延迟，就是嗯下一个的时候才输出上一个，还有时候会崩溃，可能上optional没有用好，有一张1033382.jpg图片就不放上来了，随便找一张就ok，在ViewController敲了这么多代码，意识到MVC的重要性了

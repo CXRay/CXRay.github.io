@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-9
 title: UISegmentedControl学习
-categories: Swift
+categories: iOS
 ---
 
 这个分段控件也不难，只是一些属性记记住就好了

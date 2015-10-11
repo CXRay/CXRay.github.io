@@ -2,7 +2,7 @@
 layout: post
 date: 2015-10-2
 title: UIButton学习
-categories: Swift
+categories: iOS
 ---
 
 UIButton也不是很难，就是设置一下button的标题，或者是图片，按钮的颜色之类的，按下的效果，还有要写一下按钮按下的函数，按下将会发生什么
