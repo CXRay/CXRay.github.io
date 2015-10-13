@@ -5,6 +5,8 @@ title: Categories
 
 #iOS
 
+[UIScrollView和UIPageControl学习](/UIScrollView和UIPageControl学习-iOS)
+
 [UIImageView和UIImage的学习](/UIImageView和UIImage的学习-iOS)
 
 [UIAlertView & UIActionSheet学习](/UIAlertView & UIActionSheet学习-iOS)
