@@ -5,7 +5,7 @@ title: UIDatePicker和UIPIckerView学习
 categories: iOS
 ---
 
-控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的之类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
 
 #UIDatePicker
 
@@ -87,3 +87,130 @@ a       AM或PM
 	 
 	 //设置时间间隔,默认间隔1分钟
 	 datePicker.minuteInterval = 5
+	 
+	 
+#UIPickerView
+
+选择视图控制器中系统只定义了整体行为和外观，至于选择控制器显示图片还是文本，显示的具体内容是什么，这些都通过数据源协议来实现，它比UIDatePicker更通用，可以定制单列的选择器，也可定制多列的选择器，用法非常灵活
+
+>初始化，添加到视图，并创建两个数组，添加到视图时，因为没有实现数据源协议，所以没有数据，下面我们来实现一个两列选择控制器，首先，UIViewController类必须声明要实现UIPickerView的数据源协议和代理，UIPickerViewDelegate,UIPickerViewDataSource
+
+	//创建选择控制器
+	var pickerView = UIPickerView(frame: CGRectMake(0,200,0,0))
+	
+	//创建两个数组
+	var authorsArray = ["刘洋明","汪红军","任晓蕾"]
+	var appsArray = ["租房点评","哪里逃","AllOff","iJump","数独"]
+	self.view.addSubview(pickerView)
+	
+>其次，来设置pickerView的数据协议和代理
+
+	//指定数据源
+	pickerView.dataSource = self
+	//指定代理
+	pickerView.delegate = self
+	
+>实现pickerView的数据源协议和代理
+    
+	//返回多少列
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+	    return 2
+	}
+	
+	//每一列返回多少行，这个必须实现
+	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+	    //第一列返回authorsArray的个数
+	    if component == 0
+	    {
+	        return authorsArray.count
+	    }
+	    else if component == 1
+	    {
+	        return appsArray.count
+	    }
+	    return 0
+	}
+	
+	//通过字符串来创建选择控制器
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+	    //第一列返回authorArray对应的值
+	    if component == 0
+	    {
+	        return authorsArray[row]
+	    }
+	    //第二列返回appsArray对应的值
+	    else if component == 1
+	    {
+	        return appsArray[row]
+	    }
+	    
+	    return ""
+	}
+这样就能实现一个PickerView了
+
+>一些常用属性和方法介绍如下
+
+	//获取多少列，只读
+	print(pickerView.numberOfComponents)
+	
+	//获取某一列有多少行
+	print(pickerView.numberOfRowsInComponent(0))
+	print(pickerView.numberOfRowsInComponent(1))
+	
+	//每一列的size大小，返回CGSize
+	print(pickerView.rowSizeForComponent(0))
+	print(pickerView.rowSizeForComponent(1))
+	
+	//如果通过View初始化选择控制器，可以获取对应列对应行的View，返回UIView?
+	//pickerView.viewForRow(row:Int, forComponent:Int)
+	
+	//重新加载所有的列
+	pickerView.reloadAllComponents()
+	//重新加载某一列
+	pickerView.reloadComponent(0)
+	pickerView.reloadComponent(1)
+	
+	//设置选择哪一行哪一列，选中的一行内容在中间显示
+	pickerView.selectRow(2, inComponent: 1, animated: true)
+	pickerView.selectRow(1, inComponent: 0, animated: true)
+	
+	//某一列选择哪一行
+	print(pickerView.selectedRowInComponent(0))
+	
+>通过以下方法可以知道选择的是哪一行哪一列，选项改变后触发代理
+
+	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+	    print("当前选择的是第\(component)列   第\(row)行")
+	}
+	
+>创建带图片的PickerView
+
+	func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+	    let view = UIView(frame: CGRectMake(0,0,200,40))
+	    
+	    //创建图像视图
+	    let imageView = UIImageView(frame: CGRectMake(0, 0, 40, 40))
+	    imageView.image = UIImage(named: "IMG_3882.JPG")
+	    
+	    //创建文本标签
+	    let label = UILabel(frame: CGRectMake(40,0,160,40))
+	    
+	    //第一行返回authorArray对应的值
+	    if component == 0
+	    {
+	        label.text = authorsArray[row]
+	    }
+	    //第二行返回appsArray对应的值
+	    else if component == 1
+	    {
+	        label.text = appsArray[row]
+	    }
+	    
+	    //添加图像
+	    view.addSubview(imageView)
+	    
+	    //添加文本标签
+	    view.addSubview(label)
+	    
+	    return view
+	}

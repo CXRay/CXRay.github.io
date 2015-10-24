@@ -5,6 +5,10 @@ title: Categories
 
 #iOS
 
+[UIToolBar和UISearchBar学习](/UIToolBar和UISearchBar学习-iOS)
+
+[UIDatePicker和UIPIckerView学习](/UIDatePicker和UIPIckerView学习-iOS)
+
 [UIWebView学习](/UIWebView学习-iOS)
 
 [UIScrollView和UIPageControl学习](/UIScrollView和UIPageControl学习-iOS)
