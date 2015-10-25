@@ -5,6 +5,8 @@ title: Categories
 
 #iOS
 
+[手势识别](/手势识别-iOS)
+
 [UIToolBar和UISearchBar学习](/UIToolBar和UISearchBar学习-iOS)
 
 [UIDatePicker和UIPIckerView学习](/UIDatePicker和UIPIckerView学习-iOS)
