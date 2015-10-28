@@ -5,6 +5,8 @@ title: Categories
 
 #iOS
 
+[加速计和陀螺仪](/加速计和陀螺仪-iOS)
+
 [手势识别](/手势识别-iOS)
 
 [UIToolBar和UISearchBar学习](/UIToolBar和UISearchBar学习-iOS)
