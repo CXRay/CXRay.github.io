@@ -26,8 +26,8 @@ title: About
 * Java
 
 >![Instagram](http://cxray.github.io/about/instagram.png)[ray_cxl](https://instagram.com/ray_cxl)
-
 ***
+
 >![微博](http://cxray.github.io/about/weibo.png)[0o鸟人不会飞o0](http://weibo.com/p/1005051795459455)
 ***
 
