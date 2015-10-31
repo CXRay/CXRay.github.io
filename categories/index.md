@@ -5,6 +5,8 @@ title: Categories
 
 #iOS
 
+[定位CoreLocation和MapKit](/定位CoreLocation和MapKit-iOS)
+
 [加速计和陀螺仪](/加速计和陀螺仪-iOS)
 
 [手势识别](/手势识别-iOS)
