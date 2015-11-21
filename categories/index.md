@@ -49,6 +49,8 @@ title: Categories
 
 #Swift
 
+[逆波兰式转换和计算](/逆波兰式转换和计算-Swift)
+
 [类型检查和向下转型is&as类型转换Any&AnyObject](/类型检查和向下转型is&as类型转换Any&AnyObject-Swift)
 
 [自动引用计数](/自动引用计数-Swift)
@@ -63,7 +65,9 @@ title: Categories
 
 #数据结构
 
-[链表的归并排序](链表的归并排序-数据结构)
+[树的一些简单函数](/树的一些简单函数-数据结构)
+
+[链表的归并排序](/链表的归并排序-数据结构)
 
 [fibonacci数列递归的优化](/fibonacci数列递归的优化-数据结构)
 
