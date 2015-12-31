@@ -25,7 +25,7 @@ title: About
 * Objective-C
 * Java
 
->![Instagram](http://cxray.github.io/about/instagram.png)[ray_cxl](https://instagram.com/ray_cxl)
+>![Instagram](http://cxray.github.io/about/instagram.png)[ray_oooooo](https://instagram.com/ray_oooooo)
 ***
 
 >![微博](http://cxray.github.io/about/weibo.png)[Ray_ooo](http://weibo.com/p/1005051795459455)
