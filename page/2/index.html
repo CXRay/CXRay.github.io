@@ -59,7 +59,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always'
+    sidebar: 'post'
   };
 </script>
 
@@ -245,197 +245,17 @@
         
           <span itemprop="articleBody">
             
-              <p>控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作</p>
-<p>#UIDatePicker</p>
-<blockquote>
-<p>UIPickerView控件在给用户选择某些特定的数据时会经常使用到，它根据数据源提供的信息按照系统风格自动显示，初始化</p>
-</blockquote>
-<pre><code>var datePicker = UIDatePicker(frame: CGRectMake(0, 200, 0, 0))   
-self.view.addSubview(datePicker)
-</code></pre><blockquote>
-<p>可以修改datePickerMode属性值来选择显示的样式</p>
-</blockquote>
-<pre><code>//case Time  (e.g. 6 | 53 | PM)显示上午下午，和时分
-//case Date  (e.g. November | 15 | 2007)显示年月日
-//case DateAndTime  (e.g. Wed Nov 15 | 6 | 53 | PM)显示年月日，上午下午时分
-//case CountDownTimer  D (e.g. 1 | 53)显示小时和分钟
-datePicker.datePickerMode = UIDatePickerMode.DateAndTime
-</code></pre><blockquote>
-<p>可以给datePicker添加一个UIControlEvents.ValueChanged事件，检测值的改变</p>
-</blockquote>
-<pre><code>datePicker.addTarget(self, action: &quot;dateChanged:&quot;, forControlEvents: UIControlEvents.ValueChanged)
+            控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+#UIDatePicker
 
-//日期选择器值改变事件
-func dateChanged(sender :UIDatePicker)
-{
-    let date: NSDate = sender.date
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = &quot;yy-MMMM-dd HH:mm:s&quot;
-    let timeStr = formatter.stringFromDate(date)
-
-    print(date)
-    print(timeStr)
-}
-</code></pre><p>NSDateFormatter对象，主意用来格式化时间，具体格式解释如下</p>
-<p>YY      两位年份</p>
-<p>YYYY    四位年份</p>
-<p>M       一位月份，不带0</p>
-<p>MM      两位月份</p>
-<p>MMMM    完整的月份名，如十一月，January</p>
-<p>d       不带0的天</p>
-<p>dd      带0的天</p>
-<p>h       不带0的12小时制</p>
-<p>hh      带0的12小时制</p>
-<p>H       没有0的24小时制</p>
-<p>HH      两位小时</p>
-<p>m       一位分钟</p>
-<p>mm      两位分钟</p>
-<p>s       一位秒</p>
-<p>ss      两位秒</p>
-<p>a       AM或PM</p>
-<blockquote>
-<p>设置选择的日期范围和间隔</p>
-</blockquote>
-<pre><code>/*可以通过设置minimumDate和maximumDate属性，来指定datePicker使用的日期范围，如果试图滚动到超
-过这一日期的范围，表盘会回到最近的有效日期。两个方法都需要NSDate对象作参数，可以通过NSDateFormatter
-自定义格式来将字符串转换成时间*/
-
-let formatter = NSDateFormatter()
-formatter.dateFormat = &quot;yy-MM-dd HH:mm:ss&quot;
-
-//设置最小最大时间
-datePicker.minimumDate = formatter.dateFromString(&quot;2010-01-01 00:00:00&quot;)
-datePicker.maximumDate = formatter.dateFromString(&quot;2015-01-01 23:59:59&quot;)
-
-//设置时间间隔,默认间隔1分钟
-datePicker.minuteInterval = 5
-</code></pre><p>#UIPickerView</p>
-<p>选择视图控制器中系统只定义了整体行为和外观，至于选择控制器显示图片还是文本，显示的具体内容是什么，这些都通过数据源协议来实现，它比UIDatePicker更通用，可以定制单列的选择器，也可定制多列的选择器，用法非常灵活</p>
-<blockquote>
-<p>初始化，添加到视图，并创建两个数组，添加到视图时，因为没有实现数据源协议，所以没有数据，下面我们来实现一个两列选择控制器，首先，UIViewController类必须声明要实现UIPickerView的数据源协议和代理，UIPickerViewDelegate,UIPickerViewDataSource</p>
-</blockquote>
-<pre><code>//创建选择控制器
-var pickerView = UIPickerView(frame: CGRectMake(0,200,0,0))
-
-//创建两个数组
-var authorsArray = [&quot;刘洋明&quot;,&quot;汪红军&quot;,&quot;任晓蕾&quot;]
-var appsArray = [&quot;租房点评&quot;,&quot;哪里逃&quot;,&quot;AllOff&quot;,&quot;iJump&quot;,&quot;数独&quot;]
-self.view.addSubview(pickerView)
-</code></pre><blockquote>
-<p>其次，来设置pickerView的数据协议和代理</p>
-</blockquote>
-<pre><code>//指定数据源
-pickerView.dataSource = self
-//指定代理
-pickerView.delegate = self
-</code></pre><blockquote>
-<p>实现pickerView的数据源协议和代理</p>
-</blockquote>
-<pre><code>//返回多少列
-func numberOfComponentsInPickerView(pickerView: UIPickerView) -&gt; Int {
-    return 2
-}
-
-//每一列返回多少行，这个必须实现
-func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -&gt; Int {
-    //第一列返回authorsArray的个数
-    if component == 0
-    {
-        return authorsArray.count
-    }
-    else if component == 1
-    {
-        return appsArray.count
-    }
-    return 0
-}
-
-//通过字符串来创建选择控制器
-func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -&gt; String? {
-    //第一列返回authorArray对应的值
-    if component == 0
-    {
-        return authorsArray[row]
-    }
-    //第二列返回appsArray对应的值
-    else if component == 1
-    {
-        return appsArray[row]
-    }
-
-    return &quot;&quot;
-}
-</code></pre><p>这样就能实现一个PickerView了</p>
-<blockquote>
-<p>一些常用属性和方法介绍如下</p>
-</blockquote>
-<pre><code>//获取多少列，只读
-print(pickerView.numberOfComponents)
-
-//获取某一列有多少行
-print(pickerView.numberOfRowsInComponent(0))
-print(pickerView.numberOfRowsInComponent(1))
-
-//每一列的size大小，返回CGSize
-print(pickerView.rowSizeForComponent(0))
-print(pickerView.rowSizeForComponent(1))
-
-//如果通过View初始化选择控制器，可以获取对应列对应行的View，返回UIView?
-//pickerView.viewForRow(row:Int, forComponent:Int)
-
-//重新加载所有的列
-pickerView.reloadAllComponents()
-//重新加载某一列
-pickerView.reloadComponent(0)
-pickerView.reloadComponent(1)
-
-//设置选择哪一行哪一列，选中的一行内容在中间显示
-pickerView.selectRow(2, inComponent: 1, animated: true)
-pickerView.selectRow(1, inComponent: 0, animated: true)
-
-//某一列选择哪一行
-print(pickerView.selectedRowInComponent(0))
-</code></pre><blockquote>
-<p>通过以下方法可以知道选择的是哪一行哪一列，选项改变后触发代理</p>
-</blockquote>
-<pre><code>func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    print(&quot;当前选择的是第\(component)列   第\(row)行&quot;)
-}
-</code></pre><blockquote>
-<p>创建带图片的PickerView</p>
-</blockquote>
-<pre><code>func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -&gt; UIView {
-    let view = UIView(frame: CGRectMake(0,0,200,40))
-
-    //创建图像视图
-    let imageView = UIImageView(frame: CGRectMake(0, 0, 40, 40))
-    imageView.image = UIImage(named: &quot;IMG_3882.JPG&quot;)
-
-    //创建文本标签
-    let label = UILabel(frame: CGRectMake(40,0,160,40))
-
-    //第一行返回authorArray对应的值
-    if component == 0
-    {
-        label.text = authorsArray[row]
-    }
-    //第二行返回appsArray对应的值
-    else if component == 1
-    {
-        label.text = appsArray[row]
-    }
-
-    //添加图像
-    view.addSubview(imageView)
-
-    //添加文本标签
-    view.addSubview(label)
-
-    return view
-}
-</code></pre>
-            
+UIPickerView控件在给用户选择某些特定的
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -523,97 +343,16 @@ print(pickerView.selectedRowInComponent(0))
         
           <span itemprop="articleBody">
             
-              <p>网页视图UIWebView可以让我们实现应用里内嵌浏览器,UIWebView除了可以显示网页外，还可以显示HTML语音，CSS图像，Word，Excel，Keynote，Pages，PDF，Powerpoint等类型文件，不要忘了.Delegate ＝ 某某某，就是因为这个，我调Bug调了一会</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>var aWebView=UIWebView(frame:UIScreen.mainScreen().applicationFrame)
-self.view.addSubview(aWebView)
-</code></pre><blockquote>
-<p>这里iOS9涉及到<a href="http://会报错，处理方法见UIImageView和UIImage的学习" target="_blank" rel="external">http://会报错，处理方法见UIImageView和UIImage的学习</a></p>
-</blockquote>
-<pre><code>//网页字符串
-let webString = &quot;http://stayreal.wang&quot;
+            网页视图UIWebView可以让我们实现应用里内嵌浏览器,UIWebView除了可以显示网页外，还可以显示HTML语音，CSS图像，Word，Excel，Keynote，Pages，PDF，Powerpoint等类型文件，不要忘了.Delegate ＝ 某某某，就是因为这个，我调Bug调了一会
 
-//通过string类型初始化NSURL对象
-let url = NSURL(string: webString)
-
-//通过NSURL对象初始化NSURLRequest
-let request = NSURLRequest(URL: url!)
-
-//WebView加载网页
-aWebView.loadRequest(request)
-</code></pre><blockquote>
-<p>网页很大，手机屏幕有限，我们只看了网页的一部分，可以通过scalesPageToFit 属性来设置网页压缩实现全屏显示,但是我试了一下没区别啊，我去</p>
-</blockquote>
-<pre><code>aWebView.scalesPageToFit = true
-</code></pre><blockquote>
-<p>除了加载网页内容，也可以使用HTML代码编写特殊的网页内容，WebView可以支持加载HTML语言，使用loadHTMLString方法，baseURL赋值一个css的路径，可以用网络路径使用网络上的css</p>
-</blockquote>
-<pre><code>aWebView.loadHTMLString(&quot;aaa&quot;, baseURL: nil)
-</code></pre><blockquote>
-<p>利用UIWebView加载本地文件，以Word文档为例，这个没有成功，原因时pathForResource没有找到文件</p>
-</blockquote>
-<pre><code>//定义一个常量路径
-let wordPath = NSBundle.mainBundle().pathForResource(&quot;实验报告格式&quot;, ofType: &quot;docx&quot;)
-//通过String类型初始化NSURL对象
-let wordURL = NSURL(string: wordPath!)
-//通过NSURL对象初始化NSURLRequest
-let wordRequest = NSURLRequest(URL: wordURL!)
-//加载
-aWebView.loadRequest(wordRequest)
-//这里搜不到这个文件，发现wordPath居然是nil
-</code></pre><blockquote>
-<p>网页视图加载内容时，是需要等待一段时间，在这个加载过程中为了让用户能够感受到变化，可以使用活动指示器UIActivityIndicatorView来体现真正加载。查看有没有加载成功，可以通过WebView的代理方法获得当前加载的情况</p>
-</blockquote>
-<pre><code>//创建活动指示器UIActivityIndicatorView
-var activityIndicator = UIActivityIndicatorView(frame: CGRectMake(UIScreen.mainScreen().applicationFrame.midX, UIScreen.mainScreen().applicationFrame.midY, 20, 20))
-activityIndicator.activityIndicatorViewStyle = .Gray
-aWebView.addSubview(activityIndicator)
-</code></pre><blockquote>
-<p>实现代理UIWebViewDelegate</p>
-</blockquote>
-<pre><code>//设置aWebView的代理,这个注意不要忘记
-aWebView.delegate = self
-
-
-//实现UIWebViewDelegate
-
-//开始加载
-func webViewDidStartLoad(webView: UIWebView) {
-    activityIndicator.startAnimating()
-    print(&quot;开始加载&quot;)
-}
-
-//加载成功结束
-func webViewDidFinishLoad(webView: UIWebView) {
-    activityIndicator.stopAnimating()
-    print(&quot;加载成功结束&quot;)
-}
-
-func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-    print(&quot;加载失败&quot;)
-}
-
-//当WebView显示内容后，浏览页面内容时可以通过触摸方式来触发一些事件，通过WebView代理方法可以知道触摸事件的类型
-func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool {
-    /*
-    UIWebViewNavigationType有以下几种类型
-    public enum UIWebViewNavigationType : Int {
-
-    case LinkClicked    //链接被触发
-    case FormSubmitted  //提交信息时触发
-    case BackForward    //页面前后跳转时触发
-    case Reload         //页面重新加载时触发
-    case FormResubmitted//重复提交时触发
-    case Other          //使用loadRequest方法读取内容时触发
-    }
-    */
-    return true
-}
-</code></pre>
-            
+初
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/18/2015-10-18-UIWebView学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -701,280 +440,16 @@ func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLReques
         
           <span itemprop="articleBody">
             
-              <p>整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并</p>
-<p>链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快</p>
-<p>链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，结果一团浆糊</p>
-<blockquote>
-<p>PublicDS.h  这里有malloc 创建节点</p>
-</blockquote>
-<pre><code>#ifndef PUBLIC_DS_H_
-#define  PUBLIC_DS_H_   
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define MALLOC(p, s, type) \
-    if (!((p) = (type) malloc (s)))  { \
-    fprintf(stderr, &quot;Insufficient memory.&quot;); \
-    exit(EXIT_FAILURE); \
-    }
-#define REALLOC(p, s, type) \
-    if (!((p) = (type)realloc(p,s)))  { \
-    fprintf(stderr, &quot;Insufficient memory.&quot;); \
-    exit(EXIT_FAILURE); \
-    }
-#define CALLOC(p, num,size, type) \
-    if (!((p) = (type)calloc(num,size)))  { \
-    fprintf(stderr, &quot;Insufficient memory.&quot;); \
-    exit(EXIT_FAILURE); \
-    }
-
-
-#define FREE(p)\
-    if ((p) != NULL)\
-    {\
-        free(p);\
-        p = NULL;\
-    }
-
-#define SWAP (x, y, t )  (( t ) =  ( x ), ( x ) = ( y ), ( y ) = ( t ))
-#define COMPARE(x,y) ((x) &lt; (y)? -1:((x) == (y)) ? 0:1)
-
-
-#endif
-</code></pre><blockquote>
-<p>前面的一些定义</p>
-</blockquote>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;cstdlib&gt;
-#include &quot;PublicDS.h&quot;
-using namespace std;
-
-struct listNode;
-typedef struct listNode *listPointer;
-struct listNode{
-    int num;
-    listPointer next;
-};
-
-listPointer creat();
-listPointer insert(listPointer head,int item);
-//listPointer readData(listPointer head);
-void printList(listPointer head);
-int deleteLinkList(listPointer head,listPointer trail);
-listPointer destroyList(listPointer head);
-listPointer merger(listPointer h1,listPointer h2);
-listPointer addInBack(listPointer head,listPointer add);
-listPointer invert(listPointer head);
-listPointer recalculateCount(listPointer head);
-</code></pre><blockquote>
-<p>创建链表，有头节点，头节点的num放入后面节点个数</p>
-</blockquote>
-<pre><code>listPointer creat()
-{
-   listPointer first = NULL;           //头节点
-   MALLOC(first, sizeof(listNode), listPointer);
-   first -&gt; next = NULL;
-   first -&gt;num = 0;
-   return first;
-}
-</code></pre><blockquote>
-<p>在最前面插入节点</p>
-</blockquote>
-<pre><code>listPointer insert(listPointer head,int item)
-{
-    listPointer temp;
-    MALLOC(temp, sizeof(listNode), listPointer)
-    temp -&gt; num = item;
-    temp -&gt; next = head -&gt; next;
-    head -&gt; next = temp;
-    head -&gt;num++;
-    return head;
-}
-</code></pre><blockquote>
-<p>这个本来想读数据写一个函数的，后来发先有点问题，因为要在同一个文件中读两组数据，那样就要返回两个链表，先注释掉了</p>
-</blockquote>
-<pre><code>/*
-listPointer readData(listPointer head)
-{
-    ifstream inFile;
-    inFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/input2.txt&quot;);
-    int n;
-    inFile &gt;&gt; n;
-    while(n--)
-    {
-        int num;
-        inFile &gt;&gt; num;
-        insert(head, num);
-    }
-    inFile.close();
-    return head;
-}
-*/
-</code></pre><blockquote>
-<p>输出整个链表，头节点单独输出，这里是文件操作，可以改成控制台输出</p>
-</blockquote>
-<pre><code>void printList(listPointer head)
-{
-    ofstream outFile;
-    outFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/链表output.txt&quot;);
-    outFile &lt;&lt; &quot;case 1:&quot;&lt;&lt;head -&gt; num &lt;&lt; &quot;\n&quot;;
-    listPointer tmp = head -&gt; next;
-    while(tmp)
-    {
-        outFile &lt;&lt; tmp -&gt; num &lt;&lt; &quot;  &quot;;
-        tmp = tmp -&gt; next;
-    }
-    outFile&lt;&lt;&quot;\n&quot;;
-    outFile&lt;&lt;&quot;\n&quot;;
-    outFile.close();
-}
-</code></pre><blockquote>
-<p>删除一个节点，根据trail来删除</p>
-</blockquote>
-<pre><code>int deleteLinkList(listPointer head,listPointer trail)
-{
-    listPointer waitToDelete;
-    int tmp;
-    waitToDelete = trail -&gt; next;
-    trail -&gt; next = waitToDelete -&gt;next;
-    tmp = waitToDelete -&gt; num;
-    head -&gt; num --;
-    FREE(waitToDelete);
-    return tmp;
-}
-</code></pre><blockquote>
-<p>递归链表进行free</p>
-</blockquote>
-<pre><code>listPointer destroyList(listPointer head)
-{
-   while(head -&gt; next)
-   {
-       head -&gt; next = destroyList(head -&gt; next);
-   }
-    FREE(head)
-    return NULL;
-}
-</code></pre><blockquote>
-<p>在最后添加节点</p>
-</blockquote>
-<pre><code>listPointer addInBack(listPointer head,listPointer add)
-{
-    while(head -&gt; next)
-    {
-        head = head -&gt; next;
-    }
-    head -&gt; next = add;
-    return head;
-}
-</code></pre><blockquote>
-<p>反转链表，三个指针互相指，画个图易于理解</p>
-</blockquote>
-<pre><code>listPointer invert(listPointer head)
-{
-    listPointer p,t,r,first;
-    first = head;
-    p = head -&gt; next;
-    t = p -&gt; next;
-    p -&gt; next = NULL;
-    while (t) {
-        r = t -&gt; next;
-        t -&gt; next = p;
-        p = t;
-        t = r;
-    }
-    first -&gt; next = p;
-    return  first;
-}
-</code></pre><blockquote>
-<p>重新计算链表节点数</p>
-</blockquote>
-<pre><code>listPointer recalculateCount(listPointer head)
-{
-    listPointer p = head -&gt; next;
-    int count = 0;
-    while(p)
-    {
-        count ++;
-        p = p -&gt; next;
-    }
-    head -&gt; num = count;
-    return head;
-}
-</code></pre><blockquote>
-<p>main函数</p>
-</blockquote>
-<pre><code>int main()
-{
-    listPointer head1 = creat();
-    listPointer head2 = creat();
-    ifstream inFile;
-    inFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/2-input.txt&quot;);
-    //读数据
-    int n;
-    inFile &gt;&gt; n;
-    while(n--)
-    {
-        int num;
-        inFile &gt;&gt; num;
-        insert(head1, num);
-    }
-    inFile &gt;&gt; n;
-    while (n--)
-    {
-        int num;
-        inFile &gt;&gt; num;
-        insert(head2, num);
-    }
-    inFile.close();
-
-
-    //printList(head1);
-    cout&lt;&lt;&quot;\n&quot;;
-    //printList(head2);
-
-
-    listPointer head3 = creat();
-    //这里是归并两个有序链表
-    listPointer trail3 = head3;
-    listPointer trail2 = head2 -&gt; next;
-    listPointer trail1 = head1 -&gt; next;
-    while(trail1 &amp;&amp; trail2)
-    {
-        if(trail1 -&gt; num &gt;= trail2 -&gt; num)
-        {
-            trail3 = insert(trail3, trail1 -&gt; num);
-            trail1 = trail1 -&gt; next;
-        }
-        else
-        {
-            trail3 = insert(trail3, trail2 -&gt; num);
-            trail2 = trail2 -&gt; next;
-        }
-    }
-
-    head3 = invert(head3);
-    if(trail1 == NULL)
-    {
-        addInBack(head3, trail2);
-    }
-    else if(trail2 == NULL)
-    {
-        addInBack(head3 ,trail1);
-    }
-
-    head3 = recalculateCount(head3);
-
-    cout&lt;&lt;&quot;\n&quot;;
-    printList(head3);
-    destroyList(head3);
-
-    return 0;
-}
-</code></pre>
-            
+            整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并
+链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快
+链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/15/2015-10-15-链表的归并排序-数据结构/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1062,190 +537,15 @@ listPointer readData(listPointer head)
         
           <span itemprop="articleBody">
             
-              <p>#UIScrollView</p>
-<p>UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用addSubview方法它把所有的内容都添加到ScrollView，可以给滚动视图添加放置很多视图但问题是这样会造成严重的内存泄漏，所以在考虑用ScrollView时一定要考虑这个问题，当某些视图滚动出可见范围时，应该进行内存回收或者重利用UIScrollView是UITableView和UITextView的超类，支持显示比屏幕更大的应用窗口的内容，它通过挥动手势，能够使用户滚动内容，并且通过捏合手势缩放部分内容</p>
-<blockquote>
-<p>初始化scrollView和3个view</p>
-</blockquote>
-<pre><code>var scrollView = UIScrollView(frame: CGRectMake(20, 100, 300, 400))
-let view1 = UIView(frame: CGRectMake(0, 0, 300, 400))
-let view2 = UIView(frame: CGRectMake(300, 0, 300, 400))
-let view3 = UIView(frame: CGRectMake(600, 0, 300, 400))
-
-//设置背景色，添加到视图
-scrollView.backgroundColor = UIColor.grayColor()
-self.view.addSubview(scrollView)
-</code></pre><blockquote>
-<p>滚动视图添加view</p>
-</blockquote>
-<pre><code>//给滚动视图添加一些View
-
-view1.backgroundColor = UIColor.redColor()
-scrollView.addSubview(view1)
-
-view2.backgroundColor = UIColor.greenColor()
-scrollView.addSubview(view2)
-
-view3.backgroundColor = UIColor.blueColor()
-scrollView.addSubview(view3)
-</code></pre><blockquote>
-<p>注意要设置scrollView的容器大小</p>
-</blockquote>
-<pre><code>//这样scrollView并不能滚动，要设置scrollView容器大小
-scrollView.contentSize = CGSizeMake(900, 500)
-</code></pre><blockquote>
-<p>滚动条的风格</p>
-</blockquote>
-<pre><code>//设置滚动条风格,Default，白边界上绘制黑色滚动条，大多数背景下适用，Black黑色滚动条，用于白背景下，White白色滚动条，用于黑色背景下
-scrollView.indicatorStyle = UIScrollViewIndicatorStyle.Default
-//如果不想显示滚动条，可以隐藏，水平，垂直方向滚动条是否可见
-scrollView.showsHorizontalScrollIndicator = false
-scrollView.showsVerticalScrollIndicator = false
-</code></pre><blockquote>
-<p>实现分页滚动</p>
-</blockquote>
-<pre><code>//上面的ScrollView是可以连续滚动的，如果想实现分页滚动，可以通过pagingEnable属性设置来实现
-//设置成翻页滚动
-scrollView.pagingEnabled = false
-</code></pre><blockquote>
-<p>UIScrollViewDelegate代理的实现</p>
-</blockquote>
-<pre><code>//获取ScollView滚动的相关信息，可以给ScrollView设置委托，委托方法会在特定时刻收到通知
-scrollView.delegate = self
-
-//获取当前滚动视图移动的x,y坐标,可以用.x来获取x坐标
-let offsetX = scrollView.contentOffset
-print(offsetX)
-
-//开启缩放功能需要设置视图的两个属性，分别时maximumZoomScale 和 minmumZoomScale，这样就可以允许用户使用捏合手势调整内容大小
-//允许放大2倍，允许缩小到0.5倍
-scrollView.maximumZoomScale = 2.0
-scrollView.minimumZoomScale = 0.5
-//接下来实现一个viewForZoomingInScrollView方法来做出响应，这个方法会返回进行缩放时使用的UIView对象    
-
-
- //实现下面的代理方法，就可以知道滚动视图的运动状态
-
-//视图滚动中一直触发
-func scrollViewDidScroll(scrollView: UIScrollView) {
-    print(&quot;视图滚动中一直触发&quot;)
-}
-
-//刚开始拖动视图时触发一次
-func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-    print(&quot;刚开始拖动视图时触发一次&quot;)
-}
-
-//将要结束拖动触发一次
-func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer&lt;CGPoint&gt;) {
-    print(&quot;将要结束拖动触发一次&quot;)
-}
-
-//拖动结束，触发一次
-func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    print(&quot;拖动结束，触发一次&quot;)
-}
-
-//拖动结束后，开始减速
-func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-    print(&quot;拖动结束后，开始减速&quot;)
-}
-
-//减速完毕，恢复到静止状态
-func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    print(&quot;减速完毕，恢复到静止状态&quot;)
-
-    //获取当前滚动视图移动的x,y坐标,可以用.x来获取x坐标
-    let offsetX = scrollView.contentOffset
-    print(offsetX)
-
-    //获取scrollView视图滚动的x坐标
-    let offX = scrollView.contentOffset.x
-
-    //计算当前是第几页
-    let index = Int(offX / 300)
-
-    //设置分页指示器currentPage值
-    pageCtrl.currentPage = index
-
-}
-
-//这个还要涉及到手势识别然后处理图像大小
-func viewForZoomingInScrollView(scrollView: UIScrollView) -&gt; UIView? {
-    //获取当前滚动视图移动的x坐标
-    let offsetX = scrollView.contentOffset.x
-    print(offsetX)
-
-//        //如果没有滚动，返回view1
-//        if offsetX == 0 {
-//            return view1
-//        }
-//        //滚动300，返回view2
-//        else if offsetX == 300 {
-//            return view2
-//        }
-//        //滚动600，返回view3
-//        else if offsetX == 600{
-//            return view3
-//        }
-    return scrollView;
-
-}
-
-//监听缩放动作，也是通过实现滚动视图的代理来处理一些事件
-//缩放过程中一直调用
-func scrollViewDidZoom(scrollView: UIScrollView) {
-    print(&quot;缩放过程中一直调用&quot;)
-}
-
-//开始缩放，调用一次
-func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
-    print(&quot;开始缩放，调用一次&quot;)
-}
-
-//结束缩放，调用一次
-func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-    print(&quot;结束缩放，调用一次&quot;)
-}
-</code></pre><p>#UIPageControl</p>
-<p>就是页面下面几个点，代表你在第几个视图</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>//UIPageControl分页控制器，
-var pageCtrl = UIPageControl(frame: CGRectMake(20, 540, 300, 40))
-</code></pre><blockquote>
-<p>一些属性</p>
-</blockquote>
-<pre><code>self.view.addSubview(pageCtrl)
-pageCtrl.backgroundColor = UIColor.greenColor()
-//设置分页控制器总页数
-pageCtrl.numberOfPages = 3
-//设置当前显示页位置
-pageCtrl.currentPage = 0
-
-//分页控制添加一个UIControlEvents.ValueChanged事件后，点击分页控制器时 Value值改变会触发此事件
-//添加事件
-pageCtrl.addTarget(self, action: &quot;pageTurn:&quot;, forControlEvents: UIControlEvents.ValueChanged)
-
-
-
-//如果想实现ScrollView位置改变，也改变PageControl的Value值，只需要在ScrollView的scrollViewDidEndDecelerating方法里判断滚动位置，来设置Page Control的值
-
- //事件实现代码,分页控制器value改变事件
-func pageTurn(sender:AnyObject)
-{
-    //获取分页控制器
-    let newPageCtrl = sender as! UIPageControl
-    //获取分页控制器当前页
-    let index = newPageCtrl.currentPage
-
-    //设置ScrollView的x移动距离
-    scrollView.contentOffset = CGPointMake(CGFloat(300 * index), 0)
-}
-</code></pre>
-            
+            #UIScrollView
+UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用addSubview方法它把所有的内容都添加到ScrollView，可以给滚动视图添加放置很多视图但问题是这样会造成严重的内存泄漏，所以在考虑用ScrollView时一定要考虑这个问题，当某些视图滚动出可
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1333,104 +633,20 @@ func pageTurn(sender:AnyObject)
         
           <span itemprop="articleBody">
             
-              <blockquote>
-<p>创建</p>
-</blockquote>
-<pre><code>let imageView = UIImageView(frame: CGRectMake(20, 10, 450, 250))
+            
+创建
+
+let imageView = UIImageView(frame: CGRectMake(20, 10, 450, 250))
 let imageView2 = UIImageView(image: UIImage(named: &quot;72017.jpg&quot;))
 
-imageView.image = UIImage(named: &quot;1033382.jpg&quot;)
-self.view.addSubview(imageView)
-
-imageView2.frame = CGRectMake(20, 300, 450, 100)
-self.view.addSubview(imageView2)
-</code></pre><blockquote>
-<p>获取图片的各种方法</p>
-</blockquote>
-<pre><code>//1.给图像视图设置图片时，需要用到image属性来设一个UIImage对象，创建图片对象，可以通过图片的名字来创建图片对象
-let image = UIImage(named: &quot;1033382.jpg&quot;)
-
-//2.如果工程中也加入了@2x和@3x的图片，我们在使用的时候，可以不指定图片的后缀，只使用图片的名字，这样系统会自动选择使用哪一个尺寸
-let image2 = UIImage(named: &quot;1033382&quot;)
-</code></pre><blockquote>
-<p>从文件中获取，这里有些问题</p>
-</blockquote>
-<pre><code>//3.从文件目录中获取图片，这里还存在一些问题
-let path = NSBundle.mainBundle().pathForResource(&quot;1033382&quot;, ofType: &quot;jpg&quot;)
-//解包
-if let sValue = path
-{
-    let newImage = UIImage(contentsOfFile: sValue)
-    let imageView3 = UIImageView(frame: CGRectMake(20, 560, 450, 250))
-    imageView3.image = newImage
-    self.view.addSubview(imageView3)
-    print(&quot;aaa&quot;)
-}
-</code></pre><blockquote>
-<p>从网络中获取，这里iOS9要调整</p>
-</blockquote>
-<p>iOS9让所有的HTTP默认使用了HTTPS，原来的HTTP协议传输都改成TLS1.2协议进行传输。直接造成的情况就是App发请求的时候弹出网络无法连接。解决办法就是在项目的info.plist 文件里加上如下节点：</p>
-<p>NSAppTransportSecurity - NSAllowsArbitraryLoads</p>
-<p>这个子节点的意思是：是否允许任性的加载？！ 设为YES的话就将禁用了AppTransportSecurity转而使用用户自定义的设置，这个问题就解决了。具体见<a href="http://www.cnblogs.com/dsxniubility/p/4821184.html" target="_blank" rel="external">http://www.cnblogs.com/dsxniubility/p/4821184.html</a></p>
-<p><img src="http://cxray.github.io/images/UIImageView和UIImage的学习.png" alt="UIImageView和UIImage的学习"></p>
-<pre><code>//4.从网络地址获取图片
-//定义一个地址字符串常量
-let imageUrlString = &quot;http://www.stayreal.wang/images/intro.jpg&quot;
-//通过String类型，转换成NSURL对象
-let url = NSURL(string: imageUrlString)
-//从网络获取数据流
-let data = NSData(contentsOfURL: url!)
-//通过数据流初始化图片
-if data != nil
-{
-    let newImage2 = UIImage(data: data!)
-    let imageView4 = UIImageView(image: newImage2)
-    imageView4.frame = CGRectMake(20, 560, 450, 250)
-    self.view.addSubview(imageView4)
-}
-</code></pre><blockquote>
-<p>图片显示风格</p>
-</blockquote>
-<pre><code>//为了使图片在显示时候满足各种需求，系统提供了多种显示模式，UIViewContentMode一共提供了13种显示风格
-/*
-public enum UIViewContentMode : Int {
-
-case ScaleToFill        //完全填充在frame中
-case ScaleAspectFit     //保持比例，都在frame内
-case ScaleAspectFill    //保持比例，但在frame外也有
-case Redraw             //调用setNeedsDisplay方法时，重绘边界变化
-case Center             //image的中心与frame的中心重合
-case Top                //上边缘对齐
-case Bottom             //下边缘对齐
-case Left               //左侧边缘对齐
-case Right              //右侧边缘对齐
-case TopLeft            //上部和左侧对齐
-case TopRight           //上部和右侧对齐
-case BottomLeft         //下部和左侧对齐
-case BottomRight        //下部和右侧对齐
-}
-*/
-
-imageView2.contentMode = UIViewContentMode.ScaleAspectFit
-</code></pre><blockquote>
-<p>利用UIImageView实现幻灯片效果</p>
-</blockquote>
-<pre><code>//定义图片名数组
-let imageArray = [
-    UIImage(named: &quot;1033382.jpg&quot;)!,
-    UIImage(named: &quot;72017.jpg&quot;)!
-]
-//设置animationImages属性
-imageView2.animationImages = imageArray
-//设置动画时间
-imageView2.animationDuration = 1
-//设置播放次数
-imageView2.animationRepeatCount = 10
-//开始播放动画
-imageView2.startAnimating()
-</code></pre>
-            
+imag
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/11/2015-10-11-UIImageView和UIImage的学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1518,183 +734,17 @@ imageView2.startAnimating()
         
           <span itemprop="articleBody">
             
-              <p>提醒视图和操作表这两个视图不能通过Xib创建，只能通过代码添加视图，UIAlertView 提醒视图主要以弹框的形式提醒或警告用户以引起用户注意，UIActionSheet 操作表从界面底部弹出并有很多操作按钮供用户选择,iOS9已经不建议使用这种方式了</p>
-<p>#UIAlertView 提醒视图</p>
-<blockquote>
-<p>提醒视图一般用于程序发生一些变化的时候通知用户，让用户知晓并采取一些措施，例如网络连接失败，分享信息成功等等</p>
-</blockquote>
-<pre><code>//创建提醒视图，单一按钮提醒视图
-let oneButtonAlert = UIAlertView(title: &quot;提醒&quot;, message: &quot;这是一个简单的提醒视图&quot;, delegate: nil, cancelButtonTitle: &quot;确定&quot;)
+            提醒视图和操作表这两个视图不能通过Xib创建，只能通过代码添加视图，UIAlertView 提醒视图主要以弹框的形式提醒或警告用户以引起用户注意，UIActionSheet 操作表从界面底部弹出并有很多操作按钮供用户选择,iOS9已经不建议使用这种方式了
+#UIAlertView 提醒视图
 
-//创建多按钮提醒视图
-let moreButtonAlert = UIAlertView(title: &quot;提醒&quot;, message: &quot;多按钮提醒视图，请选择一个按钮&quot;, delegate: nil, cancelButtonTitle: &quot;确定&quot;, otherButtonTitles: &quot;按钮1&quot;, &quot;按钮2&quot;,&quot;按钮3&quot;,&quot;按钮4&quot;)
-
-//显示提醒视图
-oneButtonAlert.show()
-moreButtonAlert.show()
-
-//也可以通过以下方法创建视图
-let alert = UIAlertView()
-//设置标题，代理，提醒信息
-alert.title = &quot;提醒&quot;
-alert.delegate = self
-alert.message = &quot;另外一种创建方式&quot;
-//添加按钮
-alert.addButtonWithTitle(&quot;按钮1&quot;)
-alert.addButtonWithTitle(&quot;按钮2&quot;)
-alert.addButtonWithTitle(&quot;按钮3&quot;)
-//cancelButton设置
-alert.cancelButtonIndex = 2
-
-//显示
-alert.show()
-</code></pre><blockquote>
-<p>其它的提醒视图风格</p>
-</blockquote>
-<pre><code>//上面介绍的提醒框都是.Default风格，还有其它几种风格
-//SecureTextInput一个密码输入框，PlainTextInput一个明文文本框，LoginAndPasswordInput具有账号输入框和密码输入框
-oneButtonAlert.alertViewStyle = .LoginAndPasswordInput
-
-//可以通过textFieldAtIndex方法来获取文本框
-let textField = oneButtonAlert.textFieldAtIndex(0)
-//设置文本框占位符
-textField?.placeholder = &quot;请输入帐号&quot;
-oneButtonAlert.show()
-</code></pre><blockquote>
-<p>实现UIAlertViewDelegate</p>
-</blockquote>
-<pre><code>//实现提醒视图的代理
-//根据被点击按钮的索引处理点击事件
-func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-    switch buttonIndex
-    {
-    case 0:
-        print(&quot;按钮1&quot;)
-    case 1:
-        print(&quot;按钮2&quot;)
-    case 2:
-        print(&quot;按钮3&quot;)
-    case 3:
-        print(&quot;按钮4&quot;)
-    default:
-        print(&quot;确定&quot;)
-    }
-}
-
-//取消按钮的事件
-func alertViewCancel(alertView: UIAlertView) {
-    print(&quot;取消&quot;)
-}
-
-//即将显示时的事件
-func willPresentAlertView(alertView: UIAlertView) {
-    print(&quot;即将显示时的事件&quot;)
-}
-
-//已经显示时的事件
-func didPresentAlertView(alertView: UIAlertView) {
-    print(&quot;已经显示时的事件&quot;)
-}
-
-//即将消失时的事件
-func alertView(alertView: UIAlertView, willDismissWithButtonIndex buttonIndex: Int) {
-    print(&quot;即将消失时的事件&quot;)
-}
-
-func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-    print(&quot;已经消失时的事件&quot;)
-}
-
-
-//编辑任何默认字体的字段添加的风格之后调用，没理解这句话...........
-func alertViewShouldEnableFirstOtherButton(alertView: UIAlertView) -&gt; Bool {
-    return false
-}
-</code></pre><p>#UIActionSheet 操作表</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>//创建操作表代码如下，创建不带红色按钮的操作表,主要是将destructiveButtonTitle改成nil
-var actionSheet = UIActionSheet(title: &quot;请选择分享方向&quot;, delegate: nil, cancelButtonTitle: &quot;取消&quot;, 
-destructiveButtonTitle: nil, otherButtonTitles: &quot;邮件&quot;, &quot;短信&quot;,&quot;微博&quot;,&quot;微信&quot;)
-
-//创建带有红色按钮的操作表
-var actionSheet2 = UIActionSheet(title: &quot;将删除该条评论&quot;, delegate: nil, cancelButtonTitle: &quot;取消&quot;, destructiveButtonTitle: &quot;确定删除&quot;)
-
-//showInView方法让操作表出现在某一视图上，如果想将操作表视图与工具栏或者标签栏对齐，可以使用
-//actionSheet.showFromToolbar(view: UIToolbar)
-//actionSheet.showFromTabBar(view: UITabBar)
-//actionSheet.showInView(self.view)
-actionSheet2.showInView(self.view)
-</code></pre><blockquote>
-<p>操作表常用的一些属性方法</p>
-</blockquote>
-<pre><code>//设置标题
-actionSheet.title = &quot;新标题&quot;
-//设置样式
-actionSheet.actionSheetStyle = UIActionSheetStyle.Default
-//添加按钮
-actionSheet.addButtonWithTitle(&quot;新加按钮&quot;)
-//根据index坐标获取一个按钮文本,取消按钮是
-let butIndex = actionSheet.buttonTitleAtIndex(2)
-print(butIndex)
-//获取取消按钮的坐标
-let cancelIndex = actionSheet.cancelButtonIndex
-print(cancelIndex)
-//获取按钮个数
-let butCount = actionSheet.numberOfButtons
-print(butCount)
-</code></pre><blockquote>
-<p>实现UIActionSheetDelegate</p>
-</blockquote>
-<pre><code>//单独设置delegate为self，才能是弹出的操作表视图响应点击事件
-actionSheet.delegate = self
-
- //实现操作表视图的代理
-//根据被点击按钮的索引处理点击事件
-func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-    switch buttonIndex
-    {
-    case 0:
-        print(&quot;点击取消&quot;)
-    case 1:
-        print(&quot;1&quot;)
-    case 2:
-        print(&quot;2&quot;)
-    case 3:
-        print(&quot;3&quot;)
-    default:
-        print(&quot;未知&quot;)
-    }
-}
-
-//选择取消按钮
-func actionSheetCancel(actionSheet: UIActionSheet) {
-    print(&quot;你点击了取消按钮&quot;)
-}
-
-//即将显示时
-func willPresentActionSheet(actionSheet: UIActionSheet) {
-    print(&quot;即将显示&quot;)
-}
-
-//已显示时
-func didPresentActionSheet(actionSheet: UIActionSheet) {
-    print(&quot;已经显示&quot;)
-}
-
-//即将消失
-func actionSheet(actionSheet: UIActionSheet, willDismissWithButtonIndex buttonIndex: Int) {
-    print(&quot;即将消失&quot;)
-}
-
-//已消失
-func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
-    print(&quot;已消失&quot;)
-}
-</code></pre>
-            
+提醒视
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/11/2015-10-11-UIAlertView & UIActionSheet学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1782,64 +832,22 @@ func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonInd
         
           <span itemprop="articleBody">
             
-              <p>开关和进步控件东西的东西不多</p>
-<p>#开关</p>
-<blockquote>
-<p>创建开关,添加到视图</p>
-</blockquote>
-<pre><code>//创建开关控件，虽然设置了宽度和高度，但会被忽略
+            开关和进步控件东西的东西不多
+#开关
+
+创建开关,添加到视图
+
+//创建开关控件，虽然设置了宽度和高度，但会被忽略
 var switchView = UISwitch(frame: CGRectMake(20, 100, 60, 40))
 
-self.view.addSubview(switchView)
-</code></pre><blockquote>
-<p>开关的属性</p>
-</blockquote>
-<pre><code>//开关默认是关闭的，可以设置开关的on属性来开启和关闭开关
-switchView.on = true
-//或
-switchView.setOn(true, animated: true)
-</code></pre><blockquote>
-<p>检测开关的切换</p>
-</blockquote>
-<pre><code>//可以给开关添加UIControlEvents.ValueChanged事件，检测开关的切换
-switchView.addTarget(self, action: &quot;switchChange:&quot;, forControlEvents: UIControlEvents.ValueChanged)
-
-func switchChange(sender :AnyObject)
-{
-    let newSwitch = sender as! UISwitch
-    print(newSwitch.on)
-}
-</code></pre><p>#进步控件    </p>
-<blockquote>
-<p>创建进步控件，添加到视图</p>
-</blockquote>
-<pre><code>//创建进步控件
-var stepperView = UIStepper(frame: CGRectMake(200, 100, 80, 40))
-
-self.view.addSubview(stepperView)
-</code></pre><blockquote>
-<p>进步控件的属性</p>
-</blockquote>
-<pre><code>//设置最小值，默认是0.0.
-stepperView.minimumValue = 60
-//设置最大值，默认是100
-stepperView.maximumValue = 80
-//设置当前值
-stepperView.value = 70
-//设置递增或递减的值，默认是1.0
-</code></pre><blockquote>
-<p>检测进步控件的变化</p>
-</blockquote>
-<pre><code>stepperView.addTarget(self, action: &quot;stepChange:&quot;, forControlEvents: UIControlEvents.ValueChanged)
-
-func stepChange(sender : AnyObject)
-{
-   let newStepper = sender as! UIStepper
-   print(newStepper.value)
-}
-</code></pre>
-            
+self.view.addSubview(switchVi
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/10/2015-10-10-UISwitch & UIStepper学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1927,78 +935,21 @@ func stepChange(sender : AnyObject)
         
           <span itemprop="articleBody">
             
-              <p>UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>//初始化，UISlider虽然设置了高度，但是将会被忽略
+            UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
+
+初始化
+
+//初始化，UISlider虽然设置了高度，但是将会被忽略
 var slider = UISlider(frame: CGRectMake(20, 100, 200, 60))
 
-//ViewDidLoad中，添加到视图
-self.view.addSubview(slider)
-</code></pre><blockquote>
-<p>滑块的最大最小值，设定，获取当前值</p>
-</blockquote>
-<pre><code>//可以对滑块设置范围和默认值，如果没有设置，默认使用0.0和1.0之间的值
-//UISlider提供了两个属性，mininumValue和maxinumValue来设置范围，代码如下
-//设置最小值
-slider.minimumValue = 10
-//设置最大值
-slider.maximumValue = 80
-//设置默认值
-slider.value = 30
-
-//读取当前滑块控件的值
-let value = slider.value
-print(value)
-</code></pre><blockquote>
-<p>设置滑块左右图片和圆点的图片</p>
-</blockquote>
-<pre><code>//设置滑块右端图片,可以根据滑块的各种不同状态显示不同图像，下面是几个可用状态
-/*UIControlState.Normal
-UIControlState.Disabled
-UIControlState.Highlighted
-UIControlState.Reserved
-UIControlState.Selected*/
-
-slider.setMaximumTrackImage(UIImage(named: &quot;1127074.jpg&quot;), forState: UIControlState.Normal)
-
-//设置滑块左端图片
-slider.setMinimumTrackImage(UIImage(named: &quot;990589.jpg&quot;), forState: UIControlState.Normal)
-
-//设置滑块圆点的图片
-//slider.setThumbImage(image: UIImage?, forState: UIControlState)
-</code></pre><blockquote>
-<p>添加通知,这两个ValueChanged和TouchUpInside在这里差不多,要注意action那里方法名一定要加个:啊，不然会引发bug</p>
-</blockquote>
-<pre><code>//要想在滑块值改变时收到通知，可以用UIControl类的addTarget方法为UIControlEvents.ValueChanged事件添加一个动作
-slider.addTarget(self, action: &quot;sliderValueChange:&quot;
-,forControlEvents: UIControlEvents.ValueChanged)
-
-//滑块拖动后的事件
-slider.addTarget(self, action: &quot;sliderTouchUpInside:&quot;, forControlEvents: UIControlEvents.TouchUpInside)
-
-func sliderValueChange(sender: AnyObject)
-{
-    let newSlider = sender as! UISlider
-    let value = newSlider.value
-    print(value)
-}
-
-func sliderTouchUpInside(sender: AnyObject)
-{
-    let newSlider = sender as! UISlider
-    let value = newSlider.value
-    print(value)
-}
-</code></pre><blockquote>
-<p>不一直触发以上方法，放倒ViewDidLoad中</p>
-</blockquote>
-<pre><code>//在拖动时，上面方法一直在触发，如果想要滑块停止拖动才触发slierValueChange方法，我们只需要设置滑块的continuous属性值为false即可实现
-slider.continuous = false
-</code></pre>
-            
+//Vie
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/10/2015-10-10-UISlider学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -2086,69 +1037,19 @@ slider.continuous = false
         
           <span itemprop="articleBody">
             
-              <p>#活动指示器</p>
-<blockquote>
-<p>活动指示器初始化，添加到视图</p>
-</blockquote>
-<pre><code>//活动指示器显示一个标准的转动轮，默认大小为20*20，显示得很清楚，如果代码创建大于此尺寸的话，显示效果就会变得模糊
-var activityView = UIActivityIndicatorView(frame: CGRectMake(100, 100, 20, 20))
+            #活动指示器
 
-self.view.addSubview(activityView)
+活动指示器初始化，添加到视图
 
-//可以通过活动指示器的activityIndicatorViewStyle属性来设置显示风格
-//.Gray标准尺寸的灰色指示器  White标准尺寸的白色指示器  WhiteLarge较大的白色指示器
-activityView.activityIndicatorViewStyle = .Gray
-</code></pre><blockquote>
-<p>活动指示器启动停止，自动隐藏</p>
-</blockquote>
-<pre><code>//如果希望指示器停止后自动隐藏，只需要设置hidesWhenStopped属性为true,默认为true，设置为false停止后指示器仍会显示
-activityView.hidesWhenStopped = false
-
-//启动活动指示器
-activityView.stopAnimating()
-//停止活动指示器
-activityView.startAnimating()
-</code></pre><blockquote>
-<p>对于iOS左上角任务栏Wi-Fi右侧活动显示器的控制</p>
-</blockquote>
-<pre><code>//我们经常看到应用连接网络时，iOS设备状态栏左上角wifi旁边会出现一个活动指示器，意在告诉用户当前在使用网络
-//这个功能可以通过修改UIApplication的networkActivityIndicatorVisible属性来设置显示或隐藏，设置网络指示器代码如下
-//获取应用单利
-let app:UIApplication = UIApplication.sharedApplication()
-app.networkActivityIndicatorVisible = true
-</code></pre><p>#进度控制条</p>
-<blockquote>
-<p>进度控制条初始化，添加到视图</p>
-</blockquote>
-<pre><code>//进度控制条，和活动指示器相似，只不过进度控制条提供了一个接口可以设置一个值来表示当前的进度，这样能让用户知道当前操作完成了多少
-var progressView = UIProgressView(frame: CGRectMake(20, 200, 200, 20))
-
-self.view.addSubview(progressView)
-
-//进度控制器有两种风格，Default正常的进度条，Bar一般用于toolBar中,有无灰色为完成部分的区别
-progressView.progressViewStyle = UIProgressViewStyle.Default
-</code></pre><blockquote>
-<p>进度条的值设定</p>
-</blockquote>
-<pre><code>//进度控制器的值范围是0.0～1.0之间的浮点数，可以对其progress属性设置，来控制显示进度
-progressView.progress = 0.5
-//或
-progressView.setProgress(0.8, animated: true)
-</code></pre><blockquote>
-<p>可以设置背景颜色或者图片，以及进度的颜色或者图片</p>
-</blockquote>
-<pre><code>//当前进度的颜色
-progressView.progressTintColor = UIColor.greenColor()
-//背景颜色,未完成部分
-progressView.trackTintColor = UIColor.blueColor()
-
-//也可以用到图片,设置进度的图片
-//progressView.progressImage = UIImage(named: String)
-//设置背景图片，未完成部分
-//progressView.trackImage = UIImage(named: String)
-</code></pre>
-            
+//活动指示器显示一个标准的转动轮，默认大小为20*20，显示得很清楚，如果代码创建大于此尺寸的话，显示效果就会变得模糊
+var activityView = UIActivityIndicatorView(frame: CGRectMake(100,
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -2236,111 +1137,19 @@ progressView.trackTintColor = UIColor.blueColor()
         
           <span itemprop="articleBody">
             
-              <p>这个分段控件也不难，只是一些属性记记住就好了</p>
-<blockquote>
-<p>创建数组和segment</p>
-</blockquote>
-<pre><code>var appsArray = [&quot;StayReal&quot;,&quot;CXRay&quot;,&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;]
-var segment: UISegmentedControl!
-</code></pre><blockquote>
-<p>在ViewDidLoad中初始化，并添加到视图</p>
-</blockquote>
-<pre><code>//创建分段控件
-segment = UISegmentedControl(items: appsArray)
-//设置大小
-segment.frame = CGRectMake(20, 100, 320, 40)
-//添加到视图
-self.view.addSubview(segment)
-</code></pre><blockquote>
-<p>分段控件常用属性和方法</p>
-</blockquote>
-<pre><code>//默认选中下标为1的
-segment.selectedSegmentIndex = 1
+            这个分段控件也不难，只是一些属性记记住就好了
 
-//获取选中的坐标,这个属性可读可写
-let index = segment.selectedSegmentIndex
-print(index)
+创建数组和segment
 
-//获取segment的数量
-let count = segment.numberOfSegments
-print(count)
-
-//设置下标等于2的标题
-segment.setTitle(&quot;ddd&quot;, forSegmentAtIndex: 2)
-
-//设置下标等于3的图片，图片和标题不能共存，设置了图片之后，原来的标题就不显示了,可是这个图片有要求，这里有些问题
-segment.setImage(UIImage(named: &quot;1033382.png&quot;), forSegmentAtIndex: 3)
-
-//在坐标为2的位置，插入一个分段标题
-segment.insertSegmentWithTitle(&quot;insert&quot;, atIndex: 2, animated: true)
-//同理可插入图片
-segment.insertSegmentWithImage(image: UIImage?, atIndex: Int, animated: Bool)
-
-//获取某一下标下的标题
-let title = segment.titleForSegmentAtIndex(0)
-//获取某一下标下的图片
-let image = segment.imageForSegmentAtIndex(3)
-
-//momentary默认为NO，点击之后一直处于选中状态，除非点击其它分段，才恢复，当设置成YES时，点击选中，但一会儿就恢复到正常状态,一般设置成false吧，除非特殊要求
-segment.momentary = false
-
-//设置某一分段是否可用
-segment.setEnabled(false, forSegmentAtIndex: 1)
-
-//设置下标为0的segment的宽度
-segment.setWidth(100, forSegmentAtIndex: 0)
-
-//获取某一下标的segment的宽度,如果是默认会输出0.0
-let width = segment.widthForSegmentAtIndex(2)
-print(width)
-
-//设置内容偏移
-segment.setContentOffset(CGSizeMake(10, 10), forSegmentAtIndex: 2)
-
-//获取某一个下标segment的内容偏移
-let size = segment.contentOffsetForSegmentAtIndex(3)
-print(size)
-
-//是否根据segment的内容改变其宽度
-segment.apportionsSegmentWidthsByContent = true
-
-//设置标题颜色
-segment.tintColor = UIColor.redColor()
-
-//获取标题颜色,颜色可读可写
-let segmentColor = segment.tintColor
-print(segmentColor)
-
-//移除下标为2的segment
-segment.removeSegmentAtIndex(4, animated: true)
-
-//移除所有segment
-//segment.removeAllSegments()
-</code></pre><blockquote>
-<p>添加事件，当segment改变时，触发</p>
-</blockquote>
-<pre><code>segment.addTarget(self, action: &quot;segmentChange:&quot;, forControlEvents: UIControlEvents.ValueChanged)
-
-func segmentChange(sender: AnyObject)
-{
-    let segment: UISegmentedControl = sender as! UISegmentedControl
-    switch segment.selectedSegmentIndex
-    {
-    case 0:
-        print(&quot;0&quot;)
-    case 1:
-        print(&quot;1&quot;)
-    case 2:
-        print(&quot;2&quot;)
-    case 3:
-        print(&quot;3&quot;)
-    default:
-        print(&quot;defaule&quot;)
-    }
-}
-</code></pre>
-            
+var appsArray = [&quot;StayReal&quot;,&quot;CXRay&quot;,&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;]
+var seg
+            ...
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/09/2015-10-09-UISegmentedControl学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

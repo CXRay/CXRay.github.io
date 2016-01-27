@@ -55,7 +55,7 @@
 <meta property="og:description" content="普通的式子例如1+2*3对于人是很容易计算的，但对于电脑很难计算，先要转换成逆波兰式，逆波兰式相对于机器就很容易了，以下算法是用swift实现
 　(1)首先，需要分配2个栈，栈s1用于临时存储运算符（含一个结束符号），此运算符在栈内遵循越往栈顶优先级越高的原则；栈s2用于输入逆波兰式，为方便起见，栈s1需先放入一个优先级最低的运算符，在这里假定为’#’；
 　　(2)从中缀式的左端开始逐个读取字符x">
-<meta property="og:updated_time" content="2015-11-21T03:14:20.000Z">
+<meta property="og:updated_time" content="2016-01-27T06:12:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆波兰式转换和计算">
 <meta name="twitter:description" content="普通的式子例如1+2*3对于人是很容易计算的，但对于电脑很难计算，先要转换成逆波兰式，逆波兰式相对于机器就很容易了，以下算法是用swift实现
@@ -66,7 +66,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always'
+    sidebar: 'post'
   };
 </script>
 
@@ -258,223 +258,222 @@
 <p>　　(3)在进行完(2)后，检查栈s1是否为空，若不为空，则将栈中元素依次弹出并压入栈s2中（不包括’#’）；　　　　　　 </p>
 <p>　　</p>
 <p>　　(4)完成上述步骤后，栈s2便为逆波兰式输出结果。但是栈s2应做一下逆序处理，因为此时表达式的首字符位于栈底；</p>
-<pre><code>import Foundation
+<pre><code class="swift"><span class="keyword">import</span> Foundation
 
 
+<span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>{
+    <span class="keyword">var</span> array = [<span class="type">String</span>]()
+    <span class="keyword">var</span> top = -<span class="number">1</span>
 
-class Stack {
-    var array = [String]()
-    var top = -1
-
-    func isEmpty() -&gt; Bool
+    <span class="function"><span class="keyword">func</span> <span class="title">isEmpty</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span>
     {
-        return top &lt;= -1
+        <span class="keyword">return</span> top &lt;= -<span class="number">1</span>
     }
 
-    func isFull() -&gt; Bool
+    <span class="function"><span class="keyword">func</span> <span class="title">isFull</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span>
     {
-        return false
+        <span class="keyword">return</span> <span class="literal">false</span>
     }
 
-    func push(ch: String)
+    <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(ch: String)</span></span>
     {
-        if(!isFull())
+        <span class="keyword">if</span>(!isFull())
         {
             ++top
             array.append(ch)
         }
     }
 
-    func pop() -&gt; String?
+    <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?
     {
-        if(!isEmpty())
+        <span class="keyword">if</span>(!isEmpty())
         {
-            let n = array[top]
+            <span class="keyword">let</span> n = array[top]
             top--
             array.removeLast()
-            return n
+            <span class="keyword">return</span> n
         }
-        else
+        <span class="keyword">else</span>
         {
-            return nil
+            <span class="keyword">return</span> <span class="literal">nil</span>
         }
     }
-    func toppp() -&gt; String?
+    <span class="function"><span class="keyword">func</span> <span class="title">toppp</span><span class="params">()</span></span> -&gt; <span class="type">String</span>?
     {
-        if(!isEmpty())
+        <span class="keyword">if</span>(!isEmpty())
         {
-            return array[top]
+            <span class="keyword">return</span> array[top]
         }
-        else
+        <span class="keyword">else</span>
         {
-            return nil
+            <span class="keyword">return</span> <span class="literal">nil</span>
         }
     }
 
 
 }
 
-var stack1 = Stack()
-var stack2 = Stack()
-var stack3 = Stack()//存放逆波兰式
-var stack4 = Stack()//用于存放最终的值
-var length = 0
+<span class="keyword">var</span> stack1 = <span class="type">Stack</span>()
+<span class="keyword">var</span> stack2 = <span class="type">Stack</span>()
+<span class="keyword">var</span> stack3 = <span class="type">Stack</span>()<span class="comment">//存放逆波兰式</span>
+<span class="keyword">var</span> stack4 = <span class="type">Stack</span>()<span class="comment">//用于存放最终的值</span>
+<span class="keyword">var</span> length = <span class="number">0</span>
 
-func RPExpression(aString:String) -&gt; String
+<span class="function"><span class="keyword">func</span> <span class="title">RPExpression</span><span class="params">(aString:String)</span></span> -&gt; <span class="type">String</span>
 {
-    //设字符“＃”是运算级最低的运算符，并压入s1中
-    stack1.push(&quot;#&quot;);
+    <span class="comment">//设字符“＃”是运算级最低的运算符，并压入s1中</span>
+    stack1.push(<span class="string">"#"</span>);
 
-    var num = &quot;&quot;
-    for ch in aString.characters
+    <span class="keyword">var</span> num = <span class="string">""</span>
+    <span class="keyword">for</span> ch <span class="keyword">in</span> aString.characters
     {
-        if (ch == &quot;(&quot;)
+        <span class="keyword">if</span> (ch == <span class="string">"("</span>)
         {
             stack2.push(num)
-            num = &quot;&quot;
+            num = <span class="string">""</span>
 
-            stack1.push(&quot;(&quot;)
+            stack1.push(<span class="string">"("</span>)
         }
-        else if (ch == &quot;)&quot;)
+        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">")"</span>)
         {
             stack2.push(num)
-            num = &quot;&quot;
+            num = <span class="string">""</span>
 
-            while(stack1.toppp() != &quot;(&quot; &amp;&amp; stack1.toppp() != &quot;#&quot;)
+            <span class="keyword">while</span>(stack1.toppp() != <span class="string">"("</span> &amp;&amp; stack1.toppp() != <span class="string">"#"</span>)
             {
-                let a = stack1.pop()
+                <span class="keyword">let</span> a = stack1.pop()
                 stack2.push(a!)
             }
             stack1.pop()
         }
-        else if (ch == &quot;+&quot; || ch == &quot;-&quot;)
+        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">"+"</span> || ch == <span class="string">"-"</span>)
         {
             stack2.push(num)
-            num = &quot;&quot;
+            num = <span class="string">""</span>
 
-            if(stack1.isEmpty())
+            <span class="keyword">if</span>(stack1.isEmpty())
             {
-                stack1.push(&quot;\(ch)&quot;)
+                stack1.push(<span class="string">"<span class="subst">\(ch)</span>"</span>)
             }
-            else
+            <span class="keyword">else</span>
             {
-                for(var top = stack1.toppp();top != &quot;#&quot;;top = stack1.toppp())
+                <span class="keyword">for</span>(<span class="keyword">var</span> top = stack1.toppp();top != <span class="string">"#"</span>;top = stack1.toppp())
                 {
-                    if(top == &quot;(&quot;)
+                    <span class="keyword">if</span>(top == <span class="string">"("</span>)
                     {
-                        break
+                        <span class="keyword">break</span>
                     }
-                    else
+                    <span class="keyword">else</span>
                     {
-                        let a = stack1.pop()
+                        <span class="keyword">let</span> a = stack1.pop()
                         stack2.push(a!)
                     }
                 }
-                stack1.push(&quot;\(ch)&quot;)
+                stack1.push(<span class="string">"<span class="subst">\(ch)</span>"</span>)
 
             }
             length++
         }
-        else if (ch == &quot;*&quot; || ch == &quot;/&quot;)
+        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">"*"</span> || ch == <span class="string">"/"</span>)
         {
             stack2.push(num)
-            num = &quot;&quot;
+            num = <span class="string">""</span>
 
-            if(stack1.isEmpty())
+            <span class="keyword">if</span>(stack1.isEmpty())
             {
-                stack1.push(&quot;\(ch)&quot;)
+                stack1.push(<span class="string">"<span class="subst">\(ch)</span>"</span>)
             }
-            else
+            <span class="keyword">else</span>
             {
-                for(var top = stack1.toppp();top != &quot;#&quot; &amp;&amp; top != &quot;+&quot; &amp;&amp; top != &quot;-&quot;;top = stack1.toppp())
+                <span class="keyword">for</span>(<span class="keyword">var</span> top = stack1.toppp();top != <span class="string">"#"</span> &amp;&amp; top != <span class="string">"+"</span> &amp;&amp; top != <span class="string">"-"</span>;top = stack1.toppp())
                 {
-                    if (top == &quot;(&quot;)
+                    <span class="keyword">if</span> (top == <span class="string">"("</span>)
                     {
-                        break
+                        <span class="keyword">break</span>
                     }
-                    else
+                    <span class="keyword">else</span>
                     {
-                        let a = stack1.pop()
+                        <span class="keyword">let</span> a = stack1.pop()
                         stack2.push(a!)
                     }
                 }
-                stack1.push(&quot;\(ch)&quot;)
+                stack1.push(<span class="string">"<span class="subst">\(ch)</span>"</span>)
 
             }
             length++
         }
-        else if (ch == &quot;=&quot;)
+        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">"="</span>)
         {
             stack2.push(num)
-            num = &quot;&quot;
+            num = <span class="string">""</span>
         }
-        else
+        <span class="keyword">else</span>
         {
-            num += &quot;\(ch)&quot;;
+            num += <span class="string">"<span class="subst">\(ch)</span>"</span>;
         }
     }
 
-    var ans = &quot;&quot;
-    while (!stack1.isEmpty() &amp;&amp; stack1.toppp() != &quot;#&quot;)
+    <span class="keyword">var</span> ans = <span class="string">""</span>
+    <span class="keyword">while</span> (!stack1.isEmpty() &amp;&amp; stack1.toppp() != <span class="string">"#"</span>)
     {
-        let a = stack1.pop()
+        <span class="keyword">let</span> a = stack1.pop()
         stack2.push(a!)
     }
 
-    //stack2中存储了逆波兰数
-//    while(!stack2.isEmpty())
-//    {
-//        ans = stack2.pop()! + ans
-//    }
-//    
-//    print(ans)
+    <span class="comment">//stack2中存储了逆波兰数</span>
+<span class="comment">//    while(!stack2.isEmpty())</span>
+<span class="comment">//    {</span>
+<span class="comment">//        ans = stack2.pop()! + ans</span>
+<span class="comment">//    }</span>
+<span class="comment">//    </span>
+<span class="comment">//    print(ans)</span>
 
-    while(!stack2.isEmpty())
+    <span class="keyword">while</span>(!stack2.isEmpty())
     {
-        if let a = stack2.pop()
+        <span class="keyword">if</span> <span class="keyword">let</span> a = stack2.pop()
         {
-            if a != &quot;&quot;
+            <span class="keyword">if</span> a != <span class="string">""</span>
             {
-                print(a)
+                <span class="built_in">print</span>(a)
                 stack3.push(a)
             }
         }
     }
 
 
-    //下面是逆波兰式的求值
-    while(!stack3.isEmpty())
+    <span class="comment">//下面是逆波兰式的求值</span>
+    <span class="keyword">while</span>(!stack3.isEmpty())
     {
-        let a = stack3.pop()        //操作数或操作符
-        //print(a)
-        if a == &quot;+&quot; || a == &quot;-&quot; || a == &quot;*&quot; || a == &quot;/&quot;
+        <span class="keyword">let</span> a = stack3.pop()        <span class="comment">//操作数或操作符</span>
+        <span class="comment">//print(a)</span>
+        <span class="keyword">if</span> a == <span class="string">"+"</span> || a == <span class="string">"-"</span> || a == <span class="string">"*"</span> || a == <span class="string">"/"</span>
         {
-            if a == &quot;+&quot;
+            <span class="keyword">if</span> a == <span class="string">"+"</span>
             {
-                let num1 = Double(stack4.pop()!)!
-                let num2 = Double(stack4.pop()!)!
-                stack4.push(&quot;\(num2+num1)&quot;)
+                <span class="keyword">let</span> num1 = <span class="type">Double</span>(stack4.pop()!)!
+                <span class="keyword">let</span> num2 = <span class="type">Double</span>(stack4.pop()!)!
+                stack4.push(<span class="string">"<span class="subst">\(num2+num1)</span>"</span>)
             }
-            else if a == &quot;-&quot;
+            <span class="keyword">else</span> <span class="keyword">if</span> a == <span class="string">"-"</span>
             {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!-num1!)&quot;)
+                <span class="keyword">let</span> num1 = <span class="type">Double</span>(stack4.pop()!)
+                <span class="keyword">let</span> num2 = <span class="type">Double</span>(stack4.pop()!)
+                stack4.push(<span class="string">"<span class="subst">\(num2!-num1!)</span>"</span>)
             }
-            else if a == &quot;*&quot;
+            <span class="keyword">else</span> <span class="keyword">if</span> a == <span class="string">"*"</span>
             {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!*num1!)&quot;)
+                <span class="keyword">let</span> num1 = <span class="type">Double</span>(stack4.pop()!)
+                <span class="keyword">let</span> num2 = <span class="type">Double</span>(stack4.pop()!)
+                stack4.push(<span class="string">"<span class="subst">\(num2!*num1!)</span>"</span>)
             }
-            else if a == &quot;/&quot;
+            <span class="keyword">else</span> <span class="keyword">if</span> a == <span class="string">"/"</span>
             {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!/num1!)&quot;)
+                <span class="keyword">let</span> num1 = <span class="type">Double</span>(stack4.pop()!)
+                <span class="keyword">let</span> num2 = <span class="type">Double</span>(stack4.pop()!)
+                stack4.push(<span class="string">"<span class="subst">\(num2!/num1!)</span>"</span>)
             }
         }
-        else
+        <span class="keyword">else</span>
         {
             stack4.push(a!)
         }
@@ -482,12 +481,13 @@ func RPExpression(aString:String) -&gt; String
 
 
     ans = stack4.pop()!
-    print(ans)
-    return ans
+    <span class="built_in">print</span>(ans)
+    <span class="keyword">return</span> ans
 }
 
-RPExpression(&quot;(1+2)*3/(4+5)=&quot;)
-</code></pre></span>
+<span class="type">RPExpression</span>(<span class="string">"(1+2)*3/(4+5)="</span>)
+</code></pre>
+</span>
       
     </div>
 
