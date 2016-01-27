@@ -1,0 +1,858 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+#UIDatePicker
+
+UIPickerView控件在给用户选择某些特定的数据时会经常使用到，它根据数据源提供的信息按照系统风格自动显示，初始化
+
+var datePicke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIDatePicker和UIPIckerView学习">
+<meta property="og:url" content="http://cxray.github.io/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+#UIDatePicker
+
+UIPickerView控件在给用户选择某些特定的数据时会经常使用到，它根据数据源提供的信息按照系统风格自动显示，初始化
+
+var datePicke">
+<meta property="og:updated_time" content="2015-10-24T04:21:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIDatePicker和UIPIckerView学习">
+<meta name="twitter:description" content="控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+#UIDatePicker
+
+UIPickerView控件在给用户选择某些特定的数据时会经常使用到，它根据数据源提供的信息按照系统风格自动显示，初始化
+
+var datePicke">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> UIDatePicker和UIPIckerView学习 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIDatePicker和UIPIckerView学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+08:00" content="2015-10-18">
+              2015-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作</p>
+<p>#UIDatePicker</p>
+<blockquote>
+<p>UIPickerView控件在给用户选择某些特定的数据时会经常使用到，它根据数据源提供的信息按照系统风格自动显示，初始化</p>
+</blockquote>
+<pre><code>var datePicker = UIDatePicker(frame: CGRectMake(0, 200, 0, 0))   
+self.view.addSubview(datePicker)
+</code></pre><blockquote>
+<p>可以修改datePickerMode属性值来选择显示的样式</p>
+</blockquote>
+<pre><code>//case Time  (e.g. 6 | 53 | PM)显示上午下午，和时分
+//case Date  (e.g. November | 15 | 2007)显示年月日
+//case DateAndTime  (e.g. Wed Nov 15 | 6 | 53 | PM)显示年月日，上午下午时分
+//case CountDownTimer  D (e.g. 1 | 53)显示小时和分钟
+datePicker.datePickerMode = UIDatePickerMode.DateAndTime
+</code></pre><blockquote>
+<p>可以给datePicker添加一个UIControlEvents.ValueChanged事件，检测值的改变</p>
+</blockquote>
+<pre><code>datePicker.addTarget(self, action: &quot;dateChanged:&quot;, forControlEvents: UIControlEvents.ValueChanged)
+
+//日期选择器值改变事件
+func dateChanged(sender :UIDatePicker)
+{
+    let date: NSDate = sender.date
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = &quot;yy-MMMM-dd HH:mm:s&quot;
+    let timeStr = formatter.stringFromDate(date)
+
+    print(date)
+    print(timeStr)
+}
+</code></pre><p>NSDateFormatter对象，主意用来格式化时间，具体格式解释如下</p>
+<p>YY      两位年份</p>
+<p>YYYY    四位年份</p>
+<p>M       一位月份，不带0</p>
+<p>MM      两位月份</p>
+<p>MMMM    完整的月份名，如十一月，January</p>
+<p>d       不带0的天</p>
+<p>dd      带0的天</p>
+<p>h       不带0的12小时制</p>
+<p>hh      带0的12小时制</p>
+<p>H       没有0的24小时制</p>
+<p>HH      两位小时</p>
+<p>m       一位分钟</p>
+<p>mm      两位分钟</p>
+<p>s       一位秒</p>
+<p>ss      两位秒</p>
+<p>a       AM或PM</p>
+<blockquote>
+<p>设置选择的日期范围和间隔</p>
+</blockquote>
+<pre><code>/*可以通过设置minimumDate和maximumDate属性，来指定datePicker使用的日期范围，如果试图滚动到超
+过这一日期的范围，表盘会回到最近的有效日期。两个方法都需要NSDate对象作参数，可以通过NSDateFormatter
+自定义格式来将字符串转换成时间*/
+
+let formatter = NSDateFormatter()
+formatter.dateFormat = &quot;yy-MM-dd HH:mm:ss&quot;
+
+//设置最小最大时间
+datePicker.minimumDate = formatter.dateFromString(&quot;2010-01-01 00:00:00&quot;)
+datePicker.maximumDate = formatter.dateFromString(&quot;2015-01-01 23:59:59&quot;)
+
+//设置时间间隔,默认间隔1分钟
+datePicker.minuteInterval = 5
+</code></pre><p>#UIPickerView</p>
+<p>选择视图控制器中系统只定义了整体行为和外观，至于选择控制器显示图片还是文本，显示的具体内容是什么，这些都通过数据源协议来实现，它比UIDatePicker更通用，可以定制单列的选择器，也可定制多列的选择器，用法非常灵活</p>
+<blockquote>
+<p>初始化，添加到视图，并创建两个数组，添加到视图时，因为没有实现数据源协议，所以没有数据，下面我们来实现一个两列选择控制器，首先，UIViewController类必须声明要实现UIPickerView的数据源协议和代理，UIPickerViewDelegate,UIPickerViewDataSource</p>
+</blockquote>
+<pre><code>//创建选择控制器
+var pickerView = UIPickerView(frame: CGRectMake(0,200,0,0))
+
+//创建两个数组
+var authorsArray = [&quot;刘洋明&quot;,&quot;汪红军&quot;,&quot;任晓蕾&quot;]
+var appsArray = [&quot;租房点评&quot;,&quot;哪里逃&quot;,&quot;AllOff&quot;,&quot;iJump&quot;,&quot;数独&quot;]
+self.view.addSubview(pickerView)
+</code></pre><blockquote>
+<p>其次，来设置pickerView的数据协议和代理</p>
+</blockquote>
+<pre><code>//指定数据源
+pickerView.dataSource = self
+//指定代理
+pickerView.delegate = self
+</code></pre><blockquote>
+<p>实现pickerView的数据源协议和代理</p>
+</blockquote>
+<pre><code>//返回多少列
+func numberOfComponentsInPickerView(pickerView: UIPickerView) -&gt; Int {
+    return 2
+}
+
+//每一列返回多少行，这个必须实现
+func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -&gt; Int {
+    //第一列返回authorsArray的个数
+    if component == 0
+    {
+        return authorsArray.count
+    }
+    else if component == 1
+    {
+        return appsArray.count
+    }
+    return 0
+}
+
+//通过字符串来创建选择控制器
+func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -&gt; String? {
+    //第一列返回authorArray对应的值
+    if component == 0
+    {
+        return authorsArray[row]
+    }
+    //第二列返回appsArray对应的值
+    else if component == 1
+    {
+        return appsArray[row]
+    }
+
+    return &quot;&quot;
+}
+</code></pre><p>这样就能实现一个PickerView了</p>
+<blockquote>
+<p>一些常用属性和方法介绍如下</p>
+</blockquote>
+<pre><code>//获取多少列，只读
+print(pickerView.numberOfComponents)
+
+//获取某一列有多少行
+print(pickerView.numberOfRowsInComponent(0))
+print(pickerView.numberOfRowsInComponent(1))
+
+//每一列的size大小，返回CGSize
+print(pickerView.rowSizeForComponent(0))
+print(pickerView.rowSizeForComponent(1))
+
+//如果通过View初始化选择控制器，可以获取对应列对应行的View，返回UIView?
+//pickerView.viewForRow(row:Int, forComponent:Int)
+
+//重新加载所有的列
+pickerView.reloadAllComponents()
+//重新加载某一列
+pickerView.reloadComponent(0)
+pickerView.reloadComponent(1)
+
+//设置选择哪一行哪一列，选中的一行内容在中间显示
+pickerView.selectRow(2, inComponent: 1, animated: true)
+pickerView.selectRow(1, inComponent: 0, animated: true)
+
+//某一列选择哪一行
+print(pickerView.selectedRowInComponent(0))
+</code></pre><blockquote>
+<p>通过以下方法可以知道选择的是哪一行哪一列，选项改变后触发代理</p>
+</blockquote>
+<pre><code>func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    print(&quot;当前选择的是第\(component)列   第\(row)行&quot;)
+}
+</code></pre><blockquote>
+<p>创建带图片的PickerView</p>
+</blockquote>
+<pre><code>func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -&gt; UIView {
+    let view = UIView(frame: CGRectMake(0,0,200,40))
+
+    //创建图像视图
+    let imageView = UIImageView(frame: CGRectMake(0, 0, 40, 40))
+    imageView.image = UIImage(named: &quot;IMG_3882.JPG&quot;)
+
+    //创建文本标签
+    let label = UILabel(frame: CGRectMake(40,0,160,40))
+
+    //第一行返回authorArray对应的值
+    if component == 0
+    {
+        label.text = authorsArray[row]
+    }
+    //第二行返回appsArray对应的值
+    else if component == 1
+    {
+        label.text = appsArray[row]
+    }
+
+    //添加图像
+    view.addSubview(imageView)
+
+    //添加文本标签
+    view.addSubview(label)
+
+    return view
+}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/15/2015-10-15-链表的归并排序-数据结构/" rel="next" title="链表的归并排序">
+                <i class="fa fa-chevron-left"></i> 链表的归并排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/18/2015-10-18-UIWebView学习-iOS/" rel="prev" title="UIWebView学习">
+                UIWebView学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

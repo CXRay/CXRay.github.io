@@ -1,0 +1,822 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
+
+数组的一些方法 Array Methods
+var a = [a,b,c]
+append(T)
+insert(T,atIndex: Int)
+splice(Array&amp;lt;T&amp;gt;,atIndex: Int)//连接一个数组
+removeAtIndex(Int) //a.remove">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS一些UI基础">
+<meta property="og:url" content="http://cxray.github.io/2015/09/04/2015-09-04-iOS一些UI基础-iOS/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
+
+数组的一些方法 Array Methods
+var a = [a,b,c]
+append(T)
+insert(T,atIndex: Int)
+splice(Array&amp;lt;T&amp;gt;,atIndex: Int)//连接一个数组
+removeAtIndex(Int) //a.remove">
+<meta property="og:updated_time" content="2015-10-11T08:15:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS一些UI基础">
+<meta name="twitter:description" content="出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
+
+数组的一些方法 Array Methods
+var a = [a,b,c]
+append(T)
+insert(T,atIndex: Int)
+splice(Array&amp;lt;T&amp;gt;,atIndex: Int)//连接一个数组
+removeAtIndex(Int) //a.remove">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> iOS一些UI基础 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS一些UI基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+08:00" content="2015-09-04">
+              2015-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>出处是斯坦福公开课：iOS 8开发，<a href="http://www.swiftv.cn/course/i7ahl5gn" target="_blank" rel="external">http://www.swiftv.cn/course/i7ahl5gn</a></p>
+</blockquote>
+<p>数组的一些方法 Array<t> Methods</t></p>
+<pre><code>var a = [a,b,c]
+append(T)
+insert(T,atIndex: Int)
+splice(Array&lt;T&gt;,atIndex: Int)//连接一个数组
+removeAtIndex(Int) //a.removeAtIndex(1), a = [a,c]
+removeRange(Range) //a.removeRange(0..&lt;2), a = [c]
+replaceRange(Range, [T]) //a.replaceRange(0...1,with: [x,y,z]), a = [x,y,z,c]
+sort(isOrderedBefore: (T, T) -&gt; Bool)可以传人闭包（$0&lt;$1）
+
+filter(includeElement: (T) -&gt; Bool) -&gt; [T] 
+//可以去除一些不满足条件的数？
+map(transform: (T) -&gt; U) -&gt; [u]
+//let stringified: [String] = [1,2,3].map {&quot;\($0)&quot;} 
+reduce(initial: U, combine:(U, T) -&gt; U) -&gt;U
+//let sum: Int = [1,2,3].reduce(0) { $0 + $1 } **这三行我还不懂，没试过**
+</code></pre><p>下面关于String.Index的内容</p>
+<pre><code>var s = &quot;hello&quot;
+let index = advance(s.startIndex, 1)//index是一个String.Index类
+s.splice(&quot;abc&quot;, atIndex: index)//在s中插入abc，现在s为habcello
+let startIndex = advance(s.startIndex, 1)
+let endIndex = advance(s.startIndex, 6)
+let substring = s[startIndex ..&lt; endIndex]//截取字符串，substring为abcel,如果改成s[1 ..&lt; 6]会报错
+</code></pre><p>rangOfString 返回一个Optional Range<string.index>,用if let</string.index></p>
+<pre><code>let num = &quot;56.25&quot;
+if let decimalRange = num.rangeOfString(&quot;.&quot;){
+    print(decimalRange)        //输出2..&lt;3
+    let wholeNumberPart = num[num.startIndex ..&lt; decimalRange.endIndex]//wholeNumberPart = &quot;56.&quot;
+}
+</code></pre><p>removeRange &amp; replaceRange</p>
+<pre><code>s.removeRange([s.startIndex ..&lt; s.endIndex])
+//replaceRange(Range, String)
+s = &quot;Hello&quot;
+s.replaceRange(s.startIndex ..&lt; advance(s.startIndex, 3), with: &quot;aa&quot;)
+</code></pre><p>其他一些String方法</p>
+<pre><code>description -&gt; String
+endIndex -&gt; String.Index
+hasPrefix(String) -&gt; Bool
+hsSuffix(String) -&gt; Bool
+toInt() -&gt; Int?
+capitalizedString -&gt; String
+lowercaseString -&gt; String
+uppercaseString -&gt; String
+join(Array) -&gt; String    //&quot;,&quot;.join([&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]) ＝ “1,2,3”
+componentsSeparateByString(String) -&gt; [String] //“1,2,3”.csbs(&quot;,&quot;) = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]与join反一下
+</code></pre><p>断言Assertions</p>
+<pre><code>asseret(() -&gt; Bool. &quot;message&quot;)
+</code></pre><p>其他一些函数，数组，字典，字符串中都可以使用</p>
+<pre><code>let count = countElements(aCollection) //how many elements in the collection
+let sub = dropFirst(aSliceable) //drops the first thing in the sliceable
+let sub = dropLast(aSliceable) //drops the last thing in the sliceable
+let first = first(aCollection) //the first element in the collection(or nil)
+let last = last(aCollection) //the last element in the collection(or nil)
+let prefix = prefix(aSliceable, X: Int) //returns the first x things
+let suffix = suffix(aSliceable, X: Int) //return the last X things
+let reversed: Array = reverse(aCollection) //remember that String is a collection
+let backwardsString = String(reverse(s)) //so this is possible
+</code></pre><p>显示类型转换</p>
+<pre><code>let d: Double = 37.5
+let f: Float = 37.5
+let x = Int(d)
+let xd = Double(x)
+let cgf = CGFloat(d)
+
+let a = Array(&quot;abc&quot;)
+let s = String(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
+</code></pre><p>CGFloat用于UIView上代替Double or Float，可以转换let cfg = CGFloat(aDouble)</p>
+<p>CGPiont是一个简单的结构，由两个CGFloat x,y组成</p>
+<pre><code>var point = CGPoint = CGPiont(x: 37.0, y: 55.2)
+point.y -= 30
+point.x += 20.0
+</code></pre><p>CGSize也是一个简单的结构，由CGFloat width,height组成</p>
+<pre><code>var size = CGSize(width: 100.0, height: 50.0)
+size.width += 42.5
+size.height += 75
+</code></pre><p>CGRect是一个坐标，由CGPiont和CGSize组成的一个结构体</p>
+<pre><code>struct CGRect {
+    var origin: CGPiont
+    var size: CGSize
+}
+intersects(CGRect) -&gt; Bool
+intersect(CGRect)
+contains(CGPoint) -&gt;Bool
+</code></pre><p>画图Drawing</p>
+<ul>
+<li><p>当用户转置了手机，不应该重新画图而是重新摆放位置</p>
+<pre><code>UIViewContentMode
+//don&apos;t scale the view, just place it somewhere
+.Left/.Right/.Top/.Bottom/.TopRight/.TopLeft/.BottomRight/.BottomLeft/.Center
+//Scale the &quot;bits&quot; of the view...
+.ScaleToFill/.ScaleAspectFill/.ScaleAspectFit// .ScaleToFill is defaule
+Redraw by calling drawRect again
+.Redraw
+</code></pre></li>
+</ul>
+<ul>
+<li><p>常见图形</p>
+<pre><code>let roundRect = UIBezierPath(roundedRect: aCGRect, cornerRadius: aCGFloat)
+let oval = UIBezierPath(ovalInRect: aCGRect)
+</code></pre></li>
+<li><p>修剪图形</p>
+<pre><code>addClip()
+</code></pre></li>
+<li><p>碰撞检测</p>
+<pre><code>func containsPoint(CGPoint) -&gt; Bool
+</code></pre></li>
+<li><p>定义路径 Defining a Path</p>
+<pre><code>    //Create a UIBezierPath
+let path = UIBezierPath()
+    //Move around, add lines or arcs to the path
+path.moveToPoint(CGPoint(80,50))
+    //close the path(if you want)
+path.addLineToPoint(CGPoint(140,150))
+path.addLineToPoint(CGPoint(10,150))
+path.closePath()
+UIColor.greenColor().setFill()
+UIColor.redColor().setFill()
+    //注意是UIColor中的一个方法
+path.lineWidth = 3.0
+path.fill()
+path.stroke()
+    //画出图形
+</code></pre></li>
+<li><p>UIColor透明度</p>
+<pre><code>let transparenYellow = UIColor.yellowColor().colorWithAlphaComponent(0.5)
+//0.0透明，1.0不透明
+</code></pre></li>
+</ul>
+<p>字体，系统有推荐字体</p>
+<pre><code>class func preferredFontForTextStyly(UIFontTextStyle) -&gt; UIFont
+UIFontTextStyle.Headline
+UIFontTextStyle.Body
+UIFontTextStyle.Footnote
+//系统字体
+class func systemFontOfSize(pointSize: CGFloat) -&gt; UIFont
+class func boldSystemFontOfSize(pointSize: CGFloat) -&gt; UIFont
+</code></pre><p>手势Gestures</p>
+<pre><code>UIPinchGestureRecognizer//捏合
+UIRotationGestureRecognizer//旋转
+UISwipeGestureRecognizer//滑动
+UITapGestureRecongnizer//轻触
+</code></pre><p>密文显示</p>
+<pre><code>secuieTextEntry
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/03/2015-09-03-打赏功能的实现-网页设计/" rel="next" title="打赏功能的实现————tctip侧边按钮">
+                <i class="fa fa-chevron-left"></i> 打赏功能的实现————tctip侧边按钮
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/07/2015-09-07-Swift语法-Swift/" rel="prev" title="Swift语法">
+                Swift语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

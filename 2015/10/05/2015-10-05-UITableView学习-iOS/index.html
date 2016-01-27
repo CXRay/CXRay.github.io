@@ -1,0 +1,1003 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="UITableView还真是有点多，一个个代理也还没有全都实现，其中有个按表格跳转还没有实现，还有按表格输出名字不知道莫名其妙的会延迟，就是嗯下一个的时候才输出上一个，还有时候会崩溃，可能上optional没有用好，有一张1033382.jpg图片就不放上来了，随便找一张就ok，在ViewController敲了这么多代码，意识到MVC的重要性了
+UITableView显示列表数据，是通过代理实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView学习">
+<meta property="og:url" content="http://cxray.github.io/2015/10/05/2015-10-05-UITableView学习-iOS/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="UITableView还真是有点多，一个个代理也还没有全都实现，其中有个按表格跳转还没有实现，还有按表格输出名字不知道莫名其妙的会延迟，就是嗯下一个的时候才输出上一个，还有时候会崩溃，可能上optional没有用好，有一张1033382.jpg图片就不放上来了，随便找一张就ok，在ViewController敲了这么多代码，意识到MVC的重要性了
+UITableView显示列表数据，是通过代理实现">
+<meta property="og:updated_time" content="2015-10-11T08:14:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView学习">
+<meta name="twitter:description" content="UITableView还真是有点多，一个个代理也还没有全都实现，其中有个按表格跳转还没有实现，还有按表格输出名字不知道莫名其妙的会延迟，就是嗯下一个的时候才输出上一个，还有时候会崩溃，可能上optional没有用好，有一张1033382.jpg图片就不放上来了，随便找一张就ok，在ViewController敲了这么多代码，意识到MVC的重要性了
+UITableView显示列表数据，是通过代理实现">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> UITableView学习 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UITableView学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-05T00:00:00+08:00" content="2015-10-05">
+              2015-10-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>UITableView还真是有点多，一个个代理也还没有全都实现，其中有个按表格跳转还没有实现，还有按表格输出名字不知道莫名其妙的会延迟，就是嗯下一个的时候才输出上一个，还有时候会崩溃，可能上optional没有用好，有一张1033382.jpg图片就不放上来了，随便找一张就ok，在ViewController敲了这么多代码，意识到MVC的重要性了</p>
+<p>UITableView显示列表数据，是通过代理实现的，要添加数据源，协议 UITableViewDataSource,UITableViewDelegate</p>
+<p>有些代码因为版面的原因看不到，选中即可看到了，或者复制下来</p>
+<blockquote>
+<p>初始化TableView,定义数组</p>
+</blockquote>
+<pre><code>//初始化TableView，样式有Plain不分组表视图和Grouped分组表视图
+//Plain不分组表视图，如果不设置组间距的话，默认组与组之间没有间距
+//Grouped分组表视图,默认组与组之间有一定间距
+//var listTableView = UITableView(frame: CGRectMake(0, 20, 470, 600), style: UITableViewStyle.Plain)
+
+var listTableView = UITableView(frame: UIScreen.mainScreen().applicationFrame, style: UITableViewStyle.Plain)
+
+//定义数组
+var item:[String] = [
+    &quot;UITableView高级使用&quot;,
+    &quot;自定义UITableViewCell&quot;,
+    &quot;创建分组表&quot;,
+    &quot;UITextView&quot;,
+    &quot;UISegmentedControl&quot;,
+    &quot;UISlider&quot;,
+    &quot;UISwitch和UISetpper&quot;,
+    &quot;UIActivityIndicatorView&quot;,
+    &quot;UIProgressView&quot;,
+    &quot;UIAlertView&quot;,
+    &quot;UIActionSheet&quot;,
+    &quot;UIImageView&quot;,
+    &quot;UIScrollView和UIPageControl&quot;,
+    &quot;UIWebView&quot;,
+    &quot;UIDataPickerView&quot;,
+    &quot;UIToolBar和UISearchBar&quot;,
+    &quot;UINavigationController&quot;,
+    &quot;UITabBarController&quot;,
+    &quot;读写应用程序数据&quot;,
+    &quot;多点触摸和手势识别&quot;,
+    &quot;多媒体应用&quot;,
+    &quot;动画&quot;,
+    &quot;网络通信&quot;,
+    &quot;检测设备朝向和移动&quot;,
+    &quot;定位处理与地图&quot;,
+    &quot;地址簿，短信，邮件&quot;,
+    &quot;iOS应用本地化&quot;
+]
+</code></pre><blockquote>
+<p>必须实现以下四个协议</p>
+</blockquote>
+<pre><code>//1.设置表视图的节数，也就是分组列表中对应的组，每一组就是一节，在一个分组表中，最开始
+的节称为0节，如果TableView只有一节，也可以不用设置此代理方法，系统默认就是一节不分组表视图
+//tableView数据源：返回几节（组）
+func numberOfSectionsInTableView(tableView: UITableView) -&gt; Int {
+    return 1
+}
+
+//2.设置表视图的行数，需要返回每一节具有多少行数据，可以根据section值，分别返回不同的条数，代理方法实现代码如下
+func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+    return item.count   //返回了上面item数组中的数量
+}
+
+//3.设置单元格
+func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
+    //设置单元格UITableViewCell,创建单元格需要注意，一定要先定义一个标示符，指定给cell，这样可以通过这个标示符来获取未使用的cell，实现重用机制
+    //创建标示符语句
+    let cellIdentifier = &quot;cellIdentifier&quot;
+
+    //可以通过这个常量标示符来获取未使用的cell,有可能获取不到，所以cell为optional
+    var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+    //判断cell是否存在，如果不存在，才需要创建新的cell
+    if cell == nil
+    {
+        //创建新的cell，cell样式UITableViewCellStyle.Default，cell标示符cellIdentifier
+        /*UITableViewCellStyle这个有四种样式可选，Default,Subtitle,Value1,Value2,具体样式可以再查Goole*/
+        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+
+        //设置字体
+        cell?.textLabel?.font = UIFont.systemFontOfSize(14)
+        //设置选中cell样式
+        cell?.selectionStyle = .Gray
+        //设置cell后面箭头样式,有5种样式，None,DisclosureIndicator,DetailDisclosureButton,
+        //Cherkmark,DetailButton
+        cell?.accessoryType = .DisclosureIndicator
+    }
+
+    //从数组中取对应值给cell赋值
+    cell?.textLabel?.text = item[indexPath.row]
+    //设置cell图片
+    cell?.imageView?.image = UIImage(named: &quot;1033382.jpg&quot;)
+    //因为样式，所以要detailTextLabel
+    cell?.detailTextLabel?.text = &quot;详细信息介绍&quot;
+
+    return cell!
+}
+
+
+//4.tableView数据源，每一行高度
+func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -&gt; CGFloat {
+    //tableView来指定表视图，indexPath来指定哪一节哪一行需要返回的高度，指定表视图的哪一行
+    return 50
+}
+</code></pre><blockquote>
+<p>UITableViewCell选择事件,当选择了这个cell会发生什么，这里输出text，可以进行跳转，但是这里有一些小问题，输出text也会崩溃，按当前cell会输出上一个cell的text</p>
+</blockquote>
+<pre><code>//UITableViewCell选择事件，当在TableView中点击一个cell时，会调用此方法，tableView代表当前触发手势的TableView对象，indexPath参数代表
+//当前点击的位置，需要注意一点，当选中一个cell时，应取消前一个cell的选择状态，具体如下
+//tableView代理，点击一行，可以不实现
+func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    //释放选中效果
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    //获得点击的cell
+    let cell:UITableViewCell! = tableView.cellForRowAtIndexPath(indexPath)
+    print(cell!.textLabel!.text!)
+
+    //判断cell内容，根据内容不同打开不同界面
+    var viewCtrl: UIViewController!
+    if cell.textLabel!.text! == &quot;UITableView高级使用&quot;
+    {
+        let newCtrl = UITableViewController(nibName: &quot;UITableViewControllerAF&quot;, bundle: NSBundle.mainBundle())      //这个有点问题
+        newCtrl.title = cell.textLabel!.text!
+        viewCtrl = newCtrl
+    }
+
+}
+</code></pre><blockquote>
+<p>实现表视图的编辑操作，必须实现下面三个代理方法</p>
+</blockquote>
+<pre><code>//1.指定单元格是否具有编辑功能
+func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -&gt; Bool {
+    return true
+}
+//2.指定单元格每一行的编辑类型,返回每一行操作类型
+func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCellEditingStyle {
+    if indexPath.row == item.count - 1
+    {
+        return UITableViewCellEditingStyle.Insert//最后一行允许插入
+    }
+    return UITableViewCellEditingStyle.Delete// 允许删除
+    //编辑类型有三种，Insert具有插入功能，Delete具有删除功能，None不具有功能
+}
+//3.指定单元格是否允许拖动，编辑状态下，是否允许拖动
+func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -&gt; Bool {
+    return true
+}
+</code></pre><blockquote>
+<p>设置一个编辑／完成按钮，最后三条语句仅仅只是为了测试，要删除</p>
+</blockquote>
+<pre><code>var button = UIButton(frame: CGRectMake(300, 0, 115, 60))
+@IBAction func editButtonClick()
+{
+    if button.titleForState(UIControlState.Normal) == &quot;编辑&quot;
+    {
+        //如果按钮标题为编辑，则将表视图设置成可编辑的状态，并修改button标题为完成
+        self.listTableView.setEditing(true, animated: true)
+        button.setTitle(&quot;完成&quot;, forState: .Normal)
+    }
+    else
+    {
+        //如果按钮标题为完成，则将表视图设置成不可编辑，并修改button标题为编辑
+        self.listTableView.setEditing(false, animated: true)
+        button.setTitle(&quot;编辑&quot;, forState: .Normal)
+    }
+
+    //也可以自定义一个按钮来添加新单元格，这里直接用编辑的按钮了
+    //数组添加新数据
+    item.insert(&quot;新城市\(item.count)&quot;, atIndex: 0)
+    //初始化一个NSIndexPath对象，指定要添加单元格位置
+    let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+    //在指定位置上添加一个新的单元格
+    self.listTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+}
+</code></pre><blockquote>
+<p>实现表视图的删除插入操作</p>
+</blockquote>
+<pre><code>/*UITableViewRowAnimation,Fade单元格淡出,Right单元格从右侧划出,Left单元格从左侧划出,
+Top单元格滑动到相邻单元格之上,Bottom单元格滑动到相邻单元格之下,None无动画,Middle始终居中,
+Automatic自动效果*/
+
+func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    //如果是删除操作
+    if editingStyle == UITableViewCellEditingStyle.Delete
+    {
+        //数据源数组删除对应行数 数据,经常忘了这个.row......
+        item.removeAtIndex(indexPath.row)
+        //table表删除该行,注意[indexPath]
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+    }
+    else if editingStyle == UITableViewCellEditingStyle.Insert
+    {
+        //数组添加一条新数据
+        item.append(&quot;新城市\(item.count)&quot;)
+        //表视图插入一条单元格
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Middle)
+    }
+}
+</code></pre><blockquote>
+<p>移动cell事件&amp;行缩进，行缩进item.count仅仅只是为了演示</p>
+</blockquote>
+<pre><code>//移动cell事件，sourceIndexPath: NSIndexPath代表移动初始位置，toIndexPath destinationIndexPath: NSIndexPath代表移动的目标位置
+func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    if sourceIndexPath != destinationIndexPath
+    {
+        //获取移动行对应的值
+        let itemValue = item[sourceIndexPath.row]
+        //删除移动行的值
+        item.removeAtIndex(sourceIndexPath.row)
+        //如果移动区域大于现有行数，直接在最后添加移动的值
+        if destinationIndexPath.row &gt; item.count
+        {
+            item.append(itemValue)
+        }
+        else
+        {
+            item.insert(itemValue, atIndex: destinationIndexPath.row)
+        }
+    }
+}
+
+//行缩进
+func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -&gt; Int {
+    //每行按其索引缩进
+    return indexPath.row
+}
+</code></pre><blockquote>
+<p>viewDidLoad()中的代码</p>
+</blockquote>
+<pre><code>override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
+
+    //指定TableView的数据源和代理
+    self.listTableView.delegate = self
+    self.listTableView.dataSource = self
+    self.view.addSubview(listTableView)
+
+    button.backgroundColor = UIColor.orangeColor()
+    button.setTitle(&quot;编辑&quot;, forState: .Normal)
+    button.addTarget(self, action: &quot;editButtonClick&quot;, forControlEvents: .TouchUpInside)
+    self.listTableView.addSubview(button)
+
+}
+</code></pre><blockquote>
+<p>自定义UITableViewCell，这里也有点小问题，下面的代码是ok的，但是整合到上面的代码，无法用上面的代码来自定义cell，可能要改的地方有点多</p>
+</blockquote>
+<pre><code>import UIKit
+
+class MyTableViewCell: UITableViewCell {
+
+    var iconImageView:UIImageView!  //图片
+    var appNameLabel:UILabel!       //标题
+    var decLabel:UILabel!           //描述
+
+    //赋值方法－显示cell内容方法
+    func showAppInfoWithModel(model: AppsModel)
+    {
+        //获取model中的图片
+        iconImageView.image = UIImage(named: model.imageName)
+
+        //获取model中app名称
+        appNameLabel.text = model.appName
+
+        //获取app描述
+        decLabel.text = model.appDescription
+    }
+
+    override init(style: UITableViewCellStyle, reuseIdentifier : String?)
+    {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        //创建iconImageView
+        iconImageView = UIImageView(frame: CGRectMake(10, 5, 40, 40))
+        self.addSubview(iconImageView)
+
+        //创建appNameLabel
+        appNameLabel = UILabel(frame: CGRectMake(60, 0, 40, 400))
+        appNameLabel.font = UIFont.systemFontOfSize(16)
+        self.addSubview(appNameLabel)
+
+        //创建decLabel
+        decLabel = UILabel(frame: CGRectMake(60, 15, 220, 35))
+        decLabel.font = UIFont.systemFontOfSize(12)
+        decLabel.numberOfLines = 2
+        decLabel.textColor = UIColor.lightGrayColor()
+        self.addSubview(decLabel)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
+</code></pre><blockquote>
+<p>还需要添加一个NSObject的AppsModel</p>
+</blockquote>
+<pre><code>import UIKit
+
+class AppsModel: NSObject {
+    //定义模型的三个属性
+    var imageName:String!  //图片名称
+    var appName:String!     //应用名称
+    var appDescription:String!      //应用描述
+
+
+
+    //自定义初始化方法
+    init(imageName image_Name:String , app_Name:String , app_Description:String) {
+        self.imageName=image_Name
+        self.appName=app_Name
+        self.appDescription=app_Description
+    }
+
+
+
+    // MARK: - NSCoding
+    func encodeWithCoder(_encoder: NSCoder)
+    {
+        _encoder.encodeObject(self.imageName, forKey: &quot;M_imageName&quot;)
+        _encoder.encodeObject(self.appName, forKey: &quot;M_appName&quot;)
+        _encoder.encodeObject(self.appDescription, forKey: &quot;M_appDescription&quot;)
+    }
+
+
+    init(coder decoder: NSCoder)
+    {
+        //        imageName = decoder.decodeObjectForKey(&quot;M_imageName&quot;) as String
+        //        appName = decoder.decodeObjectForKey(&quot;M_appName&quot;) as String
+        //        appDescription = decoder.decodeObjectForKey(&quot;M_appDescription&quot;) as String
+
+        imageName = decoder.decodeObjectForKey(&quot;M_imageName&quot;) as! String
+        appName = decoder.decodeObjectForKey(&quot;M_appName&quot;) as! String
+        appDescription = decoder.decodeObjectForKey(&quot;M_appDescription&quot;) as! String
+    }
+
+}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/02/2015-10-02-UIButton学习-iOS/" rel="next" title="UIButton学习">
+                <i class="fa fa-chevron-left"></i> UIButton学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/06/2015-10-06-UITextView学习-iOS/" rel="prev" title="UITextView学习">
+                UITextView学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

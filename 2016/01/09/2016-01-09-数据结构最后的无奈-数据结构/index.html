@@ -1,0 +1,1440 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="数据转换
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+
+//const int MAXSIZE = 1000;
+//int stack[MAXSIZE];
+//int top=-1;
+//
+//bool isEmpty()
+//{
+//    return top &amp;lt; 0;
+//}
+//
+//bool isFull()
+//{
+//    r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构最后的无奈">
+<meta property="og:url" content="http://cxray.github.io/2016/01/09/2016-01-09-数据结构最后的无奈-数据结构/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="数据转换
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+
+//const int MAXSIZE = 1000;
+//int stack[MAXSIZE];
+//int top=-1;
+//
+//bool isEmpty()
+//{
+//    return top &amp;lt; 0;
+//}
+//
+//bool isFull()
+//{
+//    r">
+<meta property="og:updated_time" content="2016-01-10T08:09:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构最后的无奈">
+<meta name="twitter:description" content="数据转换
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+
+//const int MAXSIZE = 1000;
+//int stack[MAXSIZE];
+//int top=-1;
+//
+//bool isEmpty()
+//{
+//    return top &amp;lt; 0;
+//}
+//
+//bool isFull()
+//{
+//    r">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> 数据结构最后的无奈 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构最后的无奈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-09T00:00:00+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>数据转换</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+//const int MAXSIZE = 1000;
+//int stack[MAXSIZE];
+//int top=-1;
+//
+//bool isEmpty()
+//{
+//    return top &lt; 0;
+//}
+//
+//bool isFull()
+//{
+//    return top &gt;= MAXSIZE;
+//}
+//
+//void push(int n)
+//{
+//    if (!isFull())
+//    {
+//        stack[++top] = n;
+//    }
+//}
+//
+//int pop()
+//{
+//    if (!isEmpty())
+//    {
+//        return stack[top--];
+//    }
+//    else
+//    {
+//        return NULL;
+//    }
+//}
+
+typedef struct linkStack{
+    int num;
+    struct linkStack *next;
+} *linkStackPointer;
+
+linkStackPointer stack = NULL;
+
+bool isFull()
+{
+    return false;
+}
+
+bool isEmpty()
+{
+    if(stack != NULL)
+        return false;
+    else
+        return true;
+}
+
+void push(int n)
+{
+    linkStackPointer point = (linkStackPointer)malloc(sizeof(struct linkStack));
+    point-&gt;num = n;
+    point-&gt;next = stack;
+    stack = point;
+}
+
+int pop()
+{
+    if (stack != NULL)
+    {
+        int n = stack-&gt;num;
+        linkStackPointer tmp = (linkStackPointer)malloc(sizeof(struct linkStack));
+        tmp = stack;
+        stack = stack-&gt;next;
+        free(tmp);
+        return n;
+    }
+    else
+        return NULL;
+}
+
+
+
+int main()
+{
+    int num;
+    cin&gt;&gt;num;
+    while (num != 0)
+    {
+        push(num % 2);
+        num = num / 2;
+    }
+    while (!isEmpty())
+    {
+        cout&lt;&lt;pop();
+    }
+
+    return 0;
+}
+</code></pre><p>有序表归并</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;cstdlib&gt;
+using namespace std;
+ifstream inFile;
+ofstream outFile;
+
+/*
+int main() {
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/2-input.txt&quot;);
+    outFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/2-output.txt&quot;);
+    int caseN = 0;
+    while(true)
+    {
+        caseN++;
+        int n1,n2;
+        inFile&gt;&gt;n1;
+        if (n1 == -1)
+            break;
+        //读数据
+        int *arr1 = (int *)malloc(sizeof(int)*n1);
+        for (int i = 0; i &lt; n1; ++i)
+        {
+            inFile &gt;&gt; arr1[i];
+        }
+        inFile &gt;&gt; n2;
+        int *arr2 = (int *)malloc(sizeof(int)*n2);
+        for (int i = 0; i &lt; n2; ++i)
+        {
+            inFile &gt;&gt; arr2[i];
+        }
+
+        //归并
+        int *arr3 = (int *)malloc(sizeof(int)*(n1+n2));
+        int a = 0,b = 0, c = 0;//代表指向arr1和arr2和arr3的数据
+        while (a &lt; n1 &amp;&amp; b &lt; n2) {
+            if (arr1[a] &lt;= arr2[b])
+            {
+                arr3[c] = arr1[a];
+                a++;
+            }
+            else
+            {
+                arr3[c] = arr2[b];
+                b++;
+            }
+            c++;
+        }
+        while (a &lt; n1)
+        {
+            arr3[c] = arr1[a];
+            c++;
+            a++;
+        }
+        while (b &lt; n2)
+        {
+            arr3[c] = arr2[b];
+            c++;
+            b++;
+        }
+
+        outFile&lt;&lt;&quot;case&quot; &lt;&lt; caseN &lt;&lt;&quot;:&quot;&lt;&lt;n1+n2&lt;&lt;&quot;\n&quot;;
+        for (int i = 0; i &lt; n1+n2; i++)
+        {
+            outFile&lt;&lt;arr3[i]&lt;&lt;&quot; &quot;;
+        }
+        outFile&lt;&lt;&quot;\n&quot;;
+
+    }
+
+    inFile.close();
+    outFile.close();
+    return 0;
+}
+*/
+
+typedef struct list{
+    int num;
+    struct list *next;
+} *listPointer;
+
+listPointer listP1 = NULL,listP2 = NULL,listP3 = NULL;
+
+
+listPointer readData(int n)
+{
+    listPointer p = NULL;
+    for (int i = 0; i&lt;n; ++i)
+    {
+        listPointer tmp = (listPointer)malloc(sizeof(struct list));
+        inFile&gt;&gt;tmp-&gt;num;
+        tmp-&gt;next = p;
+        p = tmp;
+    }
+    return p;
+}
+
+void merge()
+{
+    listPointer p = (listPointer)malloc(sizeof(struct list));
+    listP3 = p;
+    while (listP1-&gt;next != NULL &amp;&amp; listP2-&gt;next != NULL)
+    {
+        if (listP1-&gt;num &gt;= listP2-&gt;num)
+        {
+            p-&gt;next = listP1;
+            p = listP1;
+            listP1 = listP1-&gt;next;
+        }
+        if (listP1-&gt;num &lt; listP2-&gt;num)
+        {
+            p-&gt;next = listP2;
+            p = listP2;
+            listP2 = listP2-&gt;next;
+        }
+    }
+    if (listP1 != NULL)
+        p-&gt;next = listP1;
+    if (listP2 != NULL)
+        p-&gt;next = listP2;
+}
+
+int main()
+{
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/2-input.txt&quot;);
+    outFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/2-output.txt&quot;);
+    int caseN = 0;
+    while(true)
+    {
+        caseN++;
+        int n1,n2;
+        inFile&gt;&gt;n1;
+        if (n1 == -1)
+            break;
+        listP1 = readData(n1);
+
+        inFile &gt;&gt; n2;
+        listP2 = readData(n2);
+
+        merge();
+
+        outFile&lt;&lt;&quot;case&quot; &lt;&lt; caseN &lt;&lt;&quot;:&quot;&lt;&lt;n1+n2&lt;&lt;&quot;\n&quot;;
+        for (listPointer p = listP3-&gt;next; p != NULL; p = p-&gt;next) {
+            outFile&lt;&lt;p-&gt;num&lt;&lt;&quot; &quot;;
+        }
+        outFile&lt;&lt;&quot;\n&quot;;
+    }
+
+    inFile.close();
+    outFile.close();
+    return 0;
+
+}
+</code></pre><p>二叉树层次遍历</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct tree
+{
+    char data;
+    struct tree *leftChild,*rightChild;
+} *treePointer;
+
+const int MAXSIZE = 1000;
+treePointer queue[MAXSIZE];
+int front = 0,rear = 0;
+
+bool isEmpty()
+{
+    return front == rear;
+}
+
+bool isFull()
+{
+    return (rear+1)%MAXSIZE == front;
+}
+
+void addQ(treePointer t)//从后面加，rear
+{
+    if (!isFull()) {
+        queue[rear] = t;
+        rear = (rear+1)%MAXSIZE;
+    }
+}
+
+treePointer deleteQ()//从front删
+{
+    if (!isEmpty())
+    {
+        treePointer t = queue[front];
+        front = (front+1)%MAXSIZE;
+        return t;
+    }
+    else
+        return NULL;
+}
+
+treePointer creatTree()
+{
+    treePointer tree;
+    char ch;
+    cin&gt;&gt;ch;
+    if(ch == &apos;#&apos;)
+    {
+        return NULL;
+    }
+    else
+    {
+        tree = (treePointer)malloc(sizeof(struct tree));
+        tree-&gt;data = ch;
+        tree-&gt;leftChild = creatTree();
+        tree-&gt;rightChild = creatTree();
+    }
+    return tree;
+}
+
+void levelOrder(treePointer tree)
+{
+    addQ(tree);
+    treePointer t;
+    while (true)
+    {
+        t = deleteQ();
+        if (t == NULL)
+            break;
+
+        cout&lt;&lt;t-&gt;data;
+        if (t-&gt;leftChild != NULL)
+            addQ(t-&gt;leftChild);
+        if(t-&gt;rightChild != NULL)
+            addQ(t-&gt;rightChild);
+    }
+}
+
+int main()
+{
+    treePointer t = creatTree();
+    levelOrder(t);
+    cout&lt;&lt;&quot;\n&quot;;
+    return 0;
+}
+</code></pre><p>二叉树中序遍历</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int MAXSIZE = 1000;
+typedef struct tree
+{
+    char data;
+    struct tree *leftChild,*rightChild;
+} *treePointer;
+
+int top = -1;
+treePointer stack[MAXSIZE];
+
+bool isEmpty()
+{
+    return top &lt; 0;
+}
+
+bool isFull()
+{
+    return top &gt;= MAXSIZE - 1;
+}
+
+void push(treePointer tree)
+{
+    if(!isFull())
+    {
+        stack[++top] = tree;
+    }
+}
+
+treePointer pop()
+{
+    if(!isEmpty())
+    {
+        return stack[top--];
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+treePointer creatTree()
+{
+    treePointer t;
+    char ch;
+    cin &gt;&gt; ch;
+    if (ch == &apos;#&apos;)
+    {
+        return NULL;
+    }
+    else
+    {
+        t = (treePointer)malloc(sizeof(struct tree));
+        t-&gt;data = ch;
+        t-&gt;leftChild = creatTree();
+        t-&gt;rightChild = creatTree();
+    }
+    return t;
+}
+
+void iterInorder(treePointer tree)
+{
+    treePointer node = tree;
+    while (true)
+    {
+        for (; node; node = node-&gt;leftChild)
+        {
+            push(node);
+        }
+
+        node = pop();
+        if (node == NULL)
+            break;
+
+        cout &lt;&lt; node-&gt;data;
+        node = node-&gt;rightChild;
+    }
+}
+
+int main()
+{
+    treePointer t = creatTree();
+    iterInorder(t);
+    cout&lt;&lt;&quot;\n&quot;;
+    return 0;
+}
+</code></pre><p>广度优先搜索</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct node
+{
+    int num;    //节点编号
+    int data;   //权值
+    struct node *next;
+} *nodePointer;
+const int MAXSIZE = 1000;
+int n = 0,lines = 0;    //n个节点
+
+nodePointer graph[MAXSIZE];     //图
+bool visited[MAXSIZE];
+
+//队列
+int queue[MAXSIZE];
+int rear = 0,front = 0;
+bool isEmpty()
+{
+    return rear == front;
+}
+bool isFull()
+{
+    return (rear+1)%MAXSIZE == front;
+}
+void addQ(int node)
+{
+    if(!isFull())
+    {
+        queue[rear] = node;
+        rear = (rear+1)%MAXSIZE;
+    }
+}
+int deleteQ()
+{
+    if(!isEmpty())
+    {
+        int n = queue[front];
+        front = (front+1)%MAXSIZE;
+        return n;
+    }
+    else
+        return NULL;
+}
+
+void creatGraph()
+{
+    cin &gt;&gt; n &gt;&gt; lines;
+
+    for(int i = 0;i &lt; n;++i)
+    {
+        graph[i] = (nodePointer) malloc(sizeof(struct node));
+    }
+
+    for (int i = 0; i &lt; lines; ++i)
+    {
+        int a,b,data;       //起始点，终点，权值
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;data;
+        nodePointer p = (nodePointer)malloc(sizeof(struct node));
+        p-&gt;data = data;
+        p-&gt;num = b;
+        p-&gt;next = graph[a]-&gt;next;
+        graph[a]-&gt;next = p;
+    }
+
+}
+
+void setVisitedFalse()
+{
+    for (int i = 0; i &lt; MAXSIZE; ++i)
+        visited[i] = false;
+}
+
+void bfs(int v)
+{
+    nodePointer point;
+    cout&lt;&lt;v&lt;&lt;&quot; &quot;;
+    visited[v] = true;
+    addQ(v);
+    while (!isEmpty())
+    {
+        v = deleteQ();
+        for (point = graph[v]-&gt;next; point != NULL; point = point-&gt;next)
+        {
+            if(!visited[point-&gt;num])
+            {
+                cout&lt;&lt;point-&gt;num&lt;&lt;&quot; &quot;;
+                addQ(point-&gt;num);
+                visited[point-&gt;num] = true;
+            }
+        }
+    }
+}
+
+int main()
+{
+    creatGraph();
+    setVisitedFalse();
+    bfs(1);
+    cout&lt;&lt;&quot;\n&quot;;
+    return 0;
+}
+</code></pre><p>深度优先搜索</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct node
+{
+    int num;        //节点
+    int data;       //权值
+    struct node *next;
+} *nodePointer;
+
+const int MAXSIZE = 1000;
+int n = 0,lines = 0;//节点，线
+nodePointer graph[MAXSIZE];
+bool visited[MAXSIZE];
+
+void setVisitedFalse()
+{
+    for(int i = 0;i &lt; MAXSIZE; ++i)
+        visited[i] = false;
+}
+
+void creatGraph()
+{
+    cin&gt;&gt;n&gt;&gt;lines;
+    for(int i = 0;i &lt; n;++i)
+    {
+        graph[i] = (nodePointer)malloc(sizeof(struct node));
+    }
+
+    for (int i = 0; i &lt; lines; ++i)
+    {
+        int a,b,data;
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;data;
+        nodePointer point = (nodePointer)malloc(sizeof(struct node));
+        point-&gt;num = b;
+        point-&gt;data = data;
+        point-&gt;next = graph[a]-&gt;next;
+        graph[a]-&gt;next = point;
+    }
+
+}
+
+void dfs(int v)
+{
+    cout&lt;&lt;v&lt;&lt;&quot; &quot;;
+    visited[v] = true;
+    nodePointer point;
+    for (point = graph[v]-&gt;next; point != NULL; point = point-&gt;next)
+    {
+        if (!visited[point-&gt;num])
+        {
+            dfs(point-&gt;num);
+        }
+    }
+}
+
+int main()
+{
+    creatGraph();
+    dfs(3);
+    cout&lt;&lt;&quot;\n&quot;;
+    return 0;
+}
+</code></pre><p>堆排序</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+//void swap(int *x, int *y) {
+//    int t = *x;
+//    *x = *y;
+//    *y = t;
+//}
+
+void maxHeapify(int arr[],int start,int end)
+{
+    int dad = start;
+    int son = dad *2 +1;
+    while (son &lt; end)
+    {
+        if(son+1 &lt; end &amp;&amp; arr[son] &lt; arr[son+1])
+        {
+            son++;
+        }
+        if(arr[dad]&gt;arr[son])//调整完成
+            return;
+        else
+        {
+            swap(arr[dad], arr[son]);
+            dad = son;
+            son = dad*2+1;
+        }
+    }
+}
+
+void heapSort(int arr[],int length)
+{
+    for (int i = length/2; i&gt;=0; i--)
+    {
+        maxHeapify(arr, i, length);
+    }
+    for (int i = length-1; i&gt;0; i--)
+    {
+        swap(arr[0], arr[i]);
+        maxHeapify(arr, 0, i);
+    }
+}
+
+int main()
+{
+    ifstream inFile;
+    ofstream outFile;
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/input.txt&quot;);
+    outFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/output.txt&quot;);
+
+    int count = 1;
+    int arr[100];
+    int len;
+    inFile &gt;&gt; len;
+    while (len != -1)
+    {
+        for (int i = 0; i&lt;len; i++)
+            inFile&gt;&gt;arr[i];
+        heapSort(arr, len);
+
+
+        outFile&lt;&lt;&quot;Case &quot;&lt;&lt;count&lt;&lt;&quot;:&quot;&lt;&lt;len&lt;&lt;&quot;\n&quot;;
+        for (int i = 0; i &lt; len; ++i)
+            outFile&lt;&lt;arr[i]&lt;&lt;&quot; &quot;;
+
+        outFile&lt;&lt;&quot;\n&quot;;
+        inFile&gt;&gt;len;
+        count++;
+    }
+    return 0;
+}
+</code></pre><p>快排</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+void quickSort(int arr[],int start,int end)
+{
+    if(start &gt;= end)
+        return;
+
+    int mid = arr[end];
+    int left = start,right = end-1;
+
+    while (left &lt; right)
+    {
+        while (arr[left] &lt; mid &amp;&amp; left &lt; right)
+            left++;
+        while (arr[right] &gt;= mid &amp;&amp; left &lt; right)
+            right--;
+        swap(arr[left], arr[right]);
+    }
+
+    if (arr[left] &gt;= arr[end])
+        swap(arr[left], arr[end]);
+    else
+        left++;
+
+    quickSort(arr, start, left-1);
+    quickSort(arr, left+1, end);
+}
+
+int main()
+{
+    ifstream inFile;
+    ofstream outFile;
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/input.txt&quot;);
+    outFile.open(&quot;/Users/Ray/Documents/数据结构/机考题目/output.txt&quot;);
+
+    int count = 1;
+    int arr[100];
+    int len;
+
+    inFile&gt;&gt;len;
+    while (len != -1)
+    {
+        for (int i = 0; i&lt;len; ++i)
+            inFile &gt;&gt; arr[i];
+
+        quickSort(arr, 0, len-1);
+
+        outFile &lt;&lt; &quot;Case &quot; &lt;&lt; count &lt;&lt; &quot;:&quot; &lt;&lt; len &lt;&lt;&quot;\n&quot;;
+        for (int i = 0; i &lt; len; ++i)
+        {
+            outFile &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+        }
+        outFile &lt;&lt; &quot;\n&quot;;
+        inFile &gt;&gt; len;
+        count++;
+    }
+    return 0;
+}
+
+//void swap(int *x, int *y) {
+//    int t = *x;
+//    *x = *y;
+//    *y = t;
+//}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/26/2015-12-26-You游校园导航项目总结-iOS/" rel="next" title="关于You游服务外包项目的总结">
+                <i class="fa fa-chevron-left"></i> 关于You游服务外包项目的总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/26/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

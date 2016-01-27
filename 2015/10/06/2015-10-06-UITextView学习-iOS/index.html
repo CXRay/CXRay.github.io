@@ -1,0 +1,864 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="这个控件也很容易，毕竟只是写文字上的东西
+
+创建UITextView，前面要加一个代理UITextViewDelegate
+
+//创建UITextView对象
+var textView = UITextView(frame: CGRectMake(10, 120, 300, 400))
+
+设置颜色，字体，内容，对齐方式，键盘类型等等
+
+textView.backgroundColor = UICo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITextView学习">
+<meta property="og:url" content="http://cxray.github.io/2015/10/06/2015-10-06-UITextView学习-iOS/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="这个控件也很容易，毕竟只是写文字上的东西
+
+创建UITextView，前面要加一个代理UITextViewDelegate
+
+//创建UITextView对象
+var textView = UITextView(frame: CGRectMake(10, 120, 300, 400))
+
+设置颜色，字体，内容，对齐方式，键盘类型等等
+
+textView.backgroundColor = UICo">
+<meta property="og:updated_time" content="2015-10-11T08:14:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITextView学习">
+<meta name="twitter:description" content="这个控件也很容易，毕竟只是写文字上的东西
+
+创建UITextView，前面要加一个代理UITextViewDelegate
+
+//创建UITextView对象
+var textView = UITextView(frame: CGRectMake(10, 120, 300, 400))
+
+设置颜色，字体，内容，对齐方式，键盘类型等等
+
+textView.backgroundColor = UICo">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> UITextView学习 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UITextView学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-06T00:00:00+08:00" content="2015-10-06">
+              2015-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>这个控件也很容易，毕竟只是写文字上的东西</p>
+<blockquote>
+<p>创建UITextView，前面要加一个代理UITextViewDelegate</p>
+</blockquote>
+<pre><code>//创建UITextView对象
+var textView = UITextView(frame: CGRectMake(10, 120, 300, 400))
+</code></pre><blockquote>
+<p>设置颜色，字体，内容，对齐方式，键盘类型等等</p>
+</blockquote>
+<pre><code>textView.backgroundColor = UIColor.grayColor()
+self.view.addSubview(textView)
+textView.delegate = self
+
+//设置textView字体颜色
+textView.textColor = UIColor.greenColor()
+//设置文本字体
+textView.font = UIFont.systemFontOfSize(18)
+textView.font = UIFont(name: &quot;Helvetica-Bold&quot;, size: 18)
+//内容
+textView.text = &quot;aaaaa\nbbbbbb\ncccccccc\nddddd\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl\nm\nn\no\np\nq\nr\ns\nt\n&quot;
+
+//文本对齐方式
+textView.textAlignment = NSTextAlignment.Right
+
+//文本视图设置圆角
+textView.layer.cornerRadius = 20
+
+//是否允许点击链接和附件
+textView.selectable = true
+
+//返回键的类型
+textView.returnKeyType = UIReturnKeyType.Done
+
+//键盘类型
+textView.keyboardType = UIKeyboardType.Default
+
+//是否可以滚动
+textView.scrollEnabled = true
+
+//自适应高度
+textView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+
+//富文本不写了
+
+//选中一段文本
+//textView.becomeFirstResponder()
+//textView.selectedRange = NSMakeRange(5, 10)
+
+//获取内容整体高度
+let height = textView.contentSize.height
+print(height)
+</code></pre><blockquote>
+<p>自定义文本视图菜单，就是选中文本，可以复制粘帖那里，可以增加一个分享到微信微博</p>
+</blockquote>
+<pre><code>//自定义文本视图菜单
+var menuItem1 :UIMenuItem = UIMenuItem(title: &quot;分享到微信&quot;, action: &quot;shareWXMenu:&quot;)
+var menuItem2 = UIMenuItem(title: &quot;分享到微博&quot;, action: &quot;shareWBMenu:&quot;)
+//获取菜单控制器
+var menuController = UIMenuController.sharedMenuController()
+
+//重写canPerformAction方法，实现分享
+override func canPerformAction(action: Selector, withSender sender: AnyObject?) -&gt; Bool {
+    //判断有没有选中文字
+    //如果选中，输出选择的文字
+    let isSelect:Bool = textView.selectedRange.length &gt; 0
+
+    if (action == &quot;shareWXMenu:&quot; &amp;&amp; isSelect)   //选择文本并点了分享到微信
+    {
+        return true
+    }
+    else if(action == &quot;shareWBMenu:&quot; &amp;&amp; isSelect)   //选择文本并点了分享到微博
+    {
+        return true
+    }
+
+    return false    //不显示系统的菜单
+}
+
+//分享到微信
+func shareWXMenu(sender: AnyObject?)
+{
+    if textView.selectedRange.length &gt; 0
+    {
+        print((textView.text as NSString).substringWithRange(textView.selectedRange))
+    }
+    print(&quot;微信分享&quot;)
+}
+//分享到微博
+func shareWBMenu(sender: AnyObject?)
+{
+    if textView.selectedRange.length &gt; 0
+    {
+        print((textView.text as NSString).substringWithRange(textView.selectedRange))
+    }
+    print(&quot;微博分享&quot;)
+}
+
+//菜单控制器，放到viewDidLoad中
+menuController.menuItems = [menuItem1,menuItem2]
+</code></pre><blockquote>
+<p>UITextViewDelegate,所有的UITextViewDelegate都是optional可以选择实现</p>
+</blockquote>
+<pre><code>//这个特别有用，之前一直不知道该如何把键盘给隐藏
+func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -&gt; Bool {
+    //文本视图内容改变时，触发本方法，能得到改变的坐标和改变的内容
+
+    //如果是回车符号，则textView释放第一响应值，返回false
+    if text == &quot;\n&quot;
+    {
+        textView.resignFirstResponder()
+        return false
+    }
+    return true
+}
+
+
+func textViewShouldBeginEditing(textView: UITextView) -&gt; Bool {
+    return true //如果返回false，文本视图不能编辑
+}
+
+func textViewShouldEndEditing(textView: UITextView) -&gt; Bool {
+    return true //如果返回false，表示编辑结束之后，文本视图将不能编辑
+}
+
+func textViewDidBeginEditing(textView: UITextView) {
+    //文本视图开始编辑，这个时候我们可以处理一些事情
+    print(&quot;文本视图开始编辑&quot;)
+}
+
+func textViewDidEndEditing(textView: UITextView) {
+    //文本视图编辑结束，这个时候我嘛可以处理一些事情
+}
+
+func textViewDidChange(textView: UITextView) {
+    //文本视图改变后触发本代理方法
+    print(&quot;文本改变&quot;)
+}
+
+func textViewDidChangeSelection(textView: UITextView) {
+    //文本视图改变选择内容，触发本代理方法
+    print(&quot;文本视图改变选择内容&quot;)
+}
+
+func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -&gt; Bool {
+    //链接在文本中显示，当链接被点击时，会触发本方法
+    return true
+}
+
+func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -&gt; Bool {
+    //文本视图允许提供文本附件，文本附件点击时，会触发本代理方法
+    return true
+}
+</code></pre><blockquote>
+<p>TextView有三个监听</p>
+</blockquote>
+<pre><code>//创建3个监听，viewDidLoad中
+//文本框开始编辑时触发
+NSNotificationCenter.defaultCenter().addObserver(self, selector: &quot;textDidBeginEditing&quot;, 
+name: UITextViewTextDidBeginEditingNotification, object: nil)
+
+//文本框结束编辑时，触发
+NSNotificationCenter.defaultCenter().addObserver(self, selector: &quot;textDidEndEditing&quot;, 
+name: UITextViewTextDidEndEditingNotification, object: nil)
+
+//文本框内容改变时，触发
+NSNotificationCenter.defaultCenter().addObserver(self, selector: &quot;textDidChange&quot;, 
+name: UITextViewTextDidChangeNotification, object: nil)
+
+
+//实现3个通知事件
+func textDidBeginEditing()
+{
+    print(&quot;开始输入文本&quot;)
+}
+func textDidEndEditing()
+{
+    print(&quot;结束输入&quot;)
+}
+func textDidChange()
+{
+    print(&quot;正在输入&quot;)
+}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/05/2015-10-05-UITableView学习-iOS/" rel="next" title="UITableView学习">
+                <i class="fa fa-chevron-left"></i> UITableView学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/07/2015-10-07-对于Vim的学习-Vim/" rel="prev" title="对于Vim的学习">
+                对于Vim的学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

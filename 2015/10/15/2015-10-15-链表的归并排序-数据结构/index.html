@@ -1,0 +1,944 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+    <meta name="description" content="Live For The Dream!" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并
+链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快
+链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，结果一团浆糊
+
+PublicDS.h  这里有malloc 创建节点
+
+#ifndef PUBLIC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表的归并排序">
+<meta property="og:url" content="http://cxray.github.io/2015/10/15/2015-10-15-链表的归并排序-数据结构/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并
+链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快
+链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，结果一团浆糊
+
+PublicDS.h  这里有malloc 创建节点
+
+#ifndef PUBLIC">
+<meta property="og:updated_time" content="2015-10-15T11:13:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="链表的归并排序">
+<meta name="twitter:description" content="整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并
+链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快
+链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，结果一团浆糊
+
+PublicDS.h  这里有malloc 创建节点
+
+#ifndef PUBLIC">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> 链表的归并排序 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                链表的归并排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-15T00:00:00+08:00" content="2015-10-15">
+              2015-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>整个程序的意思，两个已经排好序的数列，分别放倒链表中，再进行归并</p>
+<p>链表的操作比较麻烦，优点还是有的，插入删除元素比较方便（当然没别人都帮你实现链表你来用来的方便），插入删除的效率比数组快</p>
+<p>链表单单靠脑子很难模拟，也许是我渣，画个图就比较好理解，光看代码就只能看到，这个指针指到那里，那个指针指到这里，结果一团浆糊</p>
+<blockquote>
+<p>PublicDS.h  这里有malloc 创建节点</p>
+</blockquote>
+<pre><code>#ifndef PUBLIC_DS_H_
+#define  PUBLIC_DS_H_   
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MALLOC(p, s, type) \
+    if (!((p) = (type) malloc (s)))  { \
+    fprintf(stderr, &quot;Insufficient memory.&quot;); \
+    exit(EXIT_FAILURE); \
+    }
+#define REALLOC(p, s, type) \
+    if (!((p) = (type)realloc(p,s)))  { \
+    fprintf(stderr, &quot;Insufficient memory.&quot;); \
+    exit(EXIT_FAILURE); \
+    }
+#define CALLOC(p, num,size, type) \
+    if (!((p) = (type)calloc(num,size)))  { \
+    fprintf(stderr, &quot;Insufficient memory.&quot;); \
+    exit(EXIT_FAILURE); \
+    }
+
+
+#define FREE(p)\
+    if ((p) != NULL)\
+    {\
+        free(p);\
+        p = NULL;\
+    }
+
+#define SWAP (x, y, t )  (( t ) =  ( x ), ( x ) = ( y ), ( y ) = ( t ))
+#define COMPARE(x,y) ((x) &lt; (y)? -1:((x) == (y)) ? 0:1)
+
+
+#endif
+</code></pre><blockquote>
+<p>前面的一些定义</p>
+</blockquote>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;cstdlib&gt;
+#include &quot;PublicDS.h&quot;
+using namespace std;
+
+struct listNode;
+typedef struct listNode *listPointer;
+struct listNode{
+    int num;
+    listPointer next;
+};
+
+listPointer creat();
+listPointer insert(listPointer head,int item);
+//listPointer readData(listPointer head);
+void printList(listPointer head);
+int deleteLinkList(listPointer head,listPointer trail);
+listPointer destroyList(listPointer head);
+listPointer merger(listPointer h1,listPointer h2);
+listPointer addInBack(listPointer head,listPointer add);
+listPointer invert(listPointer head);
+listPointer recalculateCount(listPointer head);
+</code></pre><blockquote>
+<p>创建链表，有头节点，头节点的num放入后面节点个数</p>
+</blockquote>
+<pre><code>listPointer creat()
+{
+   listPointer first = NULL;           //头节点
+   MALLOC(first, sizeof(listNode), listPointer);
+   first -&gt; next = NULL;
+   first -&gt;num = 0;
+   return first;
+}
+</code></pre><blockquote>
+<p>在最前面插入节点</p>
+</blockquote>
+<pre><code>listPointer insert(listPointer head,int item)
+{
+    listPointer temp;
+    MALLOC(temp, sizeof(listNode), listPointer)
+    temp -&gt; num = item;
+    temp -&gt; next = head -&gt; next;
+    head -&gt; next = temp;
+    head -&gt;num++;
+    return head;
+}
+</code></pre><blockquote>
+<p>这个本来想读数据写一个函数的，后来发先有点问题，因为要在同一个文件中读两组数据，那样就要返回两个链表，先注释掉了</p>
+</blockquote>
+<pre><code>/*
+listPointer readData(listPointer head)
+{
+    ifstream inFile;
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/input2.txt&quot;);
+    int n;
+    inFile &gt;&gt; n;
+    while(n--)
+    {
+        int num;
+        inFile &gt;&gt; num;
+        insert(head, num);
+    }
+    inFile.close();
+    return head;
+}
+*/
+</code></pre><blockquote>
+<p>输出整个链表，头节点单独输出，这里是文件操作，可以改成控制台输出</p>
+</blockquote>
+<pre><code>void printList(listPointer head)
+{
+    ofstream outFile;
+    outFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/链表output.txt&quot;);
+    outFile &lt;&lt; &quot;case 1:&quot;&lt;&lt;head -&gt; num &lt;&lt; &quot;\n&quot;;
+    listPointer tmp = head -&gt; next;
+    while(tmp)
+    {
+        outFile &lt;&lt; tmp -&gt; num &lt;&lt; &quot;  &quot;;
+        tmp = tmp -&gt; next;
+    }
+    outFile&lt;&lt;&quot;\n&quot;;
+    outFile&lt;&lt;&quot;\n&quot;;
+    outFile.close();
+}
+</code></pre><blockquote>
+<p>删除一个节点，根据trail来删除</p>
+</blockquote>
+<pre><code>int deleteLinkList(listPointer head,listPointer trail)
+{
+    listPointer waitToDelete;
+    int tmp;
+    waitToDelete = trail -&gt; next;
+    trail -&gt; next = waitToDelete -&gt;next;
+    tmp = waitToDelete -&gt; num;
+    head -&gt; num --;
+    FREE(waitToDelete);
+    return tmp;
+}
+</code></pre><blockquote>
+<p>递归链表进行free</p>
+</blockquote>
+<pre><code>listPointer destroyList(listPointer head)
+{
+   while(head -&gt; next)
+   {
+       head -&gt; next = destroyList(head -&gt; next);
+   }
+    FREE(head)
+    return NULL;
+}
+</code></pre><blockquote>
+<p>在最后添加节点</p>
+</blockquote>
+<pre><code>listPointer addInBack(listPointer head,listPointer add)
+{
+    while(head -&gt; next)
+    {
+        head = head -&gt; next;
+    }
+    head -&gt; next = add;
+    return head;
+}
+</code></pre><blockquote>
+<p>反转链表，三个指针互相指，画个图易于理解</p>
+</blockquote>
+<pre><code>listPointer invert(listPointer head)
+{
+    listPointer p,t,r,first;
+    first = head;
+    p = head -&gt; next;
+    t = p -&gt; next;
+    p -&gt; next = NULL;
+    while (t) {
+        r = t -&gt; next;
+        t -&gt; next = p;
+        p = t;
+        t = r;
+    }
+    first -&gt; next = p;
+    return  first;
+}
+</code></pre><blockquote>
+<p>重新计算链表节点数</p>
+</blockquote>
+<pre><code>listPointer recalculateCount(listPointer head)
+{
+    listPointer p = head -&gt; next;
+    int count = 0;
+    while(p)
+    {
+        count ++;
+        p = p -&gt; next;
+    }
+    head -&gt; num = count;
+    return head;
+}
+</code></pre><blockquote>
+<p>main函数</p>
+</blockquote>
+<pre><code>int main()
+{
+    listPointer head1 = creat();
+    listPointer head2 = creat();
+    ifstream inFile;
+    inFile.open(&quot;/Users/Ray/Documents/数据结构/作业2/2-input.txt&quot;);
+    //读数据
+    int n;
+    inFile &gt;&gt; n;
+    while(n--)
+    {
+        int num;
+        inFile &gt;&gt; num;
+        insert(head1, num);
+    }
+    inFile &gt;&gt; n;
+    while (n--)
+    {
+        int num;
+        inFile &gt;&gt; num;
+        insert(head2, num);
+    }
+    inFile.close();
+
+
+    //printList(head1);
+    cout&lt;&lt;&quot;\n&quot;;
+    //printList(head2);
+
+
+    listPointer head3 = creat();
+    //这里是归并两个有序链表
+    listPointer trail3 = head3;
+    listPointer trail2 = head2 -&gt; next;
+    listPointer trail1 = head1 -&gt; next;
+    while(trail1 &amp;&amp; trail2)
+    {
+        if(trail1 -&gt; num &gt;= trail2 -&gt; num)
+        {
+            trail3 = insert(trail3, trail1 -&gt; num);
+            trail1 = trail1 -&gt; next;
+        }
+        else
+        {
+            trail3 = insert(trail3, trail2 -&gt; num);
+            trail2 = trail2 -&gt; next;
+        }
+    }
+
+    head3 = invert(head3);
+    if(trail1 == NULL)
+    {
+        addInBack(head3, trail2);
+    }
+    else if(trail2 == NULL)
+    {
+        addInBack(head3 ,trail1);
+    }
+
+    head3 = recalculateCount(head3);
+
+    cout&lt;&lt;&quot;\n&quot;;
+    printList(head3);
+    destroyList(head3);
+
+    return 0;
+}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/" rel="next" title="UIScrollView和UIPageControl学习">
+                <i class="fa fa-chevron-left"></i> UIScrollView和UIPageControl学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/" rel="prev" title="UIDatePicker和UIPIckerView学习">
+                UIDatePicker和UIPIckerView学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/CXRay" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1795459455/" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
+                  <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
