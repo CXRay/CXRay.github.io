@@ -192,90 +192,6 @@
             
             
               
-                <a class="post-title-link" href="/2016/01/26/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-26T21:41:59+08:00" content="2016-01-26">
-              2016-01-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 <a class="post-title-link" href="/2016/01/09/2016-01-09-数据结构最后的无奈-数据结构/" itemprop="url">
                   数据结构最后的无奈
                 </a>
@@ -1387,338 +1303,6 @@ if (userName != nil) {
             
             
               
-                <a class="post-title-link" href="/2015/11/21/2015-11-21-逆波兰式转换和计算-Swift/" itemprop="url">
-                  逆波兰式转换和计算
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T00:00:00+08:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>普通的式子例如1+2*3对于人是很容易计算的，但对于电脑很难计算，先要转换成逆波兰式，逆波兰式相对于机器就很容易了，以下算法是用swift实现</p>
-<p>　(1)首先，需要分配2个栈，栈s1用于临时存储运算符（含一个结束符号），此运算符在栈内遵循越往栈顶优先级越高的原则；栈s2用于输入逆波兰式，为方便起见，栈s1需先放入一个优先级最低的运算符，在这里假定为’#’；</p>
-<p>　　(2)从中缀式的左端开始逐个读取字符x，逐序进行如下步骤：</p>
-<p>　　　　　　1.若x是操作数，则分析出完整的运算数（在这里为方便，用字母代替数字），将x直接压入栈s2；</p>
-<p>　　　　　　2.若x是运算符，则分情况讨论：</p>
-<p>　　　　　　　　　　若x是’(‘，则直接压入栈s1；</p>
-<p>　　　　　　　　　　若x是’)’，则将距离栈s1栈顶的最近的’(‘之间的运算符，逐个出栈，依次压入栈s2，此时抛弃’(‘；</p>
-<p>　　　　　　　　　　若x是除’(‘和’)’外的运算符，则再分如下情况讨论：</p>
-<p>　　　　　　　　　　　　　　若当前栈s1的栈顶元素为’(‘，则将x直接压入栈s1；</p>
-<p>　　　　　　　　　　　　　　若当前栈s1的栈顶元素不为’(‘，则将x与栈s1的栈顶元素比较，若x的优先级大于栈s1栈顶运算符优先级，则将x直接压入栈s1。否者，将栈s1的栈顶运算符弹出，压入栈s2中，直到栈s1的栈顶运算符优先级别低于（不包括等于）x的优先级，或栈s2的栈顶运算符为’(‘，此时再则将x压入栈s1;</p>
-<p>　　(3)在进行完(2)后，检查栈s1是否为空，若不为空，则将栈中元素依次弹出并压入栈s2中（不包括’#’）；　　　　　　 </p>
-<p>　　</p>
-<p>　　(4)完成上述步骤后，栈s2便为逆波兰式输出结果。但是栈s2应做一下逆序处理，因为此时表达式的首字符位于栈底；</p>
-<pre><code>import Foundation
-
-
-
-class Stack {
-    var array = [String]()
-    var top = -1
-
-    func isEmpty() -&gt; Bool
-    {
-        return top &lt;= -1
-    }
-
-    func isFull() -&gt; Bool
-    {
-        return false
-    }
-
-    func push(ch: String)
-    {
-        if(!isFull())
-        {
-            ++top
-            array.append(ch)
-        }
-    }
-
-    func pop() -&gt; String?
-    {
-        if(!isEmpty())
-        {
-            let n = array[top]
-            top--
-            array.removeLast()
-            return n
-        }
-        else
-        {
-            return nil
-        }
-    }
-    func toppp() -&gt; String?
-    {
-        if(!isEmpty())
-        {
-            return array[top]
-        }
-        else
-        {
-            return nil
-        }
-    }
-
-
-}
-
-var stack1 = Stack()
-var stack2 = Stack()
-var stack3 = Stack()//存放逆波兰式
-var stack4 = Stack()//用于存放最终的值
-var length = 0
-
-func RPExpression(aString:String) -&gt; String
-{
-    //设字符“＃”是运算级最低的运算符，并压入s1中
-    stack1.push(&quot;#&quot;);
-
-    var num = &quot;&quot;
-    for ch in aString.characters
-    {
-        if (ch == &quot;(&quot;)
-        {
-            stack2.push(num)
-            num = &quot;&quot;
-
-            stack1.push(&quot;(&quot;)
-        }
-        else if (ch == &quot;)&quot;)
-        {
-            stack2.push(num)
-            num = &quot;&quot;
-
-            while(stack1.toppp() != &quot;(&quot; &amp;&amp; stack1.toppp() != &quot;#&quot;)
-            {
-                let a = stack1.pop()
-                stack2.push(a!)
-            }
-            stack1.pop()
-        }
-        else if (ch == &quot;+&quot; || ch == &quot;-&quot;)
-        {
-            stack2.push(num)
-            num = &quot;&quot;
-
-            if(stack1.isEmpty())
-            {
-                stack1.push(&quot;\(ch)&quot;)
-            }
-            else
-            {
-                for(var top = stack1.toppp();top != &quot;#&quot;;top = stack1.toppp())
-                {
-                    if(top == &quot;(&quot;)
-                    {
-                        break
-                    }
-                    else
-                    {
-                        let a = stack1.pop()
-                        stack2.push(a!)
-                    }
-                }
-                stack1.push(&quot;\(ch)&quot;)
-
-            }
-            length++
-        }
-        else if (ch == &quot;*&quot; || ch == &quot;/&quot;)
-        {
-            stack2.push(num)
-            num = &quot;&quot;
-
-            if(stack1.isEmpty())
-            {
-                stack1.push(&quot;\(ch)&quot;)
-            }
-            else
-            {
-                for(var top = stack1.toppp();top != &quot;#&quot; &amp;&amp; top != &quot;+&quot; &amp;&amp; top != &quot;-&quot;;top = stack1.toppp())
-                {
-                    if (top == &quot;(&quot;)
-                    {
-                        break
-                    }
-                    else
-                    {
-                        let a = stack1.pop()
-                        stack2.push(a!)
-                    }
-                }
-                stack1.push(&quot;\(ch)&quot;)
-
-            }
-            length++
-        }
-        else if (ch == &quot;=&quot;)
-        {
-            stack2.push(num)
-            num = &quot;&quot;
-        }
-        else
-        {
-            num += &quot;\(ch)&quot;;
-        }
-    }
-
-    var ans = &quot;&quot;
-    while (!stack1.isEmpty() &amp;&amp; stack1.toppp() != &quot;#&quot;)
-    {
-        let a = stack1.pop()
-        stack2.push(a!)
-    }
-
-    //stack2中存储了逆波兰数
-//    while(!stack2.isEmpty())
-//    {
-//        ans = stack2.pop()! + ans
-//    }
-//    
-//    print(ans)
-
-    while(!stack2.isEmpty())
-    {
-        if let a = stack2.pop()
-        {
-            if a != &quot;&quot;
-            {
-                print(a)
-                stack3.push(a)
-            }
-        }
-    }
-
-
-    //下面是逆波兰式的求值
-    while(!stack3.isEmpty())
-    {
-        let a = stack3.pop()        //操作数或操作符
-        //print(a)
-        if a == &quot;+&quot; || a == &quot;-&quot; || a == &quot;*&quot; || a == &quot;/&quot;
-        {
-            if a == &quot;+&quot;
-            {
-                let num1 = Double(stack4.pop()!)!
-                let num2 = Double(stack4.pop()!)!
-                stack4.push(&quot;\(num2+num1)&quot;)
-            }
-            else if a == &quot;-&quot;
-            {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!-num1!)&quot;)
-            }
-            else if a == &quot;*&quot;
-            {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!*num1!)&quot;)
-            }
-            else if a == &quot;/&quot;
-            {
-                let num1 = Double(stack4.pop()!)
-                let num2 = Double(stack4.pop()!)
-                stack4.push(&quot;\(num2!/num1!)&quot;)
-            }
-        }
-        else
-        {
-            stack4.push(a!)
-        }
-    }
-
-
-    ans = stack4.pop()!
-    print(ans)
-    return ans
-}
-
-RPExpression(&quot;(1+2)*3/(4+5)=&quot;)
-</code></pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 <a class="post-title-link" href="/2015/11/21/2015-11-21-树的一些简单函数-数据结构/" itemprop="url">
                   树的一些简单函数
                 </a>
@@ -2093,6 +1677,338 @@ treePointer copy(treePointer tree);     //复制二叉树
             
             
               
+                <a class="post-title-link" href="/2015/11/21/2015-11-21-逆波兰式转换和计算-Swift/" itemprop="url">
+                  逆波兰式转换和计算
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-21T00:00:00+08:00" content="2015-11-21">
+              2015-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>普通的式子例如1+2*3对于人是很容易计算的，但对于电脑很难计算，先要转换成逆波兰式，逆波兰式相对于机器就很容易了，以下算法是用swift实现</p>
+<p>　(1)首先，需要分配2个栈，栈s1用于临时存储运算符（含一个结束符号），此运算符在栈内遵循越往栈顶优先级越高的原则；栈s2用于输入逆波兰式，为方便起见，栈s1需先放入一个优先级最低的运算符，在这里假定为’#’；</p>
+<p>　　(2)从中缀式的左端开始逐个读取字符x，逐序进行如下步骤：</p>
+<p>　　　　　　1.若x是操作数，则分析出完整的运算数（在这里为方便，用字母代替数字），将x直接压入栈s2；</p>
+<p>　　　　　　2.若x是运算符，则分情况讨论：</p>
+<p>　　　　　　　　　　若x是’(‘，则直接压入栈s1；</p>
+<p>　　　　　　　　　　若x是’)’，则将距离栈s1栈顶的最近的’(‘之间的运算符，逐个出栈，依次压入栈s2，此时抛弃’(‘；</p>
+<p>　　　　　　　　　　若x是除’(‘和’)’外的运算符，则再分如下情况讨论：</p>
+<p>　　　　　　　　　　　　　　若当前栈s1的栈顶元素为’(‘，则将x直接压入栈s1；</p>
+<p>　　　　　　　　　　　　　　若当前栈s1的栈顶元素不为’(‘，则将x与栈s1的栈顶元素比较，若x的优先级大于栈s1栈顶运算符优先级，则将x直接压入栈s1。否者，将栈s1的栈顶运算符弹出，压入栈s2中，直到栈s1的栈顶运算符优先级别低于（不包括等于）x的优先级，或栈s2的栈顶运算符为’(‘，此时再则将x压入栈s1;</p>
+<p>　　(3)在进行完(2)后，检查栈s1是否为空，若不为空，则将栈中元素依次弹出并压入栈s2中（不包括’#’）；　　　　　　 </p>
+<p>　　</p>
+<p>　　(4)完成上述步骤后，栈s2便为逆波兰式输出结果。但是栈s2应做一下逆序处理，因为此时表达式的首字符位于栈底；</p>
+<pre><code>import Foundation
+
+
+
+class Stack {
+    var array = [String]()
+    var top = -1
+
+    func isEmpty() -&gt; Bool
+    {
+        return top &lt;= -1
+    }
+
+    func isFull() -&gt; Bool
+    {
+        return false
+    }
+
+    func push(ch: String)
+    {
+        if(!isFull())
+        {
+            ++top
+            array.append(ch)
+        }
+    }
+
+    func pop() -&gt; String?
+    {
+        if(!isEmpty())
+        {
+            let n = array[top]
+            top--
+            array.removeLast()
+            return n
+        }
+        else
+        {
+            return nil
+        }
+    }
+    func toppp() -&gt; String?
+    {
+        if(!isEmpty())
+        {
+            return array[top]
+        }
+        else
+        {
+            return nil
+        }
+    }
+
+
+}
+
+var stack1 = Stack()
+var stack2 = Stack()
+var stack3 = Stack()//存放逆波兰式
+var stack4 = Stack()//用于存放最终的值
+var length = 0
+
+func RPExpression(aString:String) -&gt; String
+{
+    //设字符“＃”是运算级最低的运算符，并压入s1中
+    stack1.push(&quot;#&quot;);
+
+    var num = &quot;&quot;
+    for ch in aString.characters
+    {
+        if (ch == &quot;(&quot;)
+        {
+            stack2.push(num)
+            num = &quot;&quot;
+
+            stack1.push(&quot;(&quot;)
+        }
+        else if (ch == &quot;)&quot;)
+        {
+            stack2.push(num)
+            num = &quot;&quot;
+
+            while(stack1.toppp() != &quot;(&quot; &amp;&amp; stack1.toppp() != &quot;#&quot;)
+            {
+                let a = stack1.pop()
+                stack2.push(a!)
+            }
+            stack1.pop()
+        }
+        else if (ch == &quot;+&quot; || ch == &quot;-&quot;)
+        {
+            stack2.push(num)
+            num = &quot;&quot;
+
+            if(stack1.isEmpty())
+            {
+                stack1.push(&quot;\(ch)&quot;)
+            }
+            else
+            {
+                for(var top = stack1.toppp();top != &quot;#&quot;;top = stack1.toppp())
+                {
+                    if(top == &quot;(&quot;)
+                    {
+                        break
+                    }
+                    else
+                    {
+                        let a = stack1.pop()
+                        stack2.push(a!)
+                    }
+                }
+                stack1.push(&quot;\(ch)&quot;)
+
+            }
+            length++
+        }
+        else if (ch == &quot;*&quot; || ch == &quot;/&quot;)
+        {
+            stack2.push(num)
+            num = &quot;&quot;
+
+            if(stack1.isEmpty())
+            {
+                stack1.push(&quot;\(ch)&quot;)
+            }
+            else
+            {
+                for(var top = stack1.toppp();top != &quot;#&quot; &amp;&amp; top != &quot;+&quot; &amp;&amp; top != &quot;-&quot;;top = stack1.toppp())
+                {
+                    if (top == &quot;(&quot;)
+                    {
+                        break
+                    }
+                    else
+                    {
+                        let a = stack1.pop()
+                        stack2.push(a!)
+                    }
+                }
+                stack1.push(&quot;\(ch)&quot;)
+
+            }
+            length++
+        }
+        else if (ch == &quot;=&quot;)
+        {
+            stack2.push(num)
+            num = &quot;&quot;
+        }
+        else
+        {
+            num += &quot;\(ch)&quot;;
+        }
+    }
+
+    var ans = &quot;&quot;
+    while (!stack1.isEmpty() &amp;&amp; stack1.toppp() != &quot;#&quot;)
+    {
+        let a = stack1.pop()
+        stack2.push(a!)
+    }
+
+    //stack2中存储了逆波兰数
+//    while(!stack2.isEmpty())
+//    {
+//        ans = stack2.pop()! + ans
+//    }
+//    
+//    print(ans)
+
+    while(!stack2.isEmpty())
+    {
+        if let a = stack2.pop()
+        {
+            if a != &quot;&quot;
+            {
+                print(a)
+                stack3.push(a)
+            }
+        }
+    }
+
+
+    //下面是逆波兰式的求值
+    while(!stack3.isEmpty())
+    {
+        let a = stack3.pop()        //操作数或操作符
+        //print(a)
+        if a == &quot;+&quot; || a == &quot;-&quot; || a == &quot;*&quot; || a == &quot;/&quot;
+        {
+            if a == &quot;+&quot;
+            {
+                let num1 = Double(stack4.pop()!)!
+                let num2 = Double(stack4.pop()!)!
+                stack4.push(&quot;\(num2+num1)&quot;)
+            }
+            else if a == &quot;-&quot;
+            {
+                let num1 = Double(stack4.pop()!)
+                let num2 = Double(stack4.pop()!)
+                stack4.push(&quot;\(num2!-num1!)&quot;)
+            }
+            else if a == &quot;*&quot;
+            {
+                let num1 = Double(stack4.pop()!)
+                let num2 = Double(stack4.pop()!)
+                stack4.push(&quot;\(num2!*num1!)&quot;)
+            }
+            else if a == &quot;/&quot;
+            {
+                let num1 = Double(stack4.pop()!)
+                let num2 = Double(stack4.pop()!)
+                stack4.push(&quot;\(num2!/num1!)&quot;)
+            }
+        }
+        else
+        {
+            stack4.push(a!)
+        }
+    }
+
+
+    ans = stack4.pop()!
+    print(ans)
+    return ans
+}
+
+RPExpression(&quot;(1+2)*3/(4+5)=&quot;)
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/11/17/2015-11-17-Surge科学上网-iOS/" itemprop="url">
                   Surge科学上网
                 </a>
@@ -2149,13 +2065,13 @@ treePointer copy(treePointer tree);     //复制二叉树
               <p>我也是靠这篇文章<a href="https://www.lifetyper.com/2015/10/shadowsocks_conf_for_surge_on_ios.html" target="_blank" rel="external">IOS翻墙神器Surge的ShadowSocks版本傻瓜配置文件</a>才得以实现，我现在只是把作者上面的文件放倒了我的网站上。</p>
 <p>这里讲的是iOS的科学上网，首先iPhone要9.0以上的系统，要去App Store下个Surge，Surge只支持9.0以上的系统，要68块钱，具体怎么下么看自己咯，开发者还是个中国人，果然是受够了天朝的网络。希望这个不要轻易被封杀了。</p>
 <p>还要个ss帐号，网上仔细找找有公开的，安不安全是另外一回事情了。</p>
-<p><img src="http://cxray.github.io/public/images/Surge科学上网/IMG_4070.PNG" alt="图1"></p>
+<p><img src="http://cxray.github.io/images/Surge科学上网/IMG_4070.PNG" alt="图1"></p>
 <p>1.首先点右上角的Edit，然后下面出现以下几行，点Download Configuration from URL</p>
-<p><img src="http://cxray.github.io/public/images/Surge科学上网/IMG_4068.PNG" alt="图2"></p>
+<p><img src="http://cxray.github.io/images/Surge科学上网/IMG_4068.PNG" alt="图2"></p>
 <p>2.输入以上，点OK</p>
-<p><img src="http://cxray.github.io/public/images/Surge科学上网/IMG_4069.PNG" alt="图3"></p>
+<p><img src="http://cxray.github.io/images/Surge科学上网/IMG_4069.PNG" alt="图3"></p>
 <p>3.在Edit in Text Mode中，改到自己的ss就好啦</p>
-<p><img src="http://cxray.github.io/public/images/Surge科学上网/IMG_4071.PNG" alt="图4"></p>
+<p><img src="http://cxray.github.io/images/Surge科学上网/IMG_4071.PNG" alt="图4"></p>
 <p>最后ins求关注啦，ray_cxl</p>
 
             
@@ -3220,6 +3136,249 @@ public static var Recognized: UIGestureRecognizerState { get } // the recognizer
 
 
     
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/10/24/2015-10-24-UIToolBar和UISearchBar学习-iOS/" itemprop="url">
+                  UIToolBar和UISearchBar学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-24T00:00:00+08:00" content="2015-10-24">
+              2015-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>UIToolBar(工具栏)是一个实心条栏，一般位于屏幕的顶部或者底部。UISearchBar(搜索条)主要实现搜索框效果，经常和UITableView结合使用，从大量的信息中搜索需要的内容</p>
+<p>#UIToolBar</p>
+<p>工具栏的实现和分段控件UISegmentControl类似，但是工具栏中的所有控件都是完全独立的。UIToolBar实例只是提供了一个选择器控件，让用户来选择执行某个功能</p>
+<blockquote>
+<p>创建UIToolBar实例,代码创建默认是没有UIBarButtonItem对象的，不过可以自己创建UIBarButtonItem实例添加到toolBar上，来实现一些功能</p>
+</blockquote>
+<pre><code>var toolBar = UIToolbar(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,65))
+self.view.addSubview(toolBar)
+</code></pre><blockquote>
+<p>常用的一些方法，代码如下</p>
+</blockquote>
+<pre><code>//设置工具栏样式，有黑色，黑色透明，黑色不透明，默认
+toolBar.barStyle = UIBarStyle.Default
+
+//设置工具栏按钮文字颜色
+toolBar.tintColor = UIColor.greenColor()
+
+//设置工具栏颜色
+toolBar.backgroundColor = UIColor.redColor()
+</code></pre><blockquote>
+<p>设置间距和按钮</p>
+</blockquote>
+<pre><code>//创建一个间距
+var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: &quot;barButtonItemClicked:&quot;, action: nil)
+
+//创建一个返回按钮
+var backItem = UIBarButtonItem(title: &quot;返回&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;backItemClicked:&quot;)
+
+//继续创建按钮
+var barBtnItem1 = UIBarButtonItem(title: &quot;功能1&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;barBtnItemClicked:&quot;)
+var barBtnItem2 = UIBarButtonItem(title: &quot;功能2&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;barBtnItemClicked:&quot;)
+</code></pre><blockquote>
+<p>最后需要靠items来添加</p>
+</blockquote>
+<pre><code>toolBar.items = [flexibleSpace,backItem,flexibleSpace,barBtnItem1,flexibleSpace,barBtnItem2,flexibleSpace]
+</code></pre><p>#UISearchBar</p>
+<blockquote>
+<p>UISearchBar,创建</p>
+</blockquote>
+<pre><code>var searchBar = UISearchBar(frame: CGRectMake(0,100,UIScreen.mainScreen().bounds.size.width,45))
+
+self.view.addSubview(searchBar)
+</code></pre><blockquote>
+<p>常用的属性和方法</p>
+</blockquote>
+<pre><code>//设置UISearchBar样式
+searchBar.barStyle = UIBarStyle.Default
+
+//设置UISearchBar的代理
+searchBar.delegate = self
+
+//设置UISearchBar上面显示的文字
+//searchBar.text = &quot;这里可以选择显示文字&quot;
+
+//设置在顶部的单行文字，通常作为一个提示行
+//searchBar.prompt = &quot;这里也可以选择显示文字&quot;
+
+//搜索框占位符号，半透明的提示文字，输入搜索内容消失
+searchBar.placeholder = &quot;搜索框占位符号&quot;
+
+//控件右端是否显示一个书的按钮
+searchBar.showsBookmarkButton = false
+
+//控件右端是否显示cancel按钮
+searchBar.showsCancelButton = true
+
+//控件右端是否显示搜索结果按钮
+searchBar.showsSearchResultsButton = true
+
+//搜索结果按钮是否被选中
+searchBar.searchResultsButtonSelected = false
+
+//bar的颜色
+searchBar.tintColor = UIColor.redColor()
+
+//指定UISearchBar是否会有透视效果
+searchBar.translucent = true
+
+//设置在什么情况下大写
+searchBar.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
+
+//对于文本对象自动校正风格
+searchBar.autocorrectionType = UITextAutocorrectionType.Default
+
+//键盘样式
+searchBar.keyboardType = UIKeyboardType.Default
+
+//UISearchBar下部的选择栏，数组里面的内容是按钮的标题
+searchBar.scopeButtonTitles = [&quot;1&quot;,&quot;2&quot;]
+
+//UISearchBar下部的索引范围按钮的标题阵列，默认值为0，如果超出范围的忽视
+searchBar.selectedScopeButtonIndex = 2
+
+//控制UISearchBar下部的选择栏是否显示出来
+searchBar.showsScopeBar = true
+</code></pre><blockquote>
+<p>实现UISearchBarDelegate</p>
+</blockquote>
+<pre><code>//搜索框开始时是否能编辑
+func searchBarShouldBeginEditing(searchBar: UISearchBar) -&gt; Bool {
+    return true         //false不能编辑
+}
+
+//搜索框开始输入内容
+func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    print(&quot;搜索框开始输入内容&quot;)
+}
+
+//搜索框结束时是否能编辑
+func searchBarShouldEndEditing(searchBar: UISearchBar) -&gt; Bool {
+    return true
+}
+
+//结束文本输入
+func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    print(&quot;结束文本输入&quot;)
+}
+
+//根据searchText进行搜索
+func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    print(searchText)
+}
+
+//文本改变时触发
+func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -&gt; Bool {
+    print(&quot;文本改变&quot;)
+    return true
+}
+
+//右侧类似书的按钮事件
+func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
+    print(&quot;右侧类似书的按钮被点击&quot;)
+}
+
+//右侧搜索按钮事件
+func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    print(&quot;右侧搜索按钮被点击&quot;)
+}
+
+//右侧取消按钮事件
+func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    print(&quot;取消按钮被点击&quot;)
+}
+
+//右侧结果列表按钮事件
+func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
+    print(&quot;右侧结果列表按钮事件&quot;)
+}
+
+//UISearchBar下面栏目选择改变触发事件
+func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    print(&quot;UISearchBar下面栏目选择改变&quot;)
+}
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -3262,7 +3421,7 @@ public static var Recognized: UIGestureRecognizerState { get } // the recognizer
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -192,427 +192,6 @@
             
             
               
-                <a class="post-title-link" href="/2015/10/24/2015-10-24-UIToolBar和UISearchBar学习-iOS/" itemprop="url">
-                  UIToolBar和UISearchBar学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-24T00:00:00+08:00" content="2015-10-24">
-              2015-10-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>UIToolBar(工具栏)是一个实心条栏，一般位于屏幕的顶部或者底部。UISearchBar(搜索条)主要实现搜索框效果，经常和UITableView结合使用，从大量的信息中搜索需要的内容</p>
-<p>#UIToolBar</p>
-<p>工具栏的实现和分段控件UISegmentControl类似，但是工具栏中的所有控件都是完全独立的。UIToolBar实例只是提供了一个选择器控件，让用户来选择执行某个功能</p>
-<blockquote>
-<p>创建UIToolBar实例,代码创建默认是没有UIBarButtonItem对象的，不过可以自己创建UIBarButtonItem实例添加到toolBar上，来实现一些功能</p>
-</blockquote>
-<pre><code>var toolBar = UIToolbar(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,65))
-self.view.addSubview(toolBar)
-</code></pre><blockquote>
-<p>常用的一些方法，代码如下</p>
-</blockquote>
-<pre><code>//设置工具栏样式，有黑色，黑色透明，黑色不透明，默认
-toolBar.barStyle = UIBarStyle.Default
-
-//设置工具栏按钮文字颜色
-toolBar.tintColor = UIColor.greenColor()
-
-//设置工具栏颜色
-toolBar.backgroundColor = UIColor.redColor()
-</code></pre><blockquote>
-<p>设置间距和按钮</p>
-</blockquote>
-<pre><code>//创建一个间距
-var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: &quot;barButtonItemClicked:&quot;, action: nil)
-
-//创建一个返回按钮
-var backItem = UIBarButtonItem(title: &quot;返回&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;backItemClicked:&quot;)
-
-//继续创建按钮
-var barBtnItem1 = UIBarButtonItem(title: &quot;功能1&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;barBtnItemClicked:&quot;)
-var barBtnItem2 = UIBarButtonItem(title: &quot;功能2&quot;, style: UIBarButtonItemStyle.Plain, target: self, action: &quot;barBtnItemClicked:&quot;)
-</code></pre><blockquote>
-<p>最后需要靠items来添加</p>
-</blockquote>
-<pre><code>toolBar.items = [flexibleSpace,backItem,flexibleSpace,barBtnItem1,flexibleSpace,barBtnItem2,flexibleSpace]
-</code></pre><p>#UISearchBar</p>
-<blockquote>
-<p>UISearchBar,创建</p>
-</blockquote>
-<pre><code>var searchBar = UISearchBar(frame: CGRectMake(0,100,UIScreen.mainScreen().bounds.size.width,45))
-
-self.view.addSubview(searchBar)
-</code></pre><blockquote>
-<p>常用的属性和方法</p>
-</blockquote>
-<pre><code>//设置UISearchBar样式
-searchBar.barStyle = UIBarStyle.Default
-
-//设置UISearchBar的代理
-searchBar.delegate = self
-
-//设置UISearchBar上面显示的文字
-//searchBar.text = &quot;这里可以选择显示文字&quot;
-
-//设置在顶部的单行文字，通常作为一个提示行
-//searchBar.prompt = &quot;这里也可以选择显示文字&quot;
-
-//搜索框占位符号，半透明的提示文字，输入搜索内容消失
-searchBar.placeholder = &quot;搜索框占位符号&quot;
-
-//控件右端是否显示一个书的按钮
-searchBar.showsBookmarkButton = false
-
-//控件右端是否显示cancel按钮
-searchBar.showsCancelButton = true
-
-//控件右端是否显示搜索结果按钮
-searchBar.showsSearchResultsButton = true
-
-//搜索结果按钮是否被选中
-searchBar.searchResultsButtonSelected = false
-
-//bar的颜色
-searchBar.tintColor = UIColor.redColor()
-
-//指定UISearchBar是否会有透视效果
-searchBar.translucent = true
-
-//设置在什么情况下大写
-searchBar.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
-
-//对于文本对象自动校正风格
-searchBar.autocorrectionType = UITextAutocorrectionType.Default
-
-//键盘样式
-searchBar.keyboardType = UIKeyboardType.Default
-
-//UISearchBar下部的选择栏，数组里面的内容是按钮的标题
-searchBar.scopeButtonTitles = [&quot;1&quot;,&quot;2&quot;]
-
-//UISearchBar下部的索引范围按钮的标题阵列，默认值为0，如果超出范围的忽视
-searchBar.selectedScopeButtonIndex = 2
-
-//控制UISearchBar下部的选择栏是否显示出来
-searchBar.showsScopeBar = true
-</code></pre><blockquote>
-<p>实现UISearchBarDelegate</p>
-</blockquote>
-<pre><code>//搜索框开始时是否能编辑
-func searchBarShouldBeginEditing(searchBar: UISearchBar) -&gt; Bool {
-    return true         //false不能编辑
-}
-
-//搜索框开始输入内容
-func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-    print(&quot;搜索框开始输入内容&quot;)
-}
-
-//搜索框结束时是否能编辑
-func searchBarShouldEndEditing(searchBar: UISearchBar) -&gt; Bool {
-    return true
-}
-
-//结束文本输入
-func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-    print(&quot;结束文本输入&quot;)
-}
-
-//根据searchText进行搜索
-func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-    print(searchText)
-}
-
-//文本改变时触发
-func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -&gt; Bool {
-    print(&quot;文本改变&quot;)
-    return true
-}
-
-//右侧类似书的按钮事件
-func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
-    print(&quot;右侧类似书的按钮被点击&quot;)
-}
-
-//右侧搜索按钮事件
-func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-    print(&quot;右侧搜索按钮被点击&quot;)
-}
-
-//右侧取消按钮事件
-func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-    print(&quot;取消按钮被点击&quot;)
-}
-
-//右侧结果列表按钮事件
-func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
-    print(&quot;右侧结果列表按钮事件&quot;)
-}
-
-//UISearchBar下面栏目选择改变触发事件
-func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-    print(&quot;UISearchBar下面栏目选择改变&quot;)
-}
-</code></pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/10/18/2015-10-18-UIWebView学习-iOS/" itemprop="url">
-                  UIWebView学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+08:00" content="2015-10-18">
-              2015-10-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>网页视图UIWebView可以让我们实现应用里内嵌浏览器,UIWebView除了可以显示网页外，还可以显示HTML语音，CSS图像，Word，Excel，Keynote，Pages，PDF，Powerpoint等类型文件，不要忘了.Delegate ＝ 某某某，就是因为这个，我调Bug调了一会</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>var aWebView=UIWebView(frame:UIScreen.mainScreen().applicationFrame)
-self.view.addSubview(aWebView)
-</code></pre><blockquote>
-<p>这里iOS9涉及到<a href="http://会报错，处理方法见UIImageView和UIImage的学习" target="_blank" rel="external">http://会报错，处理方法见UIImageView和UIImage的学习</a></p>
-</blockquote>
-<pre><code>//网页字符串
-let webString = &quot;http://stayreal.wang&quot;
-
-//通过string类型初始化NSURL对象
-let url = NSURL(string: webString)
-
-//通过NSURL对象初始化NSURLRequest
-let request = NSURLRequest(URL: url!)
-
-//WebView加载网页
-aWebView.loadRequest(request)
-</code></pre><blockquote>
-<p>网页很大，手机屏幕有限，我们只看了网页的一部分，可以通过scalesPageToFit 属性来设置网页压缩实现全屏显示,但是我试了一下没区别啊，我去</p>
-</blockquote>
-<pre><code>aWebView.scalesPageToFit = true
-</code></pre><blockquote>
-<p>除了加载网页内容，也可以使用HTML代码编写特殊的网页内容，WebView可以支持加载HTML语言，使用loadHTMLString方法，baseURL赋值一个css的路径，可以用网络路径使用网络上的css</p>
-</blockquote>
-<pre><code>aWebView.loadHTMLString(&quot;aaa&quot;, baseURL: nil)
-</code></pre><blockquote>
-<p>利用UIWebView加载本地文件，以Word文档为例，这个没有成功，原因时pathForResource没有找到文件</p>
-</blockquote>
-<pre><code>//定义一个常量路径
-let wordPath = NSBundle.mainBundle().pathForResource(&quot;实验报告格式&quot;, ofType: &quot;docx&quot;)
-//通过String类型初始化NSURL对象
-let wordURL = NSURL(string: wordPath!)
-//通过NSURL对象初始化NSURLRequest
-let wordRequest = NSURLRequest(URL: wordURL!)
-//加载
-aWebView.loadRequest(wordRequest)
-//这里搜不到这个文件，发现wordPath居然是nil
-</code></pre><blockquote>
-<p>网页视图加载内容时，是需要等待一段时间，在这个加载过程中为了让用户能够感受到变化，可以使用活动指示器UIActivityIndicatorView来体现真正加载。查看有没有加载成功，可以通过WebView的代理方法获得当前加载的情况</p>
-</blockquote>
-<pre><code>//创建活动指示器UIActivityIndicatorView
-var activityIndicator = UIActivityIndicatorView(frame: CGRectMake(UIScreen.mainScreen().applicationFrame.midX, UIScreen.mainScreen().applicationFrame.midY, 20, 20))
-activityIndicator.activityIndicatorViewStyle = .Gray
-aWebView.addSubview(activityIndicator)
-</code></pre><blockquote>
-<p>实现代理UIWebViewDelegate</p>
-</blockquote>
-<pre><code>//设置aWebView的代理,这个注意不要忘记
-aWebView.delegate = self
-
-
-//实现UIWebViewDelegate
-
-//开始加载
-func webViewDidStartLoad(webView: UIWebView) {
-    activityIndicator.startAnimating()
-    print(&quot;开始加载&quot;)
-}
-
-//加载成功结束
-func webViewDidFinishLoad(webView: UIWebView) {
-    activityIndicator.stopAnimating()
-    print(&quot;加载成功结束&quot;)
-}
-
-func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-    print(&quot;加载失败&quot;)
-}
-
-//当WebView显示内容后，浏览页面内容时可以通过触摸方式来触发一些事件，通过WebView代理方法可以知道触摸事件的类型
-func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool {
-    /*
-    UIWebViewNavigationType有以下几种类型
-    public enum UIWebViewNavigationType : Int {
-
-    case LinkClicked    //链接被触发
-    case FormSubmitted  //提交信息时触发
-    case BackForward    //页面前后跳转时触发
-    case Reload         //页面重新加载时触发
-    case FormResubmitted//重复提交时触发
-    case Other          //使用loadRequest方法读取内容时触发
-    }
-    */
-    return true
-}
-</code></pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 <a class="post-title-link" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/" itemprop="url">
                   UIDatePicker和UIPIckerView学习
                 </a>
@@ -853,6 +432,184 @@ print(pickerView.selectedRowInComponent(0))
     view.addSubview(label)
 
     return view
+}
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/10/18/2015-10-18-UIWebView学习-iOS/" itemprop="url">
+                  UIWebView学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+08:00" content="2015-10-18">
+              2015-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>网页视图UIWebView可以让我们实现应用里内嵌浏览器,UIWebView除了可以显示网页外，还可以显示HTML语音，CSS图像，Word，Excel，Keynote，Pages，PDF，Powerpoint等类型文件，不要忘了.Delegate ＝ 某某某，就是因为这个，我调Bug调了一会</p>
+<blockquote>
+<p>初始化</p>
+</blockquote>
+<pre><code>var aWebView=UIWebView(frame:UIScreen.mainScreen().applicationFrame)
+self.view.addSubview(aWebView)
+</code></pre><blockquote>
+<p>这里iOS9涉及到<a href="http://会报错，处理方法见UIImageView和UIImage的学习" target="_blank" rel="external">http://会报错，处理方法见UIImageView和UIImage的学习</a></p>
+</blockquote>
+<pre><code>//网页字符串
+let webString = &quot;http://stayreal.wang&quot;
+
+//通过string类型初始化NSURL对象
+let url = NSURL(string: webString)
+
+//通过NSURL对象初始化NSURLRequest
+let request = NSURLRequest(URL: url!)
+
+//WebView加载网页
+aWebView.loadRequest(request)
+</code></pre><blockquote>
+<p>网页很大，手机屏幕有限，我们只看了网页的一部分，可以通过scalesPageToFit 属性来设置网页压缩实现全屏显示,但是我试了一下没区别啊，我去</p>
+</blockquote>
+<pre><code>aWebView.scalesPageToFit = true
+</code></pre><blockquote>
+<p>除了加载网页内容，也可以使用HTML代码编写特殊的网页内容，WebView可以支持加载HTML语言，使用loadHTMLString方法，baseURL赋值一个css的路径，可以用网络路径使用网络上的css</p>
+</blockquote>
+<pre><code>aWebView.loadHTMLString(&quot;aaa&quot;, baseURL: nil)
+</code></pre><blockquote>
+<p>利用UIWebView加载本地文件，以Word文档为例，这个没有成功，原因时pathForResource没有找到文件</p>
+</blockquote>
+<pre><code>//定义一个常量路径
+let wordPath = NSBundle.mainBundle().pathForResource(&quot;实验报告格式&quot;, ofType: &quot;docx&quot;)
+//通过String类型初始化NSURL对象
+let wordURL = NSURL(string: wordPath!)
+//通过NSURL对象初始化NSURLRequest
+let wordRequest = NSURLRequest(URL: wordURL!)
+//加载
+aWebView.loadRequest(wordRequest)
+//这里搜不到这个文件，发现wordPath居然是nil
+</code></pre><blockquote>
+<p>网页视图加载内容时，是需要等待一段时间，在这个加载过程中为了让用户能够感受到变化，可以使用活动指示器UIActivityIndicatorView来体现真正加载。查看有没有加载成功，可以通过WebView的代理方法获得当前加载的情况</p>
+</blockquote>
+<pre><code>//创建活动指示器UIActivityIndicatorView
+var activityIndicator = UIActivityIndicatorView(frame: CGRectMake(UIScreen.mainScreen().applicationFrame.midX, UIScreen.mainScreen().applicationFrame.midY, 20, 20))
+activityIndicator.activityIndicatorViewStyle = .Gray
+aWebView.addSubview(activityIndicator)
+</code></pre><blockquote>
+<p>实现代理UIWebViewDelegate</p>
+</blockquote>
+<pre><code>//设置aWebView的代理,这个注意不要忘记
+aWebView.delegate = self
+
+
+//实现UIWebViewDelegate
+
+//开始加载
+func webViewDidStartLoad(webView: UIWebView) {
+    activityIndicator.startAnimating()
+    print(&quot;开始加载&quot;)
+}
+
+//加载成功结束
+func webViewDidFinishLoad(webView: UIWebView) {
+    activityIndicator.stopAnimating()
+    print(&quot;加载成功结束&quot;)
+}
+
+func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    print(&quot;加载失败&quot;)
+}
+
+//当WebView显示内容后，浏览页面内容时可以通过触摸方式来触发一些事件，通过WebView代理方法可以知道触摸事件的类型
+func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool {
+    /*
+    UIWebViewNavigationType有以下几种类型
+    public enum UIWebViewNavigationType : Int {
+
+    case LinkClicked    //链接被触发
+    case FormSubmitted  //提交信息时触发
+    case BackForward    //页面前后跳转时触发
+    case Reload         //页面重新加载时触发
+    case FormResubmitted//重复提交时触发
+    case Other          //使用loadRequest方法读取内容时触发
+    }
+    */
+    return true
 }
 </code></pre>
             
@@ -1615,7 +1372,7 @@ if let sValue = path
 <p>iOS9让所有的HTTP默认使用了HTTPS，原来的HTTP协议传输都改成TLS1.2协议进行传输。直接造成的情况就是App发请求的时候弹出网络无法连接。解决办法就是在项目的info.plist 文件里加上如下节点：</p>
 <p>NSAppTransportSecurity - NSAllowsArbitraryLoads</p>
 <p>这个子节点的意思是：是否允许任性的加载？！ 设为YES的话就将禁用了AppTransportSecurity转而使用用户自定义的设置，这个问题就解决了。具体见<a href="http://www.cnblogs.com/dsxniubility/p/4821184.html" target="_blank" rel="external">http://www.cnblogs.com/dsxniubility/p/4821184.html</a></p>
-<p><img src="http://cxray.github.io/public/images/UIImageView和UIImage的学习.png" alt="UIImageView和UIImage的学习"></p>
+<p><img src="http://cxray.github.io/images/UIImageView和UIImage的学习.png" alt="UIImageView和UIImage的学习"></p>
 <pre><code>//4.从网络地址获取图片
 //定义一个地址字符串常量
 let imageUrlString = &quot;http://www.stayreal.wang/images/intro.jpg&quot;
@@ -2410,6 +2167,198 @@ progressView.trackTintColor = UIColor.blueColor()
 
 
     
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/10/09/2015-10-09-UISegmentedControl学习-iOS/" itemprop="url">
+                  UISegmentedControl学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-09T00:00:00+08:00" content="2015-10-09">
+              2015-10-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>这个分段控件也不难，只是一些属性记记住就好了</p>
+<blockquote>
+<p>创建数组和segment</p>
+</blockquote>
+<pre><code>var appsArray = [&quot;StayReal&quot;,&quot;CXRay&quot;,&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;]
+var segment: UISegmentedControl!
+</code></pre><blockquote>
+<p>在ViewDidLoad中初始化，并添加到视图</p>
+</blockquote>
+<pre><code>//创建分段控件
+segment = UISegmentedControl(items: appsArray)
+//设置大小
+segment.frame = CGRectMake(20, 100, 320, 40)
+//添加到视图
+self.view.addSubview(segment)
+</code></pre><blockquote>
+<p>分段控件常用属性和方法</p>
+</blockquote>
+<pre><code>//默认选中下标为1的
+segment.selectedSegmentIndex = 1
+
+//获取选中的坐标,这个属性可读可写
+let index = segment.selectedSegmentIndex
+print(index)
+
+//获取segment的数量
+let count = segment.numberOfSegments
+print(count)
+
+//设置下标等于2的标题
+segment.setTitle(&quot;ddd&quot;, forSegmentAtIndex: 2)
+
+//设置下标等于3的图片，图片和标题不能共存，设置了图片之后，原来的标题就不显示了,可是这个图片有要求，这里有些问题
+segment.setImage(UIImage(named: &quot;1033382.png&quot;), forSegmentAtIndex: 3)
+
+//在坐标为2的位置，插入一个分段标题
+segment.insertSegmentWithTitle(&quot;insert&quot;, atIndex: 2, animated: true)
+//同理可插入图片
+segment.insertSegmentWithImage(image: UIImage?, atIndex: Int, animated: Bool)
+
+//获取某一下标下的标题
+let title = segment.titleForSegmentAtIndex(0)
+//获取某一下标下的图片
+let image = segment.imageForSegmentAtIndex(3)
+
+//momentary默认为NO，点击之后一直处于选中状态，除非点击其它分段，才恢复，当设置成YES时，点击选中，但一会儿就恢复到正常状态,一般设置成false吧，除非特殊要求
+segment.momentary = false
+
+//设置某一分段是否可用
+segment.setEnabled(false, forSegmentAtIndex: 1)
+
+//设置下标为0的segment的宽度
+segment.setWidth(100, forSegmentAtIndex: 0)
+
+//获取某一下标的segment的宽度,如果是默认会输出0.0
+let width = segment.widthForSegmentAtIndex(2)
+print(width)
+
+//设置内容偏移
+segment.setContentOffset(CGSizeMake(10, 10), forSegmentAtIndex: 2)
+
+//获取某一个下标segment的内容偏移
+let size = segment.contentOffsetForSegmentAtIndex(3)
+print(size)
+
+//是否根据segment的内容改变其宽度
+segment.apportionsSegmentWidthsByContent = true
+
+//设置标题颜色
+segment.tintColor = UIColor.redColor()
+
+//获取标题颜色,颜色可读可写
+let segmentColor = segment.tintColor
+print(segmentColor)
+
+//移除下标为2的segment
+segment.removeSegmentAtIndex(4, animated: true)
+
+//移除所有segment
+//segment.removeAllSegments()
+</code></pre><blockquote>
+<p>添加事件，当segment改变时，触发</p>
+</blockquote>
+<pre><code>segment.addTarget(self, action: &quot;segmentChange:&quot;, forControlEvents: UIControlEvents.ValueChanged)
+
+func segmentChange(sender: AnyObject)
+{
+    let segment: UISegmentedControl = sender as! UISegmentedControl
+    switch segment.selectedSegmentIndex
+    {
+    case 0:
+        print(&quot;0&quot;)
+    case 1:
+        print(&quot;1&quot;)
+    case 2:
+        print(&quot;2&quot;)
+    case 3:
+        print(&quot;3&quot;)
+    default:
+        print(&quot;defaule&quot;)
+    }
+}
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -2452,7 +2401,7 @@ progressView.trackTintColor = UIColor.blueColor()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

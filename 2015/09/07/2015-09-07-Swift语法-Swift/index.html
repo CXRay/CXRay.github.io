@@ -67,10 +67,10 @@
 
 
 空合并运算符是对以下代码">
-<meta property="og:image" content="http://cxray.github.io/public/images/setVennDiagram_2x.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/setEulerDiagram_2x.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/computedProperties_2x.png">
-<meta property="og:updated_time" content="2015-09-14T10:52:58.000Z">
+<meta property="og:image" content="http://cxray.github.io/images/setVennDiagram_2x.png">
+<meta property="og:image" content="http://cxray.github.io/images/setEulerDiagram_2x.png">
+<meta property="og:image" content="http://cxray.github.io/images/computedProperties_2x.png">
+<meta property="og:updated_time" content="2016-01-27T05:26:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift语法">
 <meta name="twitter:description" content="来源：http://wiki.jikexueyuan.com/project/swift/
@@ -369,7 +369,7 @@ print(&quot;\(mansionCount) mansion scenes; \(cellCount) cell scenes&quot;)
 // 打印输出 &quot;6 mansion scenes; 2 cell scenes&quot;
 </code></pre><p>###基本集合操作</p>
 <p>下面的插图描述了两个集合-a和b-以及通过阴影部分的区域显示集合各种操作的结果。</p>
-<p><img src="http://cxray.github.io/public/images/setVennDiagram_2x.png" alt="setVennDiagram"></p>
+<p><img src="http://cxray.github.io/images/setVennDiagram_2x.png" alt="setVennDiagram"></p>
 <ul>
 <li>使用intersect(:)方法根据两个集合中都包含的值创建的一个新的集合。</li>
 <li>使用exclusiveOr(:)方法根据值在一个集合中但不在两个集合中的值创建一个新的集合。</li>
@@ -390,7 +390,7 @@ oddDigits.exclusiveOr(singleDigitPrimeNumbers).sort()
 </ul>
 <p>集合成员关系和相等</p>
 <p>下面的插图描述了三个集合-a,b和c,以及通过悬浮区域表述集合间共享的元素。Set a是Setb的父集合，因为a包含了b中所有的元素，相反的，Set b是a的子集合，因为属于b的元素也被a包含。Set b和Set c彼此不关联，因为它们之间没有共同的元素。</p>
-<p><img src="http://cxray.github.io/public/images/setEulerDiagram_2x.png" alt="setEulerDiagram"></p>
+<p><img src="http://cxray.github.io/images/setEulerDiagram_2x.png" alt="setEulerDiagram"></p>
 <ul>
 <li>使用“是否等”运算符(==)来判断两个集合是否包含全部相同的值。</li>
 <li>使用isSubsetOf(_:)方法来判断一个集合中的值是否也被包含在另外一个集合中。</li>
@@ -545,7 +545,7 @@ print(&quot;square.origin is now at (\(square.origin.x), \    (square.origin.y))
 <p>上述例子中创建了一个名为square的Rect实例，初始值原点是(0, 0)，宽度高度都是10。如下图中蓝色正方形所示。</p>
 <p>square的center属性可以通过点运算符（square.center）来访问，这会调用该属性的 getter 来获取它的值。跟直接返回已经存在的值不同，getter 实际上通过计算然后返回一个新的Point来表示square的中心点。如代码所示，它正确返回了中心点(5, 5)。</p>
 <p>center属性之后被设置了一个新的值(15, 15)，表示向右上方移动正方形到如下图橙色正方形所示的位置。设置属性center的值会调用它的 setter 来修改属性origin的x和y的值，从而实现移动正方形到新的位置。</p>
-<p><img src="http://cxray.github.io/public/images/computedProperties_2x.png" alt="computedProperties_2x"></p>
+<p><img src="http://cxray.github.io/images/computedProperties_2x.png" alt="computedProperties_2x"></p>
 <p>###便捷 setter 声明</p>
 <p>如果计算属性的 setter 没有定义表示新值的参数名，则可以使用默认名称newValue。下面是使用了便捷 setter 声明的Rect结构体代码：</p>
 <pre><code>struct AlternativeRect {
@@ -738,7 +738,7 @@ stepCounter.totalSteps = 896
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
