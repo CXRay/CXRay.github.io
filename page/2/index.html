@@ -80,6 +80,24 @@
   </div>
 <![endif]-->
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_Hans/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 
 
@@ -126,16 +144,6 @@
               <i class="menu-item-icon fa fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
           </a>
         </li>
       
@@ -192,8 +200,8 @@
             
             
               
-                <a class="post-title-link" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/" itemprop="url">
-                  UIDatePicker和UIPIckerView学习
+                <a class="post-title-link" href="/2015/10/24/2015-10-24-UIToolBar和UISearchBar学习-iOS/" itemprop="url">
+                  UIToolBar和UISearchBar学习
                 </a>
               
             
@@ -203,8 +211,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+08:00" content="2015-10-18">
-              2015-10-18
+            <time itemprop="dateCreated" datetime="2015-10-24T00:00:00+08:00" content="2015-10-24">
+              2015-10-24
             </time>
           </span>
 
@@ -245,14 +253,13 @@
         
           <span itemprop="articleBody">
             
-            控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
-#UIDatePicker
-
-UIPickerView控件在给用户选择某些特定的
+            UIToolBar(工具栏)是一个实心条栏，一般位于屏幕的顶部或者底部。UISearchBar(搜索条)主要实现搜索框效果，经常和UITableView结合使用，从大量的信息中搜索需要的内容
+#UIToolBar
+工具栏的实现和分段控件UISegmentControl类似，但是工具栏中的所有控件都是
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/#more" rel="contents">
+            <a class="btn" href="/2015/10/24/2015-10-24-UIToolBar和UISearchBar学习-iOS/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -350,6 +357,104 @@ UIPickerView控件在给用户选择某些特定的
           </span>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/18/2015-10-18-UIWebView学习-iOS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/" itemprop="url">
+                  UIDatePicker和UIPIckerView学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-18T00:00:00+08:00" content="2015-10-18">
+              2015-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            控制器类UIDatePicker封装了UIPIckerView，但它是UIControl的子类，只用于接收日期，时间和持续时长的输入，日期选择器的各列会按照指定的风格进行自动配置，我们不必关系如何配置表盘这样的底层操作
+#UIDatePicker
+
+UIPickerView控件在给用户选择某些特定的
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/18/2015-10-18-UIDatePicker和UIPIckerView学习-iOS/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1068,106 +1173,6 @@ var activityView = UIActivityIndicatorView(frame: CGRectMake(100,
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/10/09/2015-10-09-UISegmentedControl学习-iOS/" itemprop="url">
-                  UISegmentedControl学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-09T00:00:00+08:00" content="2015-10-09">
-              2015-10-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            这个分段控件也不难，只是一些属性记记住就好了
-
-创建数组和segment
-
-var appsArray = [&quot;StayReal&quot;,&quot;CXRay&quot;,&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;]
-var seg
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/09/2015-10-09-UISegmentedControl学习-iOS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1210,16 +1215,16 @@ var seg
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -1251,6 +1256,12 @@ var seg
               <span class="links-of-author-item">
                 <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
                   <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/ray-41-75" target="_blank">
+                  <i class="fa fa-zhihu"></i> zhihu
                 </a>
               </span>
             

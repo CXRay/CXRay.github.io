@@ -84,6 +84,24 @@ UITableView显示列表数据，是通过代理实现">
   </div>
 <![endif]-->
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_Hans/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 
 
@@ -128,16 +146,6 @@ UITableView显示列表数据，是通过代理实现">
               <i class="menu-item-icon fa fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
           </a>
         </li>
       
@@ -673,16 +681,16 @@ class AppsModel: NSObject {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -714,6 +722,12 @@ class AppsModel: NSObject {
               <span class="links-of-author-item">
                 <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
                   <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/ray-41-75" target="_blank">
+                  <i class="fa fa-zhihu"></i> zhihu
                 </a>
               </span>
             

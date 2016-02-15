@@ -102,6 +102,24 @@ bool isEmptyS">
   </div>
 <![endif]-->
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_Hans/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 
 
@@ -146,16 +164,6 @@ bool isEmptyS">
               <i class="menu-item-icon fa fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
           </a>
         </li>
       
@@ -555,16 +563,16 @@ treePointer copy(treePointer tree);     //复制二叉树
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/21/2015-11-21-逆波兰式转换和计算-Swift/" rel="next" title="逆波兰式转换和计算">
-                <i class="fa fa-chevron-left"></i> 逆波兰式转换和计算
+              <a href="/2015/11/17/2015-11-17-Surge科学上网-iOS/" rel="next" title="Surge科学上网">
+                <i class="fa fa-chevron-left"></i> Surge科学上网
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/26/2015-12-26-You游校园导航项目总结-iOS/" rel="prev" title="关于You游服务外包项目的总结">
-                关于You游服务外包项目的总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/21/2015-11-21-逆波兰式转换和计算-Swift/" rel="prev" title="逆波兰式转换和计算">
+                逆波兰式转换和计算 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -630,16 +638,16 @@ treePointer copy(treePointer tree);     //复制二叉树
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -671,6 +679,12 @@ treePointer copy(treePointer tree);     //复制二叉树
               <span class="links-of-author-item">
                 <a href="https://www.instagram.com/ray_oooooo/" target="_blank">
                   <i class="fa fa-instagram"></i> instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/ray-41-75" target="_blank">
+                  <i class="fa fa-zhihu"></i> zhihu
                 </a>
               </span>
             
