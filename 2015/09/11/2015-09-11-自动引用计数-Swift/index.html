@@ -55,17 +55,17 @@ Swift 使用自动引用计数（ARC）机制来跟踪和管理你的应用程�
 <meta property="og:description" content="##转载自http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html
 ##这一部分难以理解
 Swift 使用自动引用计数（ARC）机制来跟踪和管理你的应用程序的内存。通常情况下，Swift 的内存管理机制会一直起着作用，你无须自己来考虑内存的管理。ARC 会在类的实例不再被使用时，自">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/1.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/2.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/3.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/4.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/5.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/6.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/7.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/8.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/9.png">
-<meta property="og:image" content="http://cxray.github.io/public/images/Automatic Reference Counting/10.png">
-<meta property="og:updated_time" content="2015-09-11T09:14:56.000Z">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/1.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/2.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/3.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/4.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/5.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/6.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/7.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/8.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/9.png">
+<meta property="og:image" content="http://rayooo.github.io/public/images/Automatic Reference Counting/10.png">
+<meta property="og:updated_time" content="2016-05-05T08:29:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自动引用计数(Automatic Reference Counting)">
 <meta name="twitter:description" content="##转载自http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html
@@ -346,18 +346,18 @@ var number73: Apartment?
 <pre><code>john = Person(name: &quot;John Appleseed&quot;)
 number73 = Apartment(number: 73)
 </code></pre><p>在两个实例被创建和赋值后，下图表现了强引用的关系。变量john现在有一个指向Person实例的强引用，而变量number73有一个指向Apartment实例的强引用：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/1.png" alt="1"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/1.png" alt="1"></p>
 <p>现在你能够将这两个实例关联在一起，这样人就能有公寓住了，而公寓也有了房客。注意感叹号是用来展开和访问可选变量john和number73中的实例，这样实例的属性才能被赋值：</p>
 <pre><code>john!.apartment = number73
 number73!.tenant = john
 </code></pre><p>在将两个实例联系在一起之后，强引用的关系如图所示：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/2.png" alt="2"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/2.png" alt="2"></p>
 <p>不幸的是，这两个实例关联后会产生一个循环强引用。Person实例现在有了一个指向Apartment实例的强引用，而Apartment实例也有了一个指向Person实例的强引用。因此，当你断开john和number73变量所持有的强引用时，引用计数并不会降为 0，实例也不会被 ARC 销毁：</p>
 <pre><code>john = nil
 number73 = nil
 </code></pre><p>注意，当你把这两个变量设为nil时，没有任何一个析构函数被调用。循环强引用会一直阻止Person和Apartment类实例的销毁，这就在你的应用程序中造成了内存泄漏。</p>
 <p>在你将john和number73赋值为nil后，强引用关系如下图：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/3.png" alt="3"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/3.png" alt="3"></p>
 <p>Person和Apartment实例之间的强引用关系保留了下来并且不会被断开。</p>
 <p>###解决实例之间的循环强引用</p>
 <p>Swift 提供了两种办法用来解决你在使用类的属性时所遇到的循环强引用问题：弱引用（weak reference）和无主引用（unowned reference）。</p>
@@ -392,14 +392,14 @@ number73 = Apartment(number: 73)
 john!.apartment = number73
 number73!.tenant = john
 </code></pre><p>现在，两个关联在一起的实例的引用关系如下图所示：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/4.png" alt="4"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/4.png" alt="4"></p>
 <p>Person实例依然保持对Apartment实例的强引用，但是Apartment实例只是对Person实例的弱引用。这意味着当你断开john变量所保持的强引用时，再也没有指向Person实例的强引用了：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/5.png" alt="5"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/5.png" alt="5"></p>
 <p>由于再也没有指向Person实例的强引用，该实例会被销毁：</p>
 <pre><code>john = nil
 // prints &quot;John Appleseed is being deinitialized&quot;
 </code></pre><p>唯一剩下的指向Apartment实例的强引用来自于变量number73。如果你断开这个强引用，再也没有指向Apartment实例的强引用了：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/6.png" alt="6"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/6.png" alt="6"></p>
 <p>由于再也没有指向Apartment实例的强引用，该实例也会被销毁：</p>
 <pre><code>number73 = nil
 // prints &quot;Apartment #73 is being deinitialized&quot;
@@ -440,10 +440,10 @@ class CreditCard {
 <pre><code>john = Customer(name: &quot;John Appleseed&quot;)
 john!.card = CreditCard(number: 1234_5678_9012_3456, customer: john!)
 </code></pre><p>在你关联两个实例后，它们的引用关系如下图所示：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/7.png" alt="7"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/7.png" alt="7"></p>
 <p>Customer实例持有对CreditCard实例的强引用，而CreditCard实例持有对Customer实例的无主引用。</p>
 <p>由于customer的无主引用，当你断开john变量持有的强引用时，再也没有指向Customer实例的强引用了：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/8.png" alt="8"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/8.png" alt="8"></p>
 <p>由于再也没有指向Customer实例的强引用，该实例被销毁了。其后，再也没有指向CreditCard实例的强引用，该实例也随之被销毁了：</p>
 <pre><code>john = nil
 // prints &quot;John Appleseed is being deinitialized&quot;
@@ -524,7 +524,7 @@ print(paragraph!.asHTML())
 </code></pre><p>注意:</p>
 <p>上面的paragraph变量定义为可选HTMLElement，因此我们可以赋值nil给它来演示循环强引用。</p>
 <p>不幸的是，上面写的HTMLElement类产生了类实例和asHTML默认值的闭包之间的循环强引用。循环强引用如下图所示：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/9.png" alt="9"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/9.png" alt="9"></p>
 <p>实例的asHTML属性持有闭包的强引用。但是，闭包在其闭包体内使用了self（引用了self.name和self.text），因此闭包捕获了self，这意味着闭包又反过来持有了HTMLElement实例的强引用。这样两个对象就产生了循环强引用。（更多关于闭包捕获值的信息，请参考值捕获）。</p>
 <p>注意:</p>
 <p>虽然闭包多次使用了self，它只捕获HTMLElement实例的一个强引用。</p>
@@ -583,7 +583,7 @@ print(paragraph!.asHTML())
 print(paragraph!.asHTML())
 // prints &quot;&lt;p&gt;hello, world&lt;/p&gt;&quot;
 </code></pre><p>使用捕获列表后引用关系如下图所示：</p>
-<p><img src="http://cxray.github.io/public/images/Automatic Reference Counting/10.png" alt="10"></p>
+<p><img src="http://rayooo.github.io/public/images/Automatic Reference Counting/10.png" alt="10"></p>
 <p>这一次，闭包以无主引用的形式捕获self，并不会持有HTMLElement实例的强引用。如果将paragraph赋值为nil，HTMLElement实例将会被销毁，并能看到它的析构函数打印出的消息。</p>
 <pre><code>paragraph = nil
 // prints &quot;p is being deinitialized&quot;
@@ -700,7 +700,7 @@ print(paragraph!.asHTML())
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/CXRay" target="_blank">
+                <a href="https://github.com/rayooo" target="_blank">
                   <i class="fa fa-github"></i> github
                 </a>
               </span>
