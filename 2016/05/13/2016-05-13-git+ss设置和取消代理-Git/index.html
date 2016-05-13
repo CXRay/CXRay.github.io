@@ -45,46 +45,31 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
-
-初始化
-
-//初始化，UISlider虽然设置了高度，但是将会被忽略
-var slider = UISlider(frame: CGRectMake(20, 100, 200, 60))
-
-//ViewDidLoad中，添加到视图
-self.view.addSubview(slider)
-
-滑块的最">
+<meta name="description" content="git+ss设置和取消代理设置
+git config –global http.proxy ‘socks5://127.0.0.1:1080’ 
+git config –global https.proxy ‘socks5://127.0.0.1:1080’
+取消
+git config –global –unset http.proxy
+git config –global –unset http">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UISlider学习">
-<meta property="og:url" content="http://cxray.github.io/2015/10/10/2015-10-10-UISlider学习-iOS/index.html">
+<meta property="og:title" content="git+ss设置和取消代理">
+<meta property="og:url" content="http://cxray.github.io/2016/05/13/2016-05-13-git+ss设置和取消代理-Git/index.html">
 <meta property="og:site_name" content="Ray">
-<meta property="og:description" content="UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
-
-初始化
-
-//初始化，UISlider虽然设置了高度，但是将会被忽略
-var slider = UISlider(frame: CGRectMake(20, 100, 200, 60))
-
-//ViewDidLoad中，添加到视图
-self.view.addSubview(slider)
-
-滑块的最">
-<meta property="og:updated_time" content="2015-10-11T08:13:32.000Z">
+<meta property="og:description" content="git+ss设置和取消代理设置
+git config –global http.proxy ‘socks5://127.0.0.1:1080’ 
+git config –global https.proxy ‘socks5://127.0.0.1:1080’
+取消
+git config –global –unset http.proxy
+git config –global –unset http">
+<meta property="og:updated_time" content="2016-05-13T12:21:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UISlider学习">
-<meta name="twitter:description" content="UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
-
-初始化
-
-//初始化，UISlider虽然设置了高度，但是将会被忽略
-var slider = UISlider(frame: CGRectMake(20, 100, 200, 60))
-
-//ViewDidLoad中，添加到视图
-self.view.addSubview(slider)
-
-滑块的最">
+<meta name="twitter:title" content="git+ss设置和取消代理">
+<meta name="twitter:description" content="git+ss设置和取消代理设置
+git config –global http.proxy ‘socks5://127.0.0.1:1080’ 
+git config –global https.proxy ‘socks5://127.0.0.1:1080’
+取消
+git config –global –unset http.proxy
+git config –global –unset http">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -96,7 +81,7 @@ self.view.addSubview(slider)
 
 
 
-  <title> UISlider学习 | Ray </title>
+  <title> git+ss设置和取消代理 | Ray </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +224,7 @@ self.view.addSubview(slider)
             
             
               
-                UISlider学习
+                git+ss设置和取消代理
               
             
           </h1>
@@ -248,8 +233,8 @@ self.view.addSubview(slider)
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-10T00:00:00+08:00" content="2015-10-10">
-              2015-10-10
+            <time itemprop="dateCreated" datetime="2016-05-13T00:00:00+08:00" content="2016-05-13">
+              2016-05-13
             </time>
           </span>
 
@@ -258,8 +243,8 @@ self.view.addSubview(slider)
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
                   </a>
                 </span>
 
@@ -287,76 +272,14 @@ self.view.addSubview(slider)
       
 
       
-        <span itemprop="articleBody"><p>UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少</p>
-<blockquote>
-<p>初始化</p>
-</blockquote>
-<pre><code>//初始化，UISlider虽然设置了高度，但是将会被忽略
-var slider = UISlider(frame: CGRectMake(20, 100, 200, 60))
-
-//ViewDidLoad中，添加到视图
-self.view.addSubview(slider)
-</code></pre><blockquote>
-<p>滑块的最大最小值，设定，获取当前值</p>
-</blockquote>
-<pre><code>//可以对滑块设置范围和默认值，如果没有设置，默认使用0.0和1.0之间的值
-//UISlider提供了两个属性，mininumValue和maxinumValue来设置范围，代码如下
-//设置最小值
-slider.minimumValue = 10
-//设置最大值
-slider.maximumValue = 80
-//设置默认值
-slider.value = 30
-
-//读取当前滑块控件的值
-let value = slider.value
-print(value)
-</code></pre><blockquote>
-<p>设置滑块左右图片和圆点的图片</p>
-</blockquote>
-<pre><code>//设置滑块右端图片,可以根据滑块的各种不同状态显示不同图像，下面是几个可用状态
-/*UIControlState.Normal
-UIControlState.Disabled
-UIControlState.Highlighted
-UIControlState.Reserved
-UIControlState.Selected*/
-
-slider.setMaximumTrackImage(UIImage(named: &quot;1127074.jpg&quot;), forState: UIControlState.Normal)
-
-//设置滑块左端图片
-slider.setMinimumTrackImage(UIImage(named: &quot;990589.jpg&quot;), forState: UIControlState.Normal)
-
-//设置滑块圆点的图片
-//slider.setThumbImage(image: UIImage?, forState: UIControlState)
-</code></pre><blockquote>
-<p>添加通知,这两个ValueChanged和TouchUpInside在这里差不多,要注意action那里方法名一定要加个:啊，不然会引发bug</p>
-</blockquote>
-<pre><code>//要想在滑块值改变时收到通知，可以用UIControl类的addTarget方法为UIControlEvents.ValueChanged事件添加一个动作
-slider.addTarget(self, action: &quot;sliderValueChange:&quot;
-,forControlEvents: UIControlEvents.ValueChanged)
-
-//滑块拖动后的事件
-slider.addTarget(self, action: &quot;sliderTouchUpInside:&quot;, forControlEvents: UIControlEvents.TouchUpInside)
-
-func sliderValueChange(sender: AnyObject)
-{
-    let newSlider = sender as! UISlider
-    let value = newSlider.value
-    print(value)
-}
-
-func sliderTouchUpInside(sender: AnyObject)
-{
-    let newSlider = sender as! UISlider
-    let value = newSlider.value
-    print(value)
-}
-</code></pre><blockquote>
-<p>不一直触发以上方法，放倒ViewDidLoad中</p>
-</blockquote>
-<pre><code>//在拖动时，上面方法一直在触发，如果想要滑块停止拖动才触发slierValueChange方法，我们只需要设置滑块的continuous属性值为false即可实现
-slider.continuous = false
-</code></pre></span>
+        <span itemprop="articleBody"><h2 id="git+ss_u8BBE_u7F6E_u548C_u53D6_u6D88_u4EE3_u7406"><a href="#git+ss_u8BBE_u7F6E_u548C_u53D6_u6D88_u4EE3_u7406" class="headerlink" title="git+ss设置和取消代理"></a>git+ss设置和取消代理</h2><p>设置</p>
+<p>git config –global http.proxy ‘socks5://127.0.0.1:1080’ </p>
+<p>git config –global https.proxy ‘socks5://127.0.0.1:1080’</p>
+<p>取消</p>
+<p>git config –global –unset http.proxy</p>
+<p>git config –global –unset https.proxy</p>
+<p>电信增加了出墙限制，移动和联通好像没电信限的那么厉害，当我发现我们无线全都是电信的时候，开始慌了，赶紧设个git的代理，妈蛋。</p>
+</span>
       
     </div>
 
@@ -367,17 +290,13 @@ slider.continuous = false
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/" rel="next" title="UIActivityIndicatorView & UIProgressView学习">
-                <i class="fa fa-chevron-left"></i> UIActivityIndicatorView & UIProgressView学习
+              <a href="/2016/03/02/2016-03-02-Mongoose学习-Node.js/" rel="next" title="Mongoose学习">
+                <i class="fa fa-chevron-left"></i> Mongoose学习
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/10/2015-10-10-UISwitch & UIStepper学习-iOS/" rel="prev" title="UISwitch & UIStepper学习">
-                UISwitch & UIStepper学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,7 +423,7 @@ slider.continuous = false
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git+ss_u8BBE_u7F6E_u548C_u53D6_u6D88_u4EE3_u7406"><span class="nav-number">1.</span> <span class="nav-text">git+ss设置和取消代理</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
