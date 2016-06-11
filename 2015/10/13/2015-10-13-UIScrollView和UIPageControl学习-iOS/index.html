@@ -32,8 +32,6 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
-    <meta name="description" content="Live For The Dream!" />
-
 
 
   <meta name="keywords" content="Hexo,next" />
@@ -49,7 +47,7 @@
 UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用addSubview方法它把所有的内容都添加到ScrollView，可以给滚动视图添加放置很多视图但问题是这样会造成严重的内存泄漏，所以在考虑用ScrollView时一定要考虑这个问题，当某些视图滚动出可见范围时，应该进行内存回收或者重利用UIScrollView是UITableView和UITextV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIScrollView和UIPageControl学习">
-<meta property="og:url" content="http://cxray.github.io/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/index.html">
 <meta property="og:site_name" content="Ray">
 <meta property="og:description" content="#UIScrollView
 UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用addSubview方法它把所有的内容都添加到ScrollView，可以给滚动视图添加放置很多视图但问题是这样会造成严重的内存泄漏，所以在考虑用ScrollView时一定要考虑这个问题，当某些视图滚动出可见范围时，应该进行内存回收或者重利用UIScrollView是UITableView和UITextV">
@@ -122,7 +120,7 @@ UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用ad
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">subtitle</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -520,21 +518,21 @@ func pageTurn(sender:AnyObject)
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Ray" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Ray</p>
         </div>
-        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -551,26 +549,6 @@ func pageTurn(sender:AnyObject)
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/rayooo" target="_blank">
-                  <i class="fa fa-github"></i> github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/1795459455/" target="_blank">
-                  <i class="fa fa-weibo"></i> weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/ray-41-75" target="_blank">
-                  <i class="fa fa-zhihu"></i> zhihu
-                </a>
-              </span>
-            
           
         </div>
 
@@ -606,7 +584,7 @@ func pageTurn(sender:AnyObject)
     <footer id="footer" class="footer">
       <div class="footer-inner"> <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>

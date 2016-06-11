@@ -32,8 +32,6 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
-    <meta name="description" content="Live For The Dream!" />
-
 
 
   <meta name="keywords" content="Hexo,next" />
@@ -49,7 +47,7 @@
 12345678var express = require(&apos;express&apos;);var app = express(); app.get(&quot;*&quot;, function(req, res) &amp;#123;    console.log(req.query.参数名);    res.s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express框架学习">
-<meta property="og:url" content="http://cxray.github.io/2016/03/01/2016-03-01-Express框架学习-Node.js/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/03/01/2016-03-01-Express框架学习-Node.js/index.html">
 <meta property="og:site_name" content="Ray">
 <meta property="og:description" content="query基本用法query是一个可获取客户端get请求路径参数的对象属性，包含着被解析过的请求参数对象，默认为{}。
 12345678var express = require(&apos;express&apos;);var app = express(); app.get(&quot;*&quot;, function(req, res) &amp;#123;    console.log(req.query.参数名);    res.s">
@@ -122,7 +120,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">subtitle</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -260,7 +258,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="query_u57FA_u672C_u7528_u6CD5"><a href="#query_u57FA_u672C_u7528_u6CD5" class="headerlink" title="query基本用法"></a>query基本用法</h2><p>query是一个可获取客户端get请求路径参数的对象属性，包含着被解析过的请求参数对象，默认为{}。</p>
+        <span itemprop="articleBody"><h2 id="query基本用法"><a href="#query基本用法" class="headerlink" title="query基本用法"></a>query基本用法</h2><p>query是一个可获取客户端get请求路径参数的对象属性，包含着被解析过的请求参数对象，默认为{}。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">"*"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.query.参数名);</span><br><span class="line">    res.send(<span class="string">"测试query属性!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
 <p>通过req.query获取get请求路径的对象参数值。</p>
 <p>格式：req.query.参数名；请求路径如下示例：</p>
@@ -272,7 +270,7 @@
 req.query.shoe.color  // &quot;blue&quot;
 
 req.query.shoe.type  // &quot;converse&quot;
-</code></pre><h2 id="param_u57FA_u672C_u7528_u6CD5"><a href="#param_u57FA_u672C_u7528_u6CD5" class="headerlink" title="param基本用法"></a>param基本用法</h2><p>和属性query一样，通过req.param我们也可以获取被解析过的请求参数对象的值。</p>
+</code></pre><h2 id="param基本用法"><a href="#param基本用法" class="headerlink" title="param基本用法"></a>param基本用法</h2><p>和属性query一样，通过req.param我们也可以获取被解析过的请求参数对象的值。</p>
 <p>格式：req.param(“参数名”)；请求路径如下示例：</p>
 <p>例1： 获取请求根路径的参数值，如/?n=Lenka，方法如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.param(<span class="string">"n"</span>)); <span class="comment">//Lenka</span></span><br><span class="line">    res.send(<span class="string">"使用req.param属性获取请求根路径的参数对象值!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
@@ -280,7 +278,7 @@ req.query.shoe.type  // &quot;converse&quot;
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/user/:name/"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.param(<span class="string">"name"</span>)); <span class="comment">//mike</span></span><br><span class="line">    res.send(<span class="string">"使用req.param属性获取具有路由规则的参数对象值!"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>PS：所谓“路由”，就是指为不同的访问路径，指定不同的处理方法。</p>
 <p>看了上面的示例，试一试使用req.param属性解析一个请求路径对象，并获取请求参数值。</p>
-<h2 id="params_u57FA_u672C_u7528_u6CD5"><a href="#params_u57FA_u672C_u7528_u6CD5" class="headerlink" title="params基本用法"></a>params基本用法</h2><p>和param相似，但params是一个可以解析包含着有复杂命名路由规则的请求对象的属性。</p>
+<h2 id="params基本用法"><a href="#params基本用法" class="headerlink" title="params基本用法"></a>params基本用法</h2><p>和param相似，但params是一个可以解析包含着有复杂命名路由规则的请求对象的属性。</p>
 <p>格式：req.params.参数名；</p>
 <p>例1. 如上课时请求根路径的例子，我们就可以这样获取，如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">"/user/:name/"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.params.name); <span class="comment">//mike</span></span><br><span class="line">    res.send(<span class="string">"使用req.params属性获取具有路由规则的参数对象值!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
@@ -290,7 +288,7 @@ req.query.shoe.type  // &quot;converse&quot;
     console.log(req.params.id); //&quot;123&quot;
     res.send(&quot;使用req.params属性复杂路由规则的参数对象值!&quot;);
 });
-</code></pre><h2 id="post_u8BF7_u6C42_u8DEF_u5F84_u540D_u79F0"><a href="#post_u8BF7_u6C42_u8DEF_u5F84_u540D_u79F0" class="headerlink" title="post请求路径名称"></a>post请求路径名称</h2><p>例如<a href="http://localhost:3000/users/register?mobile=12533671&amp;password=12345678" target="_blank" rel="external">http://localhost:3000/users/register?mobile=12533671&amp;password=12345678</a><br>在路由中这么获得</p>
+</code></pre><h2 id="post请求路径名称"><a href="#post请求路径名称" class="headerlink" title="post请求路径名称"></a>post请求路径名称</h2><p>例如<a href="http://localhost:3000/users/register?mobile=12533671&amp;password=12345678" target="_blank" rel="external">http://localhost:3000/users/register?mobile=12533671&amp;password=12345678</a><br>在路由中这么获得</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">router.post(<span class="string">"/register"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req,res,next</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> restResult = <span class="keyword">new</span> RestResult();</span><br><span class="line">    <span class="keyword">var</span> mobile = req.body.mobile;</span><br><span class="line">    <span class="keyword">var</span> password = req.body.password;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//findOne方法,第一个参数数条件,第二个参数是字段投影,第三那个参数是回调函数</span></span><br><span class="line">    UserEntity.findOne(&#123;mobile:mobile&#125;, <span class="string">"_id"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, user</span>)</span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err)&#123;<span class="comment">//查询异常</span></span><br><span class="line">            restResult.errorCode = restResult.SERVER_EXCEPTION_ERROR_CODE;</span><br><span class="line">            restResult.errorReason = <span class="string">"服务器异常"</span>;</span><br><span class="line">            res.send(restResult);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (user)<span class="comment">//手机号已注册</span></span><br><span class="line">        &#123;</span><br><span class="line">            restResult.errorCode = restResult.BUSINESS_ERROR_CODE;</span><br><span class="line">            restResult.errorReason = <span class="string">"手机号已注册"</span>;</span><br><span class="line">            res.send(restResult);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> registerUser = <span class="keyword">new</span> UserEntity(&#123;mobile:mobile,password:password&#125;);</span><br><span class="line">        <span class="comment">//调用实体的实例保存方法</span></span><br><span class="line">        registerUser.save(<span class="function"><span class="keyword">function</span> (<span class="params">err, row</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err)&#123;</span><br><span class="line">                restResult.errorCode = restResult.SERVER_EXCEPTION_ERROR_CODE;</span><br><span class="line">                restResult.errorReason = <span class="string">"服务器异常"</span>;</span><br><span class="line">                res.send(restResult);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            res.send(restResult);<span class="comment">//返回成功结果</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></span>
       
     </div>
@@ -370,21 +368,21 @@ req.query.shoe.type  // &quot;converse&quot;
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/headImage.JPG" alt="Ray" itemprop="image"/>
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Ray" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Ray</p>
         </div>
-        <p class="site-description motion-element" itemprop="description">Live For The Dream!</p>
+        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -401,26 +399,6 @@ req.query.shoe.type  // &quot;converse&quot;
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/rayooo" target="_blank">
-                  <i class="fa fa-github"></i> github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/1795459455/" target="_blank">
-                  <i class="fa fa-weibo"></i> weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/ray-41-75" target="_blank">
-                  <i class="fa fa-zhihu"></i> zhihu
-                </a>
-              </span>
-            
           
         </div>
 
@@ -439,7 +417,7 @@ req.query.shoe.type  // &quot;converse&quot;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#query_u57FA_u672C_u7528_u6CD5"><span class="nav-number">1.</span> <span class="nav-text">query基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#param_u57FA_u672C_u7528_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">param基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#params_u57FA_u672C_u7528_u6CD5"><span class="nav-number">3.</span> <span class="nav-text">params基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#post_u8BF7_u6C42_u8DEF_u5F84_u540D_u79F0"><span class="nav-number">4.</span> <span class="nav-text">post请求路径名称</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#query基本用法"><span class="nav-number">1.</span> <span class="nav-text">query基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#param基本用法"><span class="nav-number">2.</span> <span class="nav-text">param基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#params基本用法"><span class="nav-number">3.</span> <span class="nav-text">params基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#post请求路径名称"><span class="nav-number">4.</span> <span class="nav-text">post请求路径名称</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -456,7 +434,7 @@ req.query.shoe.type  // &quot;converse&quot;
     <footer id="footer" class="footer">
       <div class="footer-inner"> <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>

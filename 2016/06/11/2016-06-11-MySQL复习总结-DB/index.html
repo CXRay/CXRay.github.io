@@ -1,0 +1,859 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="超码是一个或多个属性的集合,这些属性的组合可以使我们在一个实体集中唯一的标识一个实体。例如：在学生实体集中，学号属性足以将不同的学生实体区分开来，因此，学号是一个超码；类似的，学号和姓名的组合属性也能将不同的学生区别开来，也是实体集学生的一个超码。同样，在银行管理系统中，账号是一个超码，因为只要一个账号就可以将不同的客户区别开来；账号与客户名的组合也能区别不同的实体，也是一个超码。但是，在学生实体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL复习总结">
+<meta property="og:url" content="http://yoursite.com/2016/06/11/2016-06-11-MySQL复习总结-DB/index.html">
+<meta property="og:site_name" content="Ray">
+<meta property="og:description" content="超码是一个或多个属性的集合,这些属性的组合可以使我们在一个实体集中唯一的标识一个实体。例如：在学生实体集中，学号属性足以将不同的学生实体区分开来，因此，学号是一个超码；类似的，学号和姓名的组合属性也能将不同的学生区别开来，也是实体集学生的一个超码。同样，在银行管理系统中，账号是一个超码，因为只要一个账号就可以将不同的客户区别开来；账号与客户名的组合也能区别不同的实体，也是一个超码。但是，在学生实体">
+<meta property="og:updated_time" content="2016-06-11T09:08:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL复习总结">
+<meta name="twitter:description" content="超码是一个或多个属性的集合,这些属性的组合可以使我们在一个实体集中唯一的标识一个实体。例如：在学生实体集中，学号属性足以将不同的学生实体区分开来，因此，学号是一个超码；类似的，学号和姓名的组合属性也能将不同的学生区别开来，也是实体集学生的一个超码。同样，在银行管理系统中，账号是一个超码，因为只要一个账号就可以将不同的客户区别开来；账号与客户名的组合也能区别不同的实体，也是一个超码。但是，在学生实体">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> MySQL复习总结 | Ray </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_Hans/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ray</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL复习总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-11T00:00:00+08:00" content="2016-06-11">
+              2016-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DB/" itemprop="url" rel="index">
+                    <span itemprop="name">DB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="超码"><a href="#超码" class="headerlink" title="超码"></a>超码</h2><p>是一个或多个属性的集合,这些属性的组合可以使我们在一个实体集中唯一的标识一个实体。<br>例如：在学生实体集中，学号属性足以将不同的学生实体区分开来，因此，学号是一个超码；类似的，学号和姓名的组合属性也能将不同的学生区别开来，也是实体集学生的一个超码。同样，在银行管理系统中，账号是一个超码，因为只要一个账号就可以将不同的客户区别开来；账号与客户名的组合也能区别不同的实体，也是一个超码。但是，在学生实体集中，姓名就不是一个超码，因为不同的学生有可能有相同的姓名。同样，在银行账务系统中，客户名也不是一个超码，因为不同的人有可能有相同的客户名。</p>
+<h2 id="候选码"><a href="#候选码" class="headerlink" title="候选码"></a>候选码</h2><p>若关系中的一个属性或属性组的值能够唯一地标识一个元组，且他的真子集不能唯一的标识一个元组，则称这个属性或属性组做候选码。<br>例如：在学生实体中，“学号”是能唯一的区分学生实体的，同时又假设“姓名”、“班级”的属性组合足以区分学生实体，那么{学号}和{姓名，班级}都是（超级码）候选码。</p>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><h2 id="sql例子"><a href="#sql例子" class="headerlink" title="sql例子"></a>sql例子</h2><p>创建表，外键，check</p>
+<pre><code>CREATE TABLE news
+(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  isDeleted SMALLINT DEFAULT 0,
+  createTime DATETIME,
+  FOREIGN KEY (userId) REFERENCES user(id),
+  CHECK (title IN (“aaa”,”bbb”,”ccc”))
+);
+
+CREATE INDEX userNameIndex ON user(userName);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES(&quot;1&quot;,&quot;1&quot;,&quot;image/headImage.png&quot;,0,&quot;Ray&quot;,&quot;2016-05-16 20:02:05”,&quot;1050123&quot;,&quot;asd&quot;,1,0,1);
+
+
+drop table r         删表
+delete from r     删除所有表中的内容
+
+
+alter add命令格式：alter table 表名 add字段 类型 其他;
+</code></pre><p>例如，在表MyClass中添加了一个字段passtest，类型为int(4)，默认值为0：</p>
+<pre><code>alter table MyClass add passtest int(4) default ‘0&apos;;
+</code></pre><p>加索引</p>
+<pre><code>alter table 表名 add index 索引名 (字段名1[，字段名2 …]);
+alter table employee add index emp_name (name);
+</code></pre><p>加主关键字的索引</p>
+<pre><code>alter table 表名 add primary key (字段名);
+alter table employee add primary key(id);
+</code></pre><p>加唯一限制条件的索引</p>
+<pre><code>alter table 表名 add unique 索引名 (字段名);
+alter table employee add unique emp_name2(cardnumber);
+</code></pre><p>删除某个索引</p>
+<pre><code>alter table 表名 drop index 索引名;
+alter table employee drop index emp_name;
+</code></pre><p>修改原字段名称及类型</p>
+<pre><code>ALTER TABLE table_name CHANGE old_field_name new_field_name field_type;
+</code></pre><p>删除字段</p>
+<pre><code>ALTER TABLE table_name DROP field_name;
+</code></pre><p>强行删除重复</p>
+<pre><code>select distinct dept_name from instructor
+</code></pre><p>all来显示指明不去除重复</p>
+<pre><code>select all dept_name from instructor 
+join on 的例子,desc asc例子
+select order_date, order_amount
+from customers  join  orders  on  customers.customer_id = orders.customer_id
+where customer_id = 3
+order by  xxx desc, xx asc
+</code></pre><p>group  by例子，聚集函数例子</p>
+<pre><code>select avg(salary),count(id),sum(grade),max(a)
+from xxx
+group by xxx
+having avg(xx) &gt; 10
+</code></pre><p>用in</p>
+<pre><code>SELECT *
+FROM contacts
+WHERE last_name IN (&apos;Johnson&apos;, &apos;Anderson&apos;, ‘Smith&apos;); 也可以套select语句
+</code></pre><p>some和all的例子</p>
+<pre><code>select name 
+from instructor
+where salary &gt; some (
+            select salary
+            from instructor
+            where xxx
+)
+</code></pre><p>删除</p>
+<pre><code>delete from table where P;
+</code></pre><p>更新</p>
+<pre><code>update instructor set salary = salary +100 where xxx;
+</code></pre><p>创建视图</p>
+<pre><code>create view xxx as
+select * from student;
+</code></pre><p>授权，grant</p>
+<p>收回权限，revoke</p>
+<p>角色，role</p>
+<p>函数创建</p>
+<p>触发器</p>
+<pre><code>CREATE TRIGGER trigger_name
+trigger_time
+trigger_event ON tbl_name
+FOR EACH ROW
+trigger_stmt
+</code></pre><p>trigger_name：标识触发器名称，用户自行指定；</p>
+<p>trigger_time：标识触发时机，取值为 BEFORE 或 AFTER；</p>
+<p>trigger_event：标识触发事件，取值为 INSERT、UPDATE 或 DELETE；</p>
+<p>tbl_name：标识建立触发器的表名，即在哪张表上建立触发器；</p>
+<p>trigger_stmt：触发器程序体，可以是一句SQL语句，或者用 BEGIN 和 END 包含的多条语句。</p>
+<p>由此可见，可以建立6种触发器，即：BEFORE INSERT、BEFORE UPDATE、BEFORE DELETE、AFTER INSERT、AFTER UPDATE、AFTER DELETE。</p>
+<p>trigger_event 详解</p>
+<p>MySQL 除了对 INSERT、UPDATE、DELETE 基本操作进行定义外，还定义了 LOAD DATA 和 REPLACE 语句，这两种语句也能引起上述6中类型的触发器的触发。</p>
+<p>LOAD DATA 语句用于将一个文件装入到一个数据表中，相当与一系列的 INSERT 操作。</p>
+<p>REPLACE 语句一般来说和 INSERT 语句很像，只是在表中有 primary key 或 unique 索引时，如果插入的数据和原来 primary key 或 unique 索引一致时，会先删除原来的数据，然后增加一条新数据，也就是说，一条 REPLACE 语句有时候等价于一条。</p>
+<p>INSERT 语句，有时候等价于一条 DELETE 语句加上一条 INSERT 语句。</p>
+<p>INSERT 型触发器：插入某一行时激活触发器，可能通过 INSERT、LOAD DATA、REPLACE 语句触发；</p>
+<p>UPDATE 型触发器：更改某一行时激活触发器，可能通过 UPDATE 语句触发；</p>
+<p>DELETE 型触发器：删除某一行时激活触发器，可能通过 DELETE、REPLACE 语句触发。</p>
+<h2 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h2><p>现实中可区别与其他对象的事物。实体可以是任何实际或抽象的。</p>
+<p>实体集是相同类型的实体的集合。</p>
+<h2 id="弱实体"><a href="#弱实体" class="headerlink" title="弱实体"></a>弱实体</h2><p>定义：有些实体集的所有属性都不足以形成主码，这样的实体集称为弱实体集。与此相对，其属性可以形成主码的实体集称为强实体集。</p>
+<p>通俗的说：有些实体集的所有属性都不足以形成主码，这样的实体集称为弱实体集。与此相对，其属性可以形成主码的实体集称为强实体集</p>
+<p><a href="http://blog.csdn.net/u013067756/article/details/49046389" target="_blank" rel="external">详细链接：http://blog.csdn.net/u013067756/article/details/49046389</a></p>
+<h2 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h2><p>第一范式（1NF）是指数据库表的每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性。</p>
+<p>第一范式包括下列指导原则：</p>
+<ul>
+<li>数据组的每个属性只能包含一个值；</li>
+<li>关系中的每个属性必须包含相同数量的值；</li>
+<li>关系中的每个属性一定不能相同。</li>
+</ul>
+<p>第一范式是对关系模式的最起码的要求。不满足第一范式的数据库模式不能称为关系数据库。<br>例：如职工号，姓名，电话号码组成一个表（一个人可能有一个办公室电话 和一个家里电话号码） 规范成为1NF有三种方法：</p>
+<ol>
+<li>是重复存储职工号和姓名。这样，关键字只能是电话号码。</li>
+<li>是职工号为关键字，电话号码分为单位电话和住宅电话两个属性</li>
+<li>是职工号为关键字，但强制每条记录只能有一个电话号码。</li>
+</ol>
+<p>以上三个方法，第一种方法最不可取，按实际情况选取后两种情况。</p>
+<h2 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h2><p>它的规则是要求数据表里的所有数据都要和该数据表的主键有完全依赖关系；如果有哪些数据只和主键的一部份有关的话，它就不符合第二范式。同时可以得出：如果一个数据表的主键只有单一一个字段的话，它就一定符合第二范式(前提是该数据表符合第一范式)。</p>
+<p>不符合第二范式的例子</p>
+<table>
+<thead>
+<tr>
+<th>货物类型</th>
+<th>货物ID</th>
+<th>货物名称</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>瓷碗</td>
+<td>1</td>
+<td>白色瓷碗</td>
+<td>易碎品</td>
+</tr>
+<tr>
+<td>瓷碗</td>
+<td>2</td>
+<td>青花瓷碗</td>
+<td>易碎品</td>
+</tr>
+<tr>
+<td>瓷碗</td>
+<td>3</td>
+<td>雕花瓷碗</td>
+<td>易碎品</td>
+</tr>
+<tr>
+<td>三合板</td>
+<td>1</td>
+<td>普通三合板</td>
+<td>易燃物品，注意防火</td>
+</tr>
+</tbody>
+</table>
+<p>在该表中有两个主键，即（货物类型，货物ID），货物名称字段完全依赖于这两个主键，换句话说，货物的名称完全是取决于这两个主键的值的。但”注意事项“这一列，仅依赖于一个主键”货物类型“。简单地说，第二范式要求每个非键属性完全依赖于主键。</p>
+<p>那么，既然表中存在一个对主键不是完全依赖的字段，那么我们就可以确定，该表不符合第二范式。<br>符合第二范式的例子</p>
+<table>
+<thead>
+<tr>
+<th>货物类型</th>
+<th>货物ID</th>
+<th>货物名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>瓷碗</td>
+<td>1</td>
+<td>白色瓷碗</td>
+</tr>
+<tr>
+<td>瓷碗</td>
+<td>2</td>
+<td>青花瓷碗</td>
+</tr>
+<tr>
+<td>瓷碗</td>
+<td>3</td>
+<td>雕花瓷碗</td>
+</tr>
+<tr>
+<td>三合板</td>
+<td>1</td>
+<td>普通三合板</td>
+</tr>
+</tbody>
+</table>
+<p>在该表中的主键依然是（货物类型、货物ID），非主键字段“货物名称”，完全依赖于这两个主键，那么我们就可以说，该表是符合数据库第二范式的。</p>
+<h2 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h2><p>每个非关键字列都独立于其他非关键字列，并依赖于关键字，第三范式指数据库中不能存在传递函数依赖关系。</p>
+<p>例：如S1（SNO，SNAME，DNO，DNAME，LOCATION） 各属性分别代表学号，姓名，所在系，系名称，系地址。</p>
+<p>关键字SNO决定各个属性。由于是单个关键字，没有部分依赖的问题，肯定是2NF。但这关系肯定有大量的冗余，有关学生所在的几个属性DNO，DNAME，LOCATION将重复存储，插入，删除和修改时也将产生类似以上例的情况。</p>
+<p>原因：关系中存在传递依赖造成的。即SNO -&gt; DNO。 而DNO -&gt; SNO却不存在，DNO -&gt; LOCATION, 因此关键字 SNO 对 LOCATION 函数决定是通过传递依赖 DNO -&gt; LOCATION 实现的。也就是说，SNO不直接决定非主属性LOCATION。</p>
+<p>解决目地：每个关系模式中不能留有传递依赖。</p>
+<p>解决方法：分为两个关系 S（SNO，SNAME，DNO），D（DNO，DNAME，LOCATION）</p>
+<p>注意：关系S中不能没有外关键字DNO。否则两个关系之间失去联系。</p>
+<p>将第一范式，第二范式化为第三范式的步骤：</p>
+<ol>
+<li>求出R的最小函数依赖集Fmin</li>
+<li>找出不在Fmin中出现的属性，并将这些属性从R中去掉，构成一个关系模式</li>
+<li>若Fmin中有一个函数依赖涉及R的全部属性，则R不能分解</li>
+<li>否则，若Fmin中有X-&gt;A,则分解应包含{XA};若有X-&gt;A1,X-&gt;A2….X-&gt;An均属于Fmin，则分解应包含{XA1A2…An}</li>
+</ol>
+<h2 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h2><p>BCNF：符合3NF，并且，主属性不依赖于主属性。</p>
+<p>若关系模式属于第二范式，且每个属性都不传递依赖于键码，则R属于BC范式。</p>
+<p>通常BC范式的条件有多种等价的表述：每个非平凡依赖的左边必须包含键码；每个决定因素必须包含键码。</p>
+<p>BC范式既检查非主属性，又检查主属性。当只检查非主属性时，就成了第三范式。满足BC范式的关系都必然满足第三范式。</p>
+<p>还可以这么说：若一个关系达到了第三范式，并且它只有一个候选码，或者它的每个候选码都是单属性，则该关系自然达到BC范式。</p>
+<p>关于范式的博客<br><a href="http://josh-persistence.iteye.com/blog/2200644" target="_blank" rel="external">http://josh-persistence.iteye.com/blog/2200644</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/2016-05-13-git+ss设置和取消代理-Git/" rel="next" title="git+ss设置和取消代理">
+                <i class="fa fa-chevron-left"></i> git+ss设置和取消代理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Ray" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Ray</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#超码"><span class="nav-number">1.</span> <span class="nav-text">超码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#候选码"><span class="nav-number">2.</span> <span class="nav-text">候选码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系代数"><span class="nav-number">3.</span> <span class="nav-text">关系代数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql例子"><span class="nav-number">4.</span> <span class="nav-text">sql例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体"><span class="nav-number">5.</span> <span class="nav-text">实体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱实体"><span class="nav-number">6.</span> <span class="nav-text">弱实体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一范式"><span class="nav-number">7.</span> <span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二范式"><span class="nav-number">8.</span> <span class="nav-text">第二范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三范式"><span class="nav-number">9.</span> <span class="nav-text">第三范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BC范式"><span class="nav-number">10.</span> <span class="nav-text">BC范式</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
