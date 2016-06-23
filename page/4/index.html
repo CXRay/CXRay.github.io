@@ -1,1358 +1,672 @@
-<!doctype html>
-<html class="theme-next use-motion theme-next-mist">
+<!DOCTYPE HTML>
+<html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>page</title>
+  <meta name="author" content="Ray">
+   <meta name="description" content="Blog">
   
 
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Ray"/>
+ <meta property="og:image" content="undefined"/>
   
-
-
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
-
-
-
-
-  <meta name="keywords" content="Hexo,next" />
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ray">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
-<meta property="og:site_name" content="Ray">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ray">
-<meta name="twitter:description">
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'post'
-  };
-</script>
-
-
-
-  <title> Ray </title>
+  <link rel="alternate" href="/atom.xml" title="Ray" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;Ray
+      </div>
+    </div>
+    <div class="container">
+      <nav class="navigator"><nav class="navbar navbar-default navbar-fixed-top">
+  <div class="nav-container">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_Hans/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-
-
-
-
-
-  <div class="container one-column 
-   page-home 
-">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Ray</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
 
   
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+  <ul class="nav navbar-nav navbar-left">
+    <li class="navbar-header">
+      <a href="/" class="navbar-brand">Ray</a>
+    </li>
+    <li class="dropdown">
+      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-tags fa-lg"></i>
+      </span></a>
+      <ul class="dropdown-content">
 
-      
-      
+          
+           <li><a href="/categories/瞎扯/">瞎扯</a></li><li><a href="/categories/iOS/">iOS</a></li><li><a href="/categories/网页设计/">网页设计</a></li><li><a href="/categories/Swift/">Swift</a></li><li><a href="/categories/数据结构/">数据结构</a></li><li><a href="/categories/Xcode/">Xcode</a></li><li><a href="/categories/Vim/">Vim</a></li><li><a href="/categories/Node-js/">Node.js</a></li><li><a href="/categories/Git/">Git</a></li><li><a href="/categories/DB/">DB</a></li>
+
+      </ul>
+    </li>
+  </ul>
+  
+
+
+
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-link fa-lg"></i>
+      </a>
+      <ul class="dropdown-content">
+        
+          <li>
+            <a href="https://github.com/Rayooo">
+        Github
+      </a>
+    </li>
+     
+          <li>
+            <a href="http://weibo.com/u/1795459455">
+        微博
+      </a>
+    </li>
+     
+          <li>
+            <a href="https://www.zhihu.com/people/ray-41-75">
+        知乎
+      </a>
+    </li>
+     
+          <li>
+            <a href="/about">
+        关于我
+      </a>
+    </li>
+     
     </ul>
+    </li>
+    <li class="archives"><a href="/archives">
+      <i class="fa fa-archive fa-lg"></i>
+    </a></li>
+  </ul>
+  </div>
+</nav></nav>
+<ul class="posts">
   
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
     
-      
-
+<div>
+<li class="post-item">
   
   
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/26/2015-09-26-UILabel学习-iOS/" itemprop="url">
-                  UILabel学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-26T00:00:00+08:00" content="2015-09-26">
-              2015-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
+    <h1 class="index-title">
+        <a href="/2015/09/26/2015-09-26-UILabel学习-iOS/">
+            UILabel学习
+        </a>
+    </h1>
+  
 
 
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            代码创建UILabel,可以放在viewDidLoad()中,Label算是这么多控件中最简单的一个了
+  <div class="excerpt">
+  
+    代码创建UILabel,可以放在viewDidLoad()中,Label算是这么多控件中最简单的一个了
 
 初始化
 
-var nameLabe: UILabel = UILabel(frame: CGRectMake(100, 100, 200, 60))//初始化
-nameLabe.backgrou
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/26/2015-09-26-UILabel学习-iOS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+var nameLabe: UILabel = UILabel(frame: CGRectMake(100, 100, 20
+  
+  <a href="/2015/09/26/2015-09-26-UILabel学习-iOS/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-25T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-26
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/iOS/">iOS</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/24/2015-09-24-fibonacci数列递归的优化-数据结构/">
+            fibonacci数列递归的优化
+        </a>
+    </h1>
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/24/2015-09-24-fibonacci数列递归的优化-数据结构/" itemprop="url">
-                  fibonacci数列递归的优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-24T00:00:00+08:00" content="2015-09-24">
-              2015-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            fibonacci用递归写效率极低，很多次重复计算，如果计算f(50),到后面计算f(3),f(2)的数量会极其庞大，几乎是指数增长，而且计算结果都一样，这里产生了严重的浪费，开销极大，是整个递归的弱点所在
+  <div class="excerpt">
+  
+    fibonacci用递归写效率极低，很多次重复计算，如果计算f(50),到后面计算f(3),f(2)的数量会极其庞大，几乎是指数增长，而且计算结果都一样，这里产生了严重的浪费，开销极大，是整个递归的弱点所在
 //普通递归求fabonacci
-long long fabonacciBad(int a)
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/24/2015-09-24-fibonacci数列递归的优化-数据结构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+  
+  <a href="/2015/09/24/2015-09-24-fibonacci数列递归的优化-数据结构/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-23T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-24
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/数据结构/">数据结构</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/23/2015-09-23-选择排序，希尔排序，快排的学习-数据结构/" itemprop="url">
-                  选择排序，希尔排序，快排的学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-23T00:00:00+08:00" content="2015-09-23">
-              2015-09-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            希尔排序能比普通的选择排序和冒泡排序效率更高，但是低于快排，而又低于STL中的sort，不得不说sort做到了极致,选择，冒泡排序时间复杂度为O(n^2)
-
-维基百科:希尔排序原始的算法实现在最坏的情况下需要进行O(n^2)的比较和交换。V. Pratt的书对算法进行了少量修改，可以使得性能提升至O
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/23/2015-09-23-选择排序，希尔排序，快排的学习-数据结构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
+<div>
+<li class="post-item">
   
   
+    <h1 class="index-title">
+        <a href="/2015/09/23/2015-09-23-选择排序，希尔排序，快排的学习-数据结构/">
+            选择排序，希尔排序，快排的学习
+        </a>
+    </h1>
+  
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+  <div class="excerpt">
+  
+    希尔排序能比普通的选择排序和冒泡排序效率更高，但是低于快排，而又低于STL中的sort，不得不说sort做到了极致,选择，冒泡排序时间复杂度为O(n^2)
+
+维基百科:希尔排序原始的算法实现在最坏的情况下需要进行O(n^2)的比较和交换。V
+  
+  <a href="/2015/09/23/2015-09-23-选择排序，希尔排序，快排的学习-数据结构/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-22T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-23
+</time>
+
+
 
     
-      <header class="post-header">
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/数据结构/">数据结构</a>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/20/2015-09-20-对于Xcode编辑器的图标-Xcode/" itemprop="url">
-                  对于Xcode编辑器的图标
-                </a>
-              
-            
-          </h1>
-        
 
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-20T00:00:00+08:00" content="2015-09-20">
-              2015-09-20
-            </time>
-          </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Xcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Xcode</span>
-                  </a>
-                </span>
 
-                
-                
 
-              
-            </span>
-          
+  </div>
+</li>
+</div>
+<hr>
 
-          
-            
-          
 
-          
 
-        </div>
-      </header>
+
+  
     
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/20/2015-09-20-对于Xcode编辑器的图标-Xcode/">
+            对于Xcode编辑器的图标
+        </a>
+    </h1>
+  
 
 
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            Xcode很多按钮都只有一个图标，而又不告诉你这个按钮是做什么的，之前都不是很清楚，这篇来记一下各个按钮到底都是干什么的
+  <div class="excerpt">
+  
+    Xcode很多按钮都只有一个图标，而又不告诉你这个按钮是做什么的，之前都不是很清楚，这篇来记一下各个按钮到底都是干什么的
 参考：http://www.cocoachina.com/ios/20141128/10358.html
+  
+  <a href="/2015/09/20/2015-09-20-对于Xcode编辑器的图标-Xcode/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-19T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-20
+</time>
 
-
-            
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/20/2015-09-20-对于Xcode编辑器的图标-Xcode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Xcode/">Xcode</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/17/2015-09-17-大二的开始-瞎扯/">
+            大二的开始
+        </a>
+    </h1>
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/17/2015-09-17-大二的开始-瞎扯/" itemprop="url">
-                  大二的开始
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-17T00:00:00+08:00" content="2015-09-17">
-              2015-09-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/瞎扯/" itemprop="url" rel="index">
-                    <span itemprop="name">瞎扯</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            大二，开学的第一个礼拜
+  <div class="excerpt">
+  
+    大二，开学的第一个礼拜
 不是特别的忙，因为不在青协了，一些事情一些聚会也少了下来，自己的时间也多了
 实验室吧，决定星期六星期天会去两天，其他时间零散也不是那么好分配，主要是一室友去打工了，我可能也不是那么的想呆在寝室里
-ACM队，的确学到了一些算法结实了一些牛逼的人，不过还是很浅还是很渣，遇到难题就
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/17/2015-09-17-大二的开始-瞎扯/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+ACM队，的确学到了
+  
+  <a href="/2015/09/17/2015-09-17-大二的开始-瞎扯/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-16T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-17
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/瞎扯/">瞎扯</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/12/2015-09-12-类型检查和向下转型is&as类型转换Any&AnyObject-Swift/">
+            类型检查和向下转型is&amp;as类型转换Any&amp;AnyObject
+        </a>
+    </h1>
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/12/2015-09-12-类型检查和向下转型is&as类型转换Any&AnyObject-Swift/" itemprop="url">
-                  类型检查和向下转型is&as类型转换Any&AnyObject
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-12T00:00:00+08:00" content="2015-09-12">
-              2015-09-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            ###转载自http://wiki.jikexueyuan.com/project/swift/chapter2/19_Type_Casting.html
+  <div class="excerpt">
+  
+    ###转载自http://wiki.jikexueyuan.com/project/swift/chapter2/19_Type_Casting.html
 ###检查类型(Checking Type)
-用类型检查操作符( is )来检查一个实例是否属于特定子类型。若实例属于那个子类型,类型检查操作符
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/12/2015-09-12-类型检查和向下转型is&as类型转换Any&AnyObject-Swift/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+用类型检查操作符( is )来检查一个
+  
+  <a href="/2015/09/12/2015-09-12-类型检查和向下转型is&as类型转换Any&AnyObject-Swift/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-11T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-12
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Swift/">Swift</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/11/2015-09-11-自动引用计数-Swift/">
+            自动引用计数(Automatic Reference Counting)
+        </a>
+    </h1>
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/11/2015-09-11-自动引用计数-Swift/" itemprop="url">
-                  自动引用计数(Automatic Reference Counting)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-11T00:00:00+08:00" content="2015-09-11">
-              2015-09-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            ##转载自http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html
+  <div class="excerpt">
+  
+    ##转载自http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html
 ##这一部分难以理解
-Swift 使用自动引用计数（ARC）机制来跟踪和管理你的应用程序的内存。通常情况下，Swi
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/11/2015-09-11-自动引用计数-Swift/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+Swift 使用自动引用计数（A
+  
+  <a href="/2015/09/11/2015-09-11-自动引用计数-Swift/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-10T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-11
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Swift/">Swift</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/10/2015-09-10-iOS学习资料整理-iOS/">
+            iOS学习资料整理
+        </a>
+    </h1>
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/10/2015-09-10-iOS学习资料整理-iOS/" itemprop="url">
-                  iOS学习资料整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-10T00:00:00+08:00" content="2015-09-10">
-              2015-09-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            
-转载自https://github.com/Aufree/trip-to-iOS
+  <div class="excerpt">
+  
+    转载自https://github.com/Aufree/trip-to-iOS
 http://www.cocoachina.com/ios/20150826/13151.html
 感谢作者
 
-这份学习资料是为 iOS 初学者所准备的, 旨在帮助 iOS 初学者们快速找到适合自己的学习资料, 节省
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/10/2015-09-10-iOS学习资料整理-iOS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
+这份学习资料是为 iOS 初学者所准备的, 旨
+  
+  <a href="/2015/09/10/2015-09-10-iOS学习资料整理-iOS/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-09T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-10
+</time>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
 
 
     
-      
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Swift/">Swift</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/07/2015-09-07-Swift语法-Swift/" itemprop="url">
-                  Swift语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-07T00:00:00+08:00" content="2015-09-07">
-              2015-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            来源：http://wiki.jikexueyuan.com/project/swift/
-###空合运算符(Nil Coalescing Operator)空合运算符(a ?? b)将对可选类型a进行空判断，如果a包含一个值就进行解封，否则就返回一个默认值b.这个运算符有两个条件:
-
-表达式a必须
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/07/2015-09-07-Swift语法-Swift/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
+<div>
+<li class="post-item">
   
   
+    <h1 class="index-title">
+        <a href="/2015/09/07/2015-09-07-Swift语法-Swift/">
+            Swift语法
+        </a>
+    </h1>
+  
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+  <div class="excerpt">
+  
+    来源：http://wiki.jikexueyuan.com/project/swift/
+###空合运算符(Nil Coalescing Operator)空合运算符(a ?? b)将对可选类型a进行空判断，如果a包含一个值就进行解封，否
+  
+  <a href="/2015/09/07/2015-09-07-Swift语法-Swift/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-09-06T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-07
+</time>
+
+
 
     
-      <header class="post-header">
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Swift/">Swift</a>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/09/04/2015-09-04-iOS一些UI基础-iOS/" itemprop="url">
-                  iOS一些UI基础
-                </a>
-              
-            
-          </h1>
-        
 
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-09-04T00:00:00+08:00" content="2015-09-04">
-              2015-09-04
-            </time>
-          </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
 
-                
-                
 
-              
-            </span>
-          
+  </div>
+</li>
+</div>
+<hr>
 
-          
-            
-          
 
-          
 
-        </div>
-      </header>
+
+  
     
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/09/04/2015-09-04-iOS一些UI基础-iOS/">
+            iOS一些UI基础
+        </a>
+    </h1>
+  
 
 
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            
-出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
+  <div class="excerpt">
+  
+    出处是斯坦福公开课：iOS 8开发，http://www.swiftv.cn/course/i7ahl5gn
 
 数组的一些方法 Array Methods
 var a = [a,b,c]
 append(T)
-insert(T,atIndex: Int)
-splice(Array&lt;T&gt;,
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/04/2015-09-04-iOS一些UI基础-iOS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
+insert(T,atIndex
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
- </div>
-
-        
-
-        
-      </div>
-
-      
-        
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Ray" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">Ray</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">43</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            
-              <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">标签</span>
-              
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Ray</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+  <a href="/2015/09/04/2015-09-04-iOS一些UI基础-iOS/">
+    更多
   </a>
-</div>
-
-
- </div>
-    </footer>
-
-    <div class="back-to-top"></div>
   </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-  
+  <div class="index-meta">
     
+<time datetime="2015-09-03T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  09-04
+</time>
+
+
+
     
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/iOS/">iOS</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
 
   
+</ul>
+<ul class="pager">
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+</ul>
 
 
-  
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © Ray 2015-2016
+    </div>
+    <div class="secondrow">
+        <a href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
-
-
-
-
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
-  
-  
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>
