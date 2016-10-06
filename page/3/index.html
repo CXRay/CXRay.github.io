@@ -51,7 +51,7 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/瞎扯/">瞎扯</a></li><li><a href="/categories/网页设计/">网页设计</a></li><li><a href="/categories/iOS/">iOS</a></li><li><a href="/categories/Swift/">Swift</a></li><li><a href="/categories/Xcode/">Xcode</a></li><li><a href="/categories/数据结构/">数据结构</a></li><li><a href="/categories/Vim/">Vim</a></li><li><a href="/categories/Node-js/">Node.js</a></li><li><a href="/categories/Git/">Git</a></li><li><a href="/categories/DB/">DB</a></li>
+           <li><a href="/categories/瞎扯/">瞎扯</a></li><li><a href="/categories/网页设计/">网页设计</a></li><li><a href="/categories/iOS/">iOS</a></li><li><a href="/categories/Swift/">Swift</a></li><li><a href="/categories/Xcode/">Xcode</a></li><li><a href="/categories/数据结构/">数据结构</a></li><li><a href="/categories/Vim/">Vim</a></li><li><a href="/categories/Node-js/">Node.js</a></li><li><a href="/categories/Git/">Git</a></li><li><a href="/categories/DB/">DB</a></li><li><a href="/categories/Java/">Java</a></li>
 
       </ul>
     </li>
@@ -107,8 +107,8 @@
   
   
     <h1 class="index-title">
-        <a href="/2015/10/11/2015-10-11-UIAlertView & UIActionSheet学习-iOS/">
-            UIAlertView &amp; UIActionSheet学习
+        <a href="/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/">
+            UIScrollView和UIPageControl学习
         </a>
     </h1>
   
@@ -116,17 +116,18 @@
 
   <div class="excerpt">
   
-    提醒视图和操作表这两个视图不能通过Xib创建，只能通过代码添加视图，UIAlertView 提醒视图主要以弹框的形式提醒或警告用户以引起用户注意，UIActionSheet 操作表从界面底部弹出并有很多操作按钮供用户选择,iOS9已经不建议
+    #UIScrollView
+UIScrollView可滚动视图，允许一个屏幕上显示很多内容，利用addSubview方法它把所有的内容都添加到ScrollView，可以给滚动视图添加放置很多视图但问题是这样会造成严重的内存泄漏，所以在考虑用
   
-  <a href="/2015/10/11/2015-10-11-UIAlertView & UIActionSheet学习-iOS/">
+  <a href="/2015/10/13/2015-10-13-UIScrollView和UIPageControl学习-iOS/">
     更多
   </a>
   </div>
   <div class="index-meta">
     
-<time datetime="2015-10-10T16:00:00.000Z" itemprop="datePublished">
+<time datetime="2015-10-12T16:00:00.000Z" itemprop="datePublished">
   <i class="fa fa-calendar"></i>&nbsp;
-  10-11
+  10-13
 </time>
 
 
@@ -170,6 +171,54 @@ let imageView = UIImageView(frame: CGRectMake(20, 10, 450, 250))
 let imageView2 = UIImageView(image: UIImage(named: 
   
   <a href="/2015/10/11/2015-10-11-UIImageView和UIImage的学习-iOS/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-10-10T16:00:00.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  10-11
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/iOS/">iOS</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
+  
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/10/11/2015-10-11-UIAlertView & UIActionSheet学习-iOS/">
+            UIAlertView &amp; UIActionSheet学习
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    提醒视图和操作表这两个视图不能通过Xib创建，只能通过代码添加视图，UIAlertView 提醒视图主要以弹框的形式提醒或警告用户以引起用户注意，UIActionSheet 操作表从界面底部弹出并有很多操作按钮供用户选择,iOS9已经不建议
+  
+  <a href="/2015/10/11/2015-10-11-UIAlertView & UIActionSheet学习-iOS/">
     更多
   </a>
   </div>
@@ -261,8 +310,8 @@ var switchView = UISwitch(frame: CGRectMake(20, 100, 60, 40))
   
   
     <h1 class="index-title">
-        <a href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/">
-            UIActivityIndicatorView &amp; UIProgressView学习
+        <a href="/2015/10/10/2015-10-10-UISlider学习-iOS/">
+            UISlider学习
         </a>
     </h1>
   
@@ -270,14 +319,14 @@ var switchView = UISwitch(frame: CGRectMake(20, 100, 60, 40))
 
   <div class="excerpt">
   
-    #活动指示器
+    UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
 
-活动指示器初始化，添加到视图
+初始化
 
-//活动指示器显示一个标准的转动轮，默认大小为20*20，显示得很清楚，如果代码创建大于此尺寸的话，显示效果就会变得模糊
-var activityView = UIActivityIndica
+//初始化，UISlider虽然设置了高度，但是将会被忽略
+var slider = UISlider(frame: CGRect
   
-  <a href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/">
+  <a href="/2015/10/10/2015-10-10-UISlider学习-iOS/">
     更多
   </a>
   </div>
@@ -314,8 +363,8 @@ var activityView = UIActivityIndica
   
   
     <h1 class="index-title">
-        <a href="/2015/10/10/2015-10-10-UISlider学习-iOS/">
-            UISlider学习
+        <a href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/">
+            UIActivityIndicatorView &amp; UIProgressView学习
         </a>
     </h1>
   
@@ -323,14 +372,14 @@ var activityView = UIActivityIndica
 
   <div class="excerpt">
   
-    UISlider只是设置左右图片和圆点的值，还有最大最小值，获取当前值和设定值，属性和方法比较少
+    #活动指示器
 
-初始化
+活动指示器初始化，添加到视图
 
-//初始化，UISlider虽然设置了高度，但是将会被忽略
-var slider = UISlider(frame: CGRect
+//活动指示器显示一个标准的转动轮，默认大小为20*20，显示得很清楚，如果代码创建大于此尺寸的话，显示效果就会变得模糊
+var activityView = UIActivityIndica
   
-  <a href="/2015/10/10/2015-10-10-UISlider学习-iOS/">
+  <a href="/2015/10/10/2015-10-10-UIActivityIndicatorView & UIProgressView学习-iOS/">
     更多
   </a>
   </div>
@@ -547,59 +596,6 @@ var textView = UITextView(frame: CGRectM
 <time datetime="2015-10-04T16:00:00.000Z" itemprop="datePublished">
   <i class="fa fa-calendar"></i>&nbsp;
   10-05
-</time>
-
-
-
-    
-    &nbsp;
-    <i class="fa fa-tag"></i>&nbsp;
-    <a href="/categories/iOS/">iOS</a>
-
-
-
-
-
-  </div>
-</li>
-</div>
-<hr>
-
-
-
-
-  
-    
-<div>
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2015/10/02/2015-10-02-UIButton学习-iOS/">
-            UIButton学习
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    UIButton也不是很难，就是设置一下button的标题，或者是图片，按钮的颜色之类的，按下的效果，还有要写一下按钮按下的函数，按下将会发生什么
-
-初始化
-
-//初始化
-var button = UIButton(frame: CGRec
-  
-  <a href="/2015/10/02/2015-10-02-UIButton学习-iOS/">
-    更多
-  </a>
-  </div>
-  <div class="index-meta">
-    
-<time datetime="2015-10-01T16:00:00.000Z" itemprop="datePublished">
-  <i class="fa fa-calendar"></i>&nbsp;
-  10-02
 </time>
 
 
