@@ -1,7 +1,8 @@
 FROM ubuntu
-MAINTAINER Ray
 
-RUN "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+MAINTAINER Ray chen
+
+# RUN "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
 RUN apt-get update
 
