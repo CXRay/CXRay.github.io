@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>ubuntu下搭建ftp</title>
+  <meta name="author" content="Ray">
+   <meta name="description" content="Blog">
+  
+
+  <meta property="og:title" content="ubuntu下搭建ftp"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Ray"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Ray" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;Ray
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        ubuntu下搭建ftp
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2017-01-14T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2017-01-15
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Linux/">Linux</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>为了抛弃百度云，限速太恶心了，自己搭建ftp</p>
+<h2 id="1-下载vsftpd"><a href="#1-下载vsftpd" class="headerlink" title="1.下载vsftpd"></a>1.下载vsftpd</h2><p>sudo apt-get install vsftpd</p>
+<h2 id="2-修改vsftpd-conf"><a href="#2-修改vsftpd-conf" class="headerlink" title="2.修改vsftpd.conf"></a>2.修改vsftpd.conf</h2><p>sudo vi /etc/vsftpd.conf </p>
+<p>将vsftpd.conf修改为以下内容</p>
+<p>listen=YES</p>
+<p>anonymous_enable=NO</p>
+<p>local_enable=YES</p>
+<p>write_enable=YES</p>
+<p>dirmessage_enable=YES</p>
+<p>use_localtime=YES</p>
+<p>xferlog_enable=YES</p>
+<p>connect_from_port_20=YES</p>
+<p>secure_chroot_dir=/var/run/vsftpd/empty</p>
+<p>pam_service_name=vsftpd</p>
+<p>rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</p>
+<p>rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</p>
+<h2 id="3-为了让root账号直接登录ftp，需要删除-etc-ftpusers中的root，这个文件是禁止该Linux上的用户登录"><a href="#3-为了让root账号直接登录ftp，需要删除-etc-ftpusers中的root，这个文件是禁止该Linux上的用户登录" class="headerlink" title="3.为了让root账号直接登录ftp，需要删除/etc/ftpusers中的root，这个文件是禁止该Linux上的用户登录"></a>3.为了让root账号直接登录ftp，需要删除/etc/ftpusers中的root，这个文件是禁止该Linux上的用户登录</h2><p>sudo vi /etc/ftpusers </p>
+<h2 id="4-重启vsftpd"><a href="#4-重启vsftpd" class="headerlink" title="4.重启vsftpd"></a>4.重启vsftpd</h2><p>sudo service vsftpd restart</p>
+<p>然后就能通过ubuntu账户登录了</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © Ray 2015-2016
+    </div>
+    <div class="secondrow">
+        <a href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
