@@ -230,6 +230,23 @@ Nginx单单设置静态文件服务并没有发挥真正的功力，真正需要
 	}
 
 
+Angel的静态文件服务，仅提供一个前端的文件代理
+---
 
+主要是include mime.types，之前是因为这个坑而导致css加载不全
+
+	worker_processes  1;
+	events { worker_connections  1024; }
+	http {
+	    server {
+	      root /Users/Ray/Downloads/backend-angular;  
+	      listen 8080;
+
+	      location / {
+	        include  /usr/local/etc/nginx/mime.types;
+	      }
+	    }
+
+	}
 
 

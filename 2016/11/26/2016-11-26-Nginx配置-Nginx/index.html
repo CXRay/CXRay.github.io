@@ -249,6 +249,20 @@ location / {
             index  index.html index.htm;
            }
 }
+</code></pre><h2 id="Angel的静态文件服务，仅提供一个前端的文件代理"><a href="#Angel的静态文件服务，仅提供一个前端的文件代理" class="headerlink" title="Angel的静态文件服务，仅提供一个前端的文件代理"></a>Angel的静态文件服务，仅提供一个前端的文件代理</h2><p>主要是include mime.types，之前是因为这个坑而导致css加载不全</p>
+<pre><code>worker_processes  1;
+events { worker_connections  1024; }
+http {
+    server {
+      root /Users/Ray/Downloads/backend-angular;  
+      listen 8080;
+
+      location / {
+        include  /usr/local/etc/nginx/mime.types;
+      }
+    }
+
+}
 </code></pre>
 
   </article>
