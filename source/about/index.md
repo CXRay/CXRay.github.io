@@ -28,26 +28,26 @@ title: About
 *Skills*
 
 * C && C++
-* Objective-C && Swift
-* Cocoa Touch
+* Objective-C && Swift && Cocoa Touch
+* Android
 * Git
 * Java && JSP
 * MySQL
 * HTML && CSS && Bootstrap
 * PHP
-* JS && Angular && ionic
+* JS && Angular && ionic && Vue
 * Node.js && Express
 * MongoDB
-* Python
-* Linux Basic Operation
+* Linux
+* Docker
+
 
 *Learning*
 
-* Docker
 * React
+* Python
 * Django
 * Spring
-* Android
 * Go
 
 *Life*
